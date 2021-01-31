@@ -1,9 +1,9 @@
 extends Actor
 
 
-export var stomp_impulse: = 600.0
-export var friction = 0.1  # force against stop
-export var acceleration = 0.5  #force against start
+export var STOMP_IMPULSE: = 600.0
+export var FRICTION = 0.1  # force against stop
+export var ACCELERATION = 0.2  #force against start, 0.2 is quite fast start
 
 
 func _on_StompDetector_area_entered(area: Area2D) -> void:
@@ -33,8 +33,14 @@ func _physics_process(delta: float) -> void:
 	var direction: = self._get_direction()
 
 	# Apply X speed
-	self._current_velocity.x = speed.x * direction.x
-	
+	#velocity.x = lerp(velocity.x, dir * speed, acceleration)
+	if direction.x != 0:
+		var _wished_speed = speed.x * direction.x
+		self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, ACCELERATION)
+	else:  # do not stop immediatly
+		var _wished_speed = 0  # want to stop
+		self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, FRICTION)
+		
 	# Apply Y speed if any
 	if direction.y != 0.0:
 		self._current_velocity.y = speed.y * direction.y
@@ -58,7 +64,7 @@ func _get_direction() -> Vector2:
 func _do_stomp():
 	# I prefer to always have the full stomp impulse when jumping over an ennery
 	#var stomp_jump: = -speed.y if Input.is_action_pressed("jump") else -stomp_impulse
-	self._current_velocity.y =  -stomp_impulse
+	self._current_velocity.y =  -STOMP_IMPULSE
 
 
 func die() -> void:
