@@ -1,9 +1,13 @@
 extends Actor
 
 
-export var STOMP_IMPULSE: = 600.0
+export var STOMP_IMPULSE: = 1000.0
+export var SHOOTGUN_IMPULSE = 2000
 export var FRICTION = 0.1  # force against stop
 export var ACCELERATION = 0.2  #force against start, 0.2 is quite fast start
+
+var _is_shooting = false  # flag to block new shoot
+# TODO var _current_direction : Vector2 = Vector2(1, 0)  # Looking at right
 
 
 onready var Shootgun = load("res://src/Actors/Shoots/Shootgun.tscn")
@@ -29,17 +33,36 @@ func _is_jump_interrupted():
 func _get_snap_to_floor_vector(direction) -> Vector2:
 	return Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
 
+
+######################## Shooting
 func shoot_finished():
+	self._is_shooting = false
 	return
 
 
+func _get_shoot_direction() -> Vector2:
+	return Vector2(
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		1
+		)
+
+func do_shoot():
+	if self._is_shooting:
+		return
+	var shootgun = Shootgun.instance()
+	self._is_shooting = true
+	shootgun.start_shoot(self)
+	shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
+	shootgun.scale = Vector2(2, 2)  # TODO: adjust with real sprite
+	self.add_child(shootgun)
+	self._current_velocity.x -= SHOOTGUN_IMPULSE
+
+
+
+############# Moving / Inputs
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot"):
-		var shootgun = Shootgun.instance()
-		shootgun.start_shoot(self)
-		shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
-		shootgun.scale = Vector2(2, 2)
-		self.add_child(shootgun)
+		self.do_shoot()
 
 
 func _physics_process(delta: float) -> void:
@@ -69,10 +92,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _get_direction() -> Vector2:
-	return Vector2(
+	var new_direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		-Input.get_action_strength("jump") if self.is_on_floor() and Input.is_action_just_pressed("jump") else 0.0
 	)
+	
+	return new_direction
+	
 
 
 func _do_stomp():
