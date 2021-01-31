@@ -28,9 +28,12 @@ func _on_Player_reset() -> void:
 	self.paused = false
 
 
-func _unhandled_input(event: InputEvent) -> void:
+# NOTE: _input to be priority for main menu taht is still there?
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") and title_label.text != MESSAGE_DIED:
 		self.paused = not self.paused
+		# stop propagation
+		get_tree().set_input_as_handled()
 
 
 func update_interface() -> void:
