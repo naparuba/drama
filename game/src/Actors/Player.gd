@@ -6,6 +6,8 @@ export var FRICTION = 0.1  # force against stop
 export var ACCELERATION = 0.2  #force against start, 0.2 is quite fast start
 
 
+onready var Shootgun = load("res://src/Actors/Shoots/Shootgun.tscn")
+
 func _on_StompDetector_area_entered(area: Area2D) -> void:
 	#self._velocity = self._calculate_stomp_velocity(self._velocity, stomp_impulse)
 	self._do_stomp()
@@ -26,6 +28,16 @@ func _is_jump_interrupted():
 
 func _get_snap_to_floor_vector(direction) -> Vector2:
 	return Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
+
+func shoot_finished():
+	return
+
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("shoot"):
+		var shootgun = Shootgun.instance()
+		shootgun.start_shoot(self)
+		self.add_child(shootgun)
 
 
 func _physics_process(delta: float) -> void:
@@ -57,7 +69,7 @@ func _physics_process(delta: float) -> void:
 func _get_direction() -> Vector2:
 	return Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		-Input.get_action_strength("jump") if is_on_floor() and Input.is_action_just_pressed("jump") else 0.0
+		-Input.get_action_strength("jump") if self.is_on_floor() and Input.is_action_just_pressed("jump") else 0.0
 	)
 
 

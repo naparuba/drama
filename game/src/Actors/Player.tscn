@@ -19,7 +19,6 @@ extents = Vector2( 48, 8 )
 collision_mask = 4
 script = ExtResource( 1 )
 speed = Vector2( 700, 1350 )
-stomp_impulse = 1600.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
