@@ -3,9 +3,11 @@ extends Node
 
 onready var scene_tree: SceneTree = get_tree()
 onready var score_label: Label = $Score
+onready var fps_label: Label = $Fps
 onready var pause_overlay: ColorRect = $PauseOverlay
 onready var title_label: Label = $PauseOverlay/Title
 onready var main_screen_button: Button = $PauseOverlay/PauseMenu/MainScreenButton
+
 
 const MESSAGE_DIED: = "You died"
 
@@ -18,6 +20,9 @@ func _ready() -> void:
 	PlayerData.connect("reset", self, "_on_Player_reset")
 	update_interface()
 
+
+func _process(delta):
+	self.fps_label.text = 'Fps:     %s' % Engine.get_frames_per_second()
 
 func _on_Player_died() -> void:
 	self.paused = true
