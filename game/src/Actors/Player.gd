@@ -37,6 +37,8 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot"):
 		var shootgun = Shootgun.instance()
 		shootgun.start_shoot(self)
+		shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
+		shootgun.scale = Vector2(2, 2)
 		self.add_child(shootgun)
 
 
