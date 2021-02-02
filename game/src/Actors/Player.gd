@@ -56,19 +56,19 @@ func _get_shoot_direction() -> Vector2:
 		)
 
 
-func do_shoot():
-	if self._is_shooting:
-		return
+func _add_shootgun():
 	var shootgun = Shootgun.instance()
 	self._is_shooting = true
 	shootgun.start_shoot(self)
 	#shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
 	shootgun.position.y = -50  # by default it's high to match player arms
 	shootgun.position += polar2cartesian(self._move_vec[0] * 50 , -1 * self._move_vec[1] )
-	shootgun.scale = Vector2(2, 2)  # TODO: adjust with real sprite
+	shootgun.scale = Vector2(8, 8)  # TODO: adjust with real sprite
 	shootgun.rotation_degrees = -1 * rad2deg(self._move_vec[1] )
 	self.add_child(shootgun)
-	
+
+
+func _apply_reverse_shootgun_force():
 	var reverse_force = polar2cartesian(self._move_vec[0]  ,  self._move_vec[1] )
 	reverse_force[0] *=  -SHOOTGUN_IMPULSE  # -1 = >oposite force
 	reverse_force[1] *= SHOOTGUN_IMPULSE  #-1 but as the y is inversed, it's +1
@@ -76,6 +76,15 @@ func do_shoot():
 	#self._current_velocity.x -= SHOOTGUN_IMPULSE
 	self._current_velocity += reverse_force
 
+
+func do_shoot():
+	if self._is_shooting:
+		return
+	# We can shoot, add the shootgun
+	self._add_shootgun()
+	# we did shoot, so apply an oposite force (... lol ...)
+	self._apply_reverse_shootgun_force()
+	
 
 
 ############# Moving / Inputs
@@ -121,7 +130,7 @@ func _update_moving():
 	var cur_move_vec = cartesian2polar(move_x, move_y)
 	
 	if cur_move_vec != Vector2.ZERO:
-		print('X:', move_x, 'Y:', move_y, '=> force=', cur_move_vec[0],  'angle=', cur_move_vec[1])
+		#print('X:', move_x, 'Y:', move_y, '=> force=', cur_move_vec[0],  'angle=', cur_move_vec[1])
 		self._move_vec = Vector2(1, cur_move_vec[1])  # save only the angle
 
 
