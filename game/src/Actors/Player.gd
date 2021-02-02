@@ -13,7 +13,7 @@ var _move_up_strength = 0.0
 var _move_down_strength = 0.0
 var _move_vec = Vector2(1, 0)  # what the player is asking to aim
 
-
+var _current_wall = TOUCH_NO_WALL
 
 
 var _is_shooting = false  # flag to block new shoot
@@ -134,13 +134,40 @@ func _update_moving():
 		self._move_vec = Vector2(1, cur_move_vec[1])  # save only the angle
 
 
+	# Now look if we did collide with a wall
+	var _previous_wall = self._current_wall
+	if not self.is_on_wall():
+		self._current_wall = TOUCH_NO_WALL
+	else:
+		self._current_wall = self.get_which_wall_collided()
+		# We are griping the wall, so simulate a lower gravity, just for us
+		self._set_lower_gravity()
+	if _previous_wall != self._current_wall:
+		print('Switch wall colision from', _previous_wall, ' to ', self._current_wall)
+		
+
+func _set_lower_gravity():
+	self._current_gravity = GRAVITY / 4
+	
+func _is_touching_a_wall() -> bool:
+	return self._current_wall == TOUCH_LEFT_WALL or self._current_wall == TOUCH_RIGHT_WALL
+
+
 func _get_direction() -> Vector2:
 	self._update_moving()
+	var _asking_for_jump = Input.is_action_just_pressed("jump")
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,
-		-Input.get_action_strength("jump") if self.is_on_floor() and Input.is_action_just_pressed("jump") else 0.0
+		-Input.get_action_strength("jump") if self.is_on_floor() and _asking_for_jump else 0.0
 	)
-	
+	# Maybe we are wall jumping
+	if _asking_for_jump and self._is_touching_a_wall():
+		print('WALL JUMP from %s' % self._current_wall)
+		new_direction[1] = -Input.get_action_strength("jump")
+		# NOTE: to evade player input, we simulate a huge force against the wall
+		new_direction[0] = 10
+		if self._current_wall == TOUCH_RIGHT_WALL:
+			new_direction[0] *= -1  # need to inverse force to get lower x
 	return new_direction
 	
 

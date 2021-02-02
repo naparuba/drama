@@ -7,13 +7,13 @@ export var score: = 100
 
 
 func _ready() -> void:
-	set_physics_process(false)
+	self.set_physics_process(false)
 	self._current_velocity.x = -speed.x
 
 
 func _physics_process(delta: float) -> void:
-	self._current_velocity.x *= -1 if is_on_wall() else 1
-	self._current_velocity.y = move_and_slide(self._current_velocity, FLOOR_NORMAL).y
+	self._current_velocity.x *= -1 if self.is_on_wall() else 1
+	self._current_velocity.y = self.move_and_slide(self._current_velocity, FLOOR_NORMAL).y
 
 
 func _on_StompArea2D_area_entered(other: Area2D) -> void:
@@ -24,4 +24,4 @@ func _on_StompArea2D_area_entered(other: Area2D) -> void:
 
 func die() -> void:
 	PlayerData.score += score
-	queue_free()
+	self.queue_free()
