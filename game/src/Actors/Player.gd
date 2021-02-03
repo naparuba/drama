@@ -1,6 +1,10 @@
 extends Actor
 
 
+#onready var dust_animation = $dust_animation
+#onready var dust_animated_sprite = get_node("res://assets/player/dust.tres")
+onready var dust = load("res://src/Objects/Dust.tscn")
+
 export var STOMP_IMPULSE: = 1000.0
 export var SHOOTGUN_IMPULSE = 2000
 export var FRICTION = 0.1  # force against stop
@@ -153,6 +157,13 @@ func _is_touching_a_wall() -> bool:
 	return self._current_wall == TOUCH_LEFT_WALL or self._current_wall == TOUCH_RIGHT_WALL
 
 
+# When we are jumping, put a smoke dust at our jumping position
+func _spawn_jump_dust():
+		var jump_dust = dust.instance()
+		self.get_parent().add_child(jump_dust)
+		jump_dust.global_position = self.global_position
+		
+		
 # TODO: jump: jump buffer, to allow jump a bit before landing, or exiting a platform (coyote_time)
 # TODO: shader border avec ce qu'il peux interagir? desature color for hits
 # MUSICS & sound effect!
@@ -165,9 +176,15 @@ func _is_touching_a_wall() -> bool:
 func _get_direction() -> Vector2:
 	self._update_moving()
 	var _asking_for_jump = Input.is_action_just_pressed("jump")
+	
+	var is_start_to_jump = self.is_on_floor() and _asking_for_jump
+
+	if is_start_to_jump:
+		self._spawn_jump_dust()
+	
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,
-		-Input.get_action_strength("jump") if self.is_on_floor() and _asking_for_jump else 0.0
+		-Input.get_action_strength("jump") if is_start_to_jump else 0.0
 	)
 	# Maybe we are wall jumping
 	if _asking_for_jump and self._is_touching_a_wall():
@@ -190,3 +207,9 @@ func _do_stomp():
 func die() -> void:
 	PlayerData.deaths += 1
 	queue_free()
+
+
+#func _on_dust_animation_animation_finished():
+#	dust_animation.visible = false
+#	dust_animation.frame = 0
+#	dust_animation.playing = false
