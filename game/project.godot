@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 PlayerData="*res://src/Autoload/PlayerData.tscn"
 Groups="*res://src/Autoload/Groups.gd"
+SlowTime="*res://src/Autoload/SlowTime.gd"
 
 [display]
 

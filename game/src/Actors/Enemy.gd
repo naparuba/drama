@@ -24,4 +24,6 @@ func _on_StompArea2D_area_entered(other: Area2D) -> void:
 
 func die() -> void:
 	PlayerData.score += score
+	# Slow a bit each time an enemy is killed
+	SlowTime.start()
 	self.queue_free()

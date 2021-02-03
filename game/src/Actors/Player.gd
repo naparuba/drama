@@ -63,7 +63,7 @@ func _add_shootgun():
 	#shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
 	shootgun.position.y = -50  # by default it's high to match player arms
 	shootgun.position += polar2cartesian(self._move_vec[0] * 50 , -1 * self._move_vec[1] )
-	shootgun.scale = Vector2(8, 8)  # TODO: adjust with real sprite
+	shootgun.scale = Vector2(4, 4)  # TODO: adjust with real sprite
 	shootgun.rotation_degrees = -1 * rad2deg(self._move_vec[1] )
 	self.add_child(shootgun)
 
@@ -152,6 +152,15 @@ func _set_lower_gravity():
 func _is_touching_a_wall() -> bool:
 	return self._current_wall == TOUCH_LEFT_WALL or self._current_wall == TOUCH_RIGHT_WALL
 
+
+# TODO: jump: jump buffer, to allow jump a bit before landing, or exiting a platform (coyote_time)
+# TODO: shader border avec ce qu'il peux interagir? desature color for hits
+# MUSICS & sound effect!
+# TODO: reduce camera (top & bottom black lines) to focus on action?
+# TODO: add armo shell particules when firing
+# TODO: dust when run/landing
+# on enemy: spirkle at impact point, blink the enemy,let the enemy corpse, shake the camera when hitting
+# shoot: visual glitch like in https://gravityace.com/devlog/making-better-bullets/ ( point 9)
 
 func _get_direction() -> Vector2:
 	self._update_moving()
