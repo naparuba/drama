@@ -4,7 +4,9 @@ class_name Player, "res://assets/player.png"
 
 #onready var dust_animation = $dust_animation
 #onready var dust_animated_sprite = get_node("res://assets/player/dust.tres")
-onready var dust = load("res://src/Objects/Dust.tscn")
+onready var dust_scene = load("res://src/Objects/Dust.tscn")
+
+
 
 export var STOMP_IMPULSE: = 1000.0
 export var SHOOTGUN_IMPULSE = 2000
@@ -19,6 +21,9 @@ var _move_down_strength = 0.0
 var _move_vec = Vector2(1, 0)  # what the player is asking to aim
 
 var _current_wall = TOUCH_NO_WALL
+
+# By default, we are on the floor
+var _is_on_floor = true
 
 
 var _is_shooting = false  # flag to block new shoot
@@ -158,11 +163,30 @@ func _is_touching_a_wall() -> bool:
 	return self._current_wall == TOUCH_LEFT_WALL or self._current_wall == TOUCH_RIGHT_WALL
 
 
+
+
+
 # When we are jumping, put a smoke dust at our jumping position
 func _spawn_jump_dust():
-		var jump_dust = dust.instance()
-		self.get_parent().add_child(jump_dust)
-		jump_dust.global_position = self.global_position
+	self._spawn_dusts(1)  # only one dust each side
+
+
+# When we are jumping, put a smoke dust at our jumping position
+func _spawn_jump_reception_dust():
+	self._spawn_dusts(2)  # only one dust each side
+
+
+
+
+func _spawn_dusts(nb_each_side):
+	var dust_position = self.global_position
+
+	for _i in range(-nb_each_side, nb_each_side+1):
+		var dust = dust_scene.instance()
+		dust.position = dust_position
+		dust.scale.x *= _i/3.0
+		dust.scale.y *= abs(_i/3.0)
+		get_parent().add_child(dust)
 		
 		
 # TODO: jump: jump buffer, to allow jump a bit before landing, or exiting a platform (coyote_time)
@@ -173,15 +197,26 @@ func _spawn_jump_dust():
 # TODO: dust when run/landing
 # on enemy: spirkle at impact point, blink the enemy,let the enemy corpse, shake the camera when hitting
 # shoot: visual glitch like in https://gravityace.com/devlog/making-better-bullets/ ( point 9)
+# TODO: when boost: apply a total screen lightning like in https://www.jeuxvideo.com/videos/1271799/swimsanity-le-shooter-aquatique-est-disponible.htm
 
 func _get_direction() -> Vector2:
 	self._update_moving()
 	var _asking_for_jump = Input.is_action_just_pressed("jump")
 	
-	var is_start_to_jump = self.is_on_floor() and _asking_for_jump
+	var was_on_floor = self._is_on_floor
+	self._is_on_floor = self.is_on_floor()
+	
+	var is_start_to_jump = self._is_on_floor and _asking_for_jump
+	var is_landing = not was_on_floor and self._is_on_floor
 
+	# When jumping, add a little dust
 	if is_start_to_jump:
 		self._spawn_jump_dust()
+		
+	#when landing, add more dusts
+	if is_landing:
+		print('Landing')
+		self._spawn_jump_reception_dust()
 	
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,

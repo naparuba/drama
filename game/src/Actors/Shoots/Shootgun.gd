@@ -20,4 +20,5 @@ func _on_body_entered(other):
 	if other.is_in_group(Groups.ENEMY):
 		print('ENNEMY DETECTED')
 		other.die()
-		# TODO: slow motion => tween on Engine.time_scale (0 -> 1)
+		# Slow a bit each time an enemy is killed
+		SlowTime.start()

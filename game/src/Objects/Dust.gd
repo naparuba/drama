@@ -1,8 +1,17 @@
-extends AnimatedSprite
+extends Position2D
+
 
 func _ready():
-	self.frame = 0  # be sure to reset! because if editor is playing it, it can change the value!
-	self.play()
+	play()
 
-func _on_animation_finished():
+
+func play():
+	$AnimationPlayer.play("impact")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
 	self.queue_free()
+
+
+func _on_AnimationPlayer_tree_exiting():
+	return
