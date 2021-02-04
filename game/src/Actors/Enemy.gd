@@ -1,6 +1,8 @@
 extends Actor
 
 
+class_name Enemy, "res://assets/enemy.png"
+
 onready var stomp_area: Area2D = $StompArea2D
 
 export var score: = 100

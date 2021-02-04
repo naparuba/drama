@@ -1,5 +1,6 @@
 extends Actor
 
+class_name Player, "res://assets/player.png"
 
 #onready var dust_animation = $dust_animation
 #onready var dust_animated_sprite = get_node("res://assets/player/dust.tres")

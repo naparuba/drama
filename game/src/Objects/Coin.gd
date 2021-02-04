@@ -1,5 +1,6 @@
 extends Area2D
 
+class_name Coin, "res://assets/coin.png"
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 

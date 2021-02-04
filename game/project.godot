@@ -13,9 +13,33 @@ _global_script_classes=[ {
 "class": "Actor",
 "language": "GDScript",
 "path": "res://src/Actors/Actor.gd"
+}, {
+"base": "Area2D",
+"class": "Coin",
+"language": "GDScript",
+"path": "res://src/Objects/Coin.gd"
+}, {
+"base": "Actor",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://src/Actors/Enemy.gd"
+}, {
+"base": "Actor",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/Actors/Player.gd"
+}, {
+"base": "Area2D",
+"class": "Portal2d",
+"language": "GDScript",
+"path": "res://src/Objects/Portal2D.gd"
 } ]
 _global_script_class_icons={
-"Actor": ""
+"Actor": "",
+"Coin": "res://assets/coin.png",
+"Enemy": "res://assets/enemy.png",
+"Player": "res://assets/player.png",
+"Portal2d": "res://assets/portal.png"
 }
 
 [application]

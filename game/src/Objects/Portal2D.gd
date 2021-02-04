@@ -1,6 +1,8 @@
 tool
 extends Area2D
 
+class_name Portal2d, "res://assets/portal.png"
+
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
