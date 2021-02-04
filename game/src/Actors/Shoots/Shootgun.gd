@@ -20,5 +20,5 @@ func _on_body_entered(other):
 	if other.is_in_group(Groups.ENEMY):
 		print('ENNEMY DETECTED')
 		other.die()
-		# Slow a bit each time an enemy is killed
-		SlowTime.start()
+		self.shooter.did_kill_enemy(other)
+		

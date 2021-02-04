@@ -5,7 +5,7 @@ class_name Player, "res://assets/player.png"
 #onready var dust_animation = $dust_animation
 #onready var dust_animated_sprite = get_node("res://assets/player/dust.tres")
 onready var dust_scene = load("res://src/Objects/Dust.tscn")
-
+onready var camera_shake = $Camera2D/ScreenShake
 
 
 export var STOMP_IMPULSE: = 1000.0
@@ -95,7 +95,13 @@ func do_shoot():
 	# we did shoot, so apply an oposite force (... lol ...)
 	self._apply_reverse_shootgun_force()
 	
+	
 
+func did_kill_enemy(enemy):
+	# Slow a bit each time an enemy is killed
+	SlowTime.start()
+	self.camera_shake.start()
+	
 
 ############# Moving / Inputs
 func _unhandled_input(event):
@@ -194,7 +200,6 @@ func _spawn_dusts(nb_each_side):
 # MUSICS & sound effect!
 # TODO: reduce camera (top & bottom black lines) to focus on action?
 # TODO: add armo shell particules when firing
-# TODO: dust when run/landing
 # on enemy: spirkle at impact point, blink the enemy,let the enemy corpse, shake the camera when hitting
 # shoot: visual glitch like in https://gravityace.com/devlog/making-better-bullets/ ( point 9)
 # TODO: when boost: apply a total screen lightning like in https://www.jeuxvideo.com/videos/1271799/swimsanity-le-shooter-aquatique-est-disponible.htm
