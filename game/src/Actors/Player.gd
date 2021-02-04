@@ -94,6 +94,7 @@ func do_shoot():
 	self._add_shootgun()
 	# we did shoot, so apply an oposite force (... lol ...)
 	self._apply_reverse_shootgun_force()
+	Input.start_joy_vibration(0, 0.1, 1, 0.2)
 	
 	
 
@@ -101,6 +102,7 @@ func did_kill_enemy(enemy):
 	# Slow a bit each time an enemy is killed
 	SlowTime.start()
 	self.camera_shake.start()
+	
 	
 
 ############# Moving / Inputs
