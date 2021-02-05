@@ -2,11 +2,12 @@ extends Actor
 
 class_name Player, "res://assets/player.png"
 
-#onready var dust_animation = $dust_animation
-#onready var dust_animated_sprite = get_node("res://assets/player/dust.tres")
 onready var dust_scene = load("res://src/Objects/Dust.tscn")
 onready var camera_shake = $Camera2D/ScreenShake
 
+
+## Body animation
+onready var legs = $body_display/legs
 
 export var STOMP_IMPULSE: = 1000.0
 export var SHOOTGUN_IMPULSE = 2000
@@ -95,7 +96,8 @@ func do_shoot():
 	# we did shoot, so apply an oposite force (... lol ...)
 	self._apply_reverse_shootgun_force()
 	Input.start_joy_vibration(0, 0.1, 1, 0.2)
-	
+	#$shell_emiter.emitting = true
+	#$shell_emiter.one_shot = true
 	
 
 func did_kill_enemy(enemy):
@@ -112,11 +114,9 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta: float) -> void:
-#	var is_jump_interrupted: = Input.is_action_just_released("jump") and self._is_jumping()
 	var direction: = self._get_direction()
 
 	# Apply X speed
-	#velocity.x = lerp(velocity.x, dir * speed, acceleration)
 	if direction.x != 0:
 		var _wished_speed = speed.x * direction.x
 		self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, ACCELERATION)
@@ -172,8 +172,6 @@ func _is_touching_a_wall() -> bool:
 
 
 
-
-
 # When we are jumping, put a smoke dust at our jumping position
 func _spawn_jump_dust():
 	self._spawn_dusts(1)  # only one dust each side
@@ -225,6 +223,11 @@ func _get_direction() -> Vector2:
 		print('Landing')
 		self._spawn_jump_reception_dust()
 	
+	if self._move_right_strength - self._move_left_strength == 0:
+		legs.play("idle")
+	else:
+		legs.play("walk",-1, 3)
+	
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,
 		-Input.get_action_strength("jump") if is_start_to_jump else 0.0
@@ -244,15 +247,10 @@ func _get_direction() -> Vector2:
 func _do_stomp():
 	# I prefer to always have the full stomp impulse when jumping over an ennery
 	#var stomp_jump: = -speed.y if Input.is_action_pressed("jump") else -stomp_impulse
-	self._current_velocity.y =  -speed.y #-STOMP_IMPULSE     TODO: why??
+	self._current_velocity.y =  -speed.y
 
 
 func die() -> void:
 	PlayerData.deaths += 1
 	queue_free()
 
-
-#func _on_dust_animation_animation_finished():
-#	dust_animation.visible = false
-#	dust_animation.frame = 0
-#	dust_animation.playing = false
