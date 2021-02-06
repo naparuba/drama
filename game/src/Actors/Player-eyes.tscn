@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/shaders/eyes_mask_concentrate.material" type="Material" id=1]
+[ext_resource path="res://assets/shaders/eyes_mask_focus.material" type="Material" id=2]
+[ext_resource path="res://assets/player/eyes.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/eyes-back.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://src/Actors/Player-eyes.gd" type="Script" id=5]
+[ext_resource path="res://assets/player/eye-mask-concentrated.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "concentrated" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("eyes:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "walk_right"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "focus" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("eyes:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[node name="eyes-back" type="AnimatedSprite"]
+position = Vector2( -0.518507, -19.8058 )
+frames = ExtResource( 4 )
+animation = "concentrated"
+script = ExtResource( 5 )
+
+[node name="eyes-animation" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 1 )
+anims/walk_right = SubResource( 2 )
+
+[node name="mask-sample" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="eyes" type="Sprite" parent="."]
+material = ExtResource( 1 )
+texture = ExtResource( 3 )

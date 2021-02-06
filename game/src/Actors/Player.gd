@@ -12,6 +12,7 @@ onready var camera_shake = $Camera2D/ScreenShake
 ## Body animation
 onready var whole_body_animation = $body_display/whole_body
 onready var mouth_animation = $"body_display/body/mouth/mouth-animation"
+onready var eyes = $"body_display/body/eyes-back"
 
 
 export var STOMP_IMPULSE: = 1000.0
@@ -77,6 +78,12 @@ func _get_shoot_direction() -> Vector2:
 		1
 		)
 
+func _eyes_move_to_right():
+	eyes.set_eyes_position(10, 0)
+	
+func _eyes_reset_position():
+	eyes.reset_eyes_position()
+	
 
 func _add_shootgun():
 	var shootgun = Shootgun.instance()
@@ -237,8 +244,10 @@ func _get_direction() -> Vector2:
 	
 	if self._move_right_strength - self._move_left_strength == 0:
 		whole_body_animation.play("idle_right")
+		self._eyes_reset_position()
 	else:
 		whole_body_animation.play("walk_right")
+		self._eyes_move_to_right()
 	
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,
