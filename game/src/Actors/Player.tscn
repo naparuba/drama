@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/player/eye-ball.png" type="Texture" id=9]
 [ext_resource path="res://assets/player/right-leg.png" type="Texture" id=10]
 [ext_resource path="res://assets/player/body.png" type="Texture" id=11]
+[ext_resource path="res://assets/shaders/texture_mask.material" type="Material" id=12]
 
 [sub_resource type="Animation" id=14]
 resource_name = "idle_right"
@@ -220,6 +221,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 2.6, -2.6 ]
 }
+tracks/1/type = "animation"
+tracks/1/path = NodePath("eyes-back/eyes-animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "idle" ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("mouth/mouth-animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "idle_right" ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=16]
 resource_name = "walk_right"
@@ -249,11 +270,71 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 15, -125.814 ) ]
 }
+tracks/2/type = "animation"
+tracks/2/path = NodePath("eyes-back/eyes-animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "walk_right" ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "animation"
+tracks/3/path = NodePath("mouth/mouth-animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "walk_right" ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "concentrated" ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "walk_right"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "focus" ]
+}
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 150, 416, 150, 104 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 300, 312, 150, 104 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 150, 0, 150, 104 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -261,7 +342,47 @@ animations = [ {
 "loop": true,
 "name": "normal",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 19 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ) ],
+"loop": true,
+"name": "walk_right",
+"speed": 5.0
 } ]
+
+[sub_resource type="Animation" id=21]
+resource_name = "idle_right"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle_right" ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "walk_right"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "walk_right" ]
+}
 
 [sub_resource type="OccluderPolygon2D" id=10]
 polygon = PoolVector2Array( -47.7193, -80.1353, -45.552, -86.1556, -40.2541, -93.1392, -32.7889, -96.9922, 32.4715, -96.5106, 38.7327, -94.5841, 44.9938, -89.0453, 47.6427, -82.0618, 48.1244, -17.5238, 45.957, -10.2994, 41.6224, -5.00154, 33.9164, 0.296349, -31.1032, -0.18528, -39.5316, -4.2791, -45.0704, -10.0586, -47.4785, -16.5606 )
@@ -305,8 +426,8 @@ anims/idle = SubResource( 1 )
 anims/walk = SubResource( 2 )
 
 [node name="left-leg" type="Sprite" parent="body_display"]
-position = Vector2( -38.9214, -20.9841 )
-rotation = 0.4358
+position = Vector2( -38.6881, -23.5511 )
+rotation = 0.2618
 texture = ExtResource( 6 )
 
 [node name="left-leg-animation" type="AnimationPlayer" parent="body_display/left-leg"]
@@ -315,8 +436,8 @@ anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
 
 [node name="right-leg" type="Sprite" parent="body_display"]
-position = Vector2( 41.38, -20.69 )
-rotation = 0.0872665
+position = Vector2( 40.68, -21.6234 )
+rotation = 0.349066
 texture = ExtResource( 10 )
 
 [node name="right-leg-animation" type="AnimationPlayer" parent="body_display/right-leg"]
@@ -326,6 +447,7 @@ anims/walk = SubResource( 6 )
 
 [node name="body" type="Sprite" parent="body_display"]
 position = Vector2( 15, -125.814 )
+rotation = 0.000299943
 texture = ExtResource( 11 )
 
 [node name="body_block-animation" type="AnimationPlayer" parent="body_display/body"]
@@ -337,23 +459,32 @@ position = Vector2( -0.518507, -19.8058 )
 rotation = 0.00952304
 scale = Vector2( 1, 1 )
 frames = ExtResource( 8 )
-animation = "concentrated"
+animation = "normal"
+
+[node name="eyes-animation" type="AnimationPlayer" parent="body_display/body/eyes-back"]
+anims/idle = SubResource( 17 )
+anims/walk_right = SubResource( 18 )
 
 [node name="left-eye" type="Sprite" parent="body_display/body"]
-position = Vector2( -21.7698, -4.95766 )
-rotation = 0.0327115
+material = ExtResource( 12 )
+position = Vector2( -23.8551, -12.8824 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 9 )
 
 [node name="right-eye" type="Sprite" parent="body_display/body"]
-position = Vector2( 38.3117, -3.28476 )
-rotation = 0.0327115
+position = Vector2( 41.2924, -13.8378 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 9 )
 
 [node name="mouth" type="AnimatedSprite" parent="body_display/body"]
 position = Vector2( -13.6563, 49.7838 )
 rotation = 0.0327115
 frames = SubResource( 9 )
-animation = "normal"
+animation = "idle_right"
+
+[node name="mouth-animation" type="AnimationPlayer" parent="body_display/body/mouth"]
+anims/idle_right = SubResource( 21 )
+anims/walk_right = SubResource( 22 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
