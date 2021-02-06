@@ -27,14 +27,9 @@ func set_eyes_position(x,y):
 	_eyes.material.set_shader_param("offset_y", float(y))
 
 
-func step1():
-	self.set_eyes_position(2, 0)
+# Look at the distant point (with a difference_vector)
+func set_eyes_from_cartesian_vector(diff_vector):
+	diff_vector = diff_vector.normalized() * 10
+	# DEBUG print('Move eyes to', vector.x, ' / ', vector.y)
+	self.set_eyes_position(diff_vector.x, diff_vector.y)
 	
-func step2():
-	self.set_eyes_position(4, 0)
-	
-func step3():
-	self.set_eyes_position(6, 0)
-	
-func step4():
-	self.set_eyes_position(8, 0)

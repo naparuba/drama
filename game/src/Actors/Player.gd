@@ -132,6 +132,38 @@ func _unhandled_input(event):
 		self.do_shoot()
 
 
+func _find_nearest_enemy() -> Enemy:
+	var all_enemies = get_tree().get_nodes_in_group("enemy")
+	#print('ALL ENEMIES', all_enemies)
+	if len(all_enemies) == 0:
+		return null
+	
+	var my_position = self.global_position
+	var nearest_enemy = all_enemies[0]
+	var min_distance = nearest_enemy.global_position.distance_to(my_position)
+
+	# look through all enemies and find nearer
+	for enemy in all_enemies:
+		var enemy_distance = enemy.global_position.distance_to(my_position)
+		if enemy_distance < min_distance:
+			min_distance = enemy_distance
+			nearest_enemy = enemy
+	#print('NEAREST ENEMY', nearest_enemy, 'with distance', min_distance)		
+	return nearest_enemy
+
+
+func _look_at_nearest_enemy():
+	var enemy = _find_nearest_enemy()
+	if enemy == null:
+		eyes.reset_eyes_position()
+		return
+		
+	var my_position = self.global_position
+	var enemy_position = enemy.global_position
+	var diff_vector = enemy_position - my_position
+	eyes.set_eyes_from_cartesian_vector(diff_vector)
+	
+
 func _physics_process(delta: float) -> void:
 	var direction: = self._get_direction()
 
@@ -154,6 +186,7 @@ func _physics_process(delta: float) -> void:
 	self._current_velocity = move_and_slide_with_snap(
 		self._current_velocity, snap, FLOOR_NORMAL, true
 	)
+	self._look_at_nearest_enemy()
 
 
 func _update_moving():
