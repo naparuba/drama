@@ -5,6 +5,7 @@ class_name Enemy, "res://assets/enemy.png"
 
 onready var stomp_area: Area2D = $StompArea2D
 
+export var speed: = Vector2(400.0, 500.0)
 export var score: = 100
 
 

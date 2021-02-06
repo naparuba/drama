@@ -2,12 +2,15 @@ extends Actor
 
 class_name Player, "res://assets/player.png"
 
+
+export var speed: = Vector2(1000.0, 1500.0)
+
 onready var dust_scene = load("res://src/Objects/Dust.tscn")
 onready var camera_shake = $Camera2D/ScreenShake
 
 
 ## Body animation
-onready var legs = $body_display/legs
+onready var whole_body_animation = $body_display/whole_body
 
 export var STOMP_IMPULSE: = 1000.0
 export var SHOOTGUN_IMPULSE = 2000
@@ -30,6 +33,12 @@ var _is_on_floor = true
 var _is_shooting = false  # flag to block new shoot
 # TODO var _current_direction : Vector2 = Vector2(1, 0)  # Looking at right
 onready var Shootgun = load("res://src/Actors/Shoots/Shootgun.tscn")
+
+
+
+#func _ready():
+#	self.speed = Vector2(900.0, 500.0)
+	
 
 func _on_StompDetector_area_entered(area: Area2D) -> void:
 	#self._velocity = self._calculate_stomp_velocity(self._velocity, stomp_impulse)
@@ -224,9 +233,9 @@ func _get_direction() -> Vector2:
 		self._spawn_jump_reception_dust()
 	
 	if self._move_right_strength - self._move_left_strength == 0:
-		legs.play("idle")
+		whole_body_animation.play("idle_right")
 	else:
-		legs.play("walk",-1, 3)
+		whole_body_animation.play("walk_right")
 	
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,
