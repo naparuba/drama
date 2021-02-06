@@ -11,6 +11,8 @@ onready var camera_shake = $Camera2D/ScreenShake
 
 ## Body animation
 onready var whole_body_animation = $body_display/whole_body
+onready var mouth_animation = $"body_display/body/mouth/mouth-animation"
+
 
 export var STOMP_IMPULSE: = 1000.0
 export var SHOOTGUN_IMPULSE = 2000
@@ -79,6 +81,7 @@ func _get_shoot_direction() -> Vector2:
 func _add_shootgun():
 	var shootgun = Shootgun.instance()
 	self._is_shooting = true
+	mouth_animation.play("firing_right")
 	shootgun.start_shoot(self)
 	#shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
 	shootgun.position.y = -50  # by default it's high to match player arms
