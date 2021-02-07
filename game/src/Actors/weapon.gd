@@ -1,6 +1,9 @@
 extends Node2D
 
 
+export var SHOOTGUN_IMPULSE = 2000
+export var MACHINEGUN_IMPULSE = 200
+
 onready var sprite_machine_gun = $sprite_machine_gun
 onready var sprite_shootgun = $sprite_shootgun
 onready var animation_player_machine_gun = $sprite_machine_gun/AnimationPlayer
@@ -39,3 +42,10 @@ func set_idle_right():
 
 func set_walk_right():
 	self._current_animation_player.play('walk_right')
+
+
+
+func get_impulse():
+	if self._current == 'shootgun':
+		return SHOOTGUN_IMPULSE
+	return MACHINEGUN_IMPULSE

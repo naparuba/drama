@@ -66,8 +66,7 @@ tracks/1/keys = {
 script = ExtResource( 2 )
 
 [node name="sprite_machine_gun" type="Sprite" parent="."]
-position = Vector2( 44.3386, -3.78503 )
-rotation = 0.0353444
+position = Vector2( 39.8783, -5.33935 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
 flip_h = true

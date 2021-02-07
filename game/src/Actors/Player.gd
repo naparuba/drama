@@ -22,10 +22,8 @@ onready var whole_body_animation = $body_display/whole_body
 
 onready var eyes = $"body_display/body/eyes-back"
 
-onready var weapon = $"body_display/body/weapon"
 
-#export var STOMP_IMPULSE: = 1000.0
-#export var SHOOTGUN_IMPULSE = 2000
+
 export var FRICTION = 0.1  # force against stop
 export var ACCELERATION = 0.2  #force against start, 0.2 is quite fast start
 
@@ -47,6 +45,12 @@ var _is_on_floor = true
 
 func _init():
 	print('INIT: Player: %s' % self.name)
+	
+
+func _ready():
+	weapon.set_holder(self)
+
+
 
 func _on_StompDetector_area_entered(area: Area2D) -> void:
 	#self._velocity = self._calculate_stomp_velocity(self._velocity, stomp_impulse)
@@ -233,11 +237,11 @@ func _get_direction() -> Vector2:
 	
 	if self._move_right_strength - self._move_left_strength == 0:
 		whole_body_animation.play("idle_right")
-		weapon.set_idle_right()
+		self.weapon.set_idle_right()
 		self._eyes_reset_position()
 	else:
 		whole_body_animation.play("walk_right")
-		weapon.set_walk_right()
+		self.weapon.set_walk_right()
 		self._eyes_move_to_right()
 	
 	var new_direction = Vector2(
