@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/player/left-leg.png" type="Texture" id=6]
 [ext_resource path="res://assets/player/mouths.png" type="Texture" id=7]
 [ext_resource path="res://src/Actors/Player-eyes.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Actors/weapon.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/player/right-leg.png" type="Texture" id=10]
 [ext_resource path="res://assets/player/body.png" type="Texture" id=11]
 
@@ -446,8 +447,11 @@ anims/walk = SubResource( 8 )
 
 [node name="body" type="Sprite" parent="body_display"]
 position = Vector2( 15, -125.814 )
-rotation = 0.0872665
 texture = ExtResource( 11 )
+
+[node name="weapon" parent="body_display/body" instance=ExtResource( 9 )]
+position = Vector2( 82.6132, 34.5608 )
+rotation = -0.0872665
 
 [node name="body_block-animation" type="AnimationPlayer" parent="body_display/body"]
 anims/idle_right = SubResource( 9 )
@@ -460,7 +464,7 @@ animation = "focus"
 position = Vector2( -13.6563, 49.7838 )
 rotation = 0.0327115
 frames = SubResource( 14 )
-animation = "walk_right"
+animation = "idle_right"
 
 [node name="mouth-animation" type="AnimationPlayer" parent="body_display/body/mouth"]
 anims/firing_right = SubResource( 15 )

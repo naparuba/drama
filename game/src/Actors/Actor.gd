@@ -17,6 +17,9 @@ var TOUCH_LEFT_WALL = 1
 var TOUCH_RIGHT_WALL = 2
 
 
+func _init():
+	print('INIT: Actor %s' % self.name)
+
 func _apply_gravity(delta:float) -> void:
 	self._current_velocity.y += self._current_gravity * delta
 	# In all cases, reset the gravity value to the original
