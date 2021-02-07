@@ -240,9 +240,14 @@ func _get_direction() -> Vector2:
 		self.weapon.set_idle_right()
 		self._eyes_reset_position()
 	else:
-		whole_body_animation.play("walk_right")
-		self.weapon.set_walk_right()
-		self._eyes_move_to_right()
+		if self._move_right_strength > self._move_left_strength:
+			whole_body_animation.play("walk_right")
+			self.weapon.set_walk_right()
+			self._eyes_move_to_right()
+		else:
+			whole_body_animation.play("walk_left")
+			self.weapon.set_walk_left()
+			self._eyes_move_to_right()
 	
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,

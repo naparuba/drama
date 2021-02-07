@@ -39,8 +39,15 @@ func set_idle_right():
 	self._current_animation_player.play('idle_right')
 
 
+func set_idle_left():
+	self._current_animation_player.play('idle_right')
+
 
 func set_walk_right():
+	self._current_animation_player.play('walk_right')
+
+
+func set_walk_left():
 	self._current_animation_player.play('walk_right')
 
 

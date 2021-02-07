@@ -10,12 +10,21 @@ func _ready():
 	
 	
 func play_idle():
-	self._animation.play("idle")
+	self._animation.play("idle_right")
 	
+	
+func play_idle_right():
+	self._animation.play("idle_right")
+	
+func play_idle_left():
+	self._animation.play("idle_left")
 	
 func play_walk_right():
 	self._animation.play("walk_right")
 
+
+func play_walk_left():
+	self._animation.play("walk_left")
 
 func reset_eyes_position():
 	self.set_eyes_position(0, 0)
