@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
@@ -167,7 +167,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"clips": PoolStringArray( "walk" ),
+"clips": PoolStringArray( "walk_left" ),
 "times": PoolRealArray( 0 )
 }
 tracks/1/type = "animation"
@@ -177,7 +177,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": PoolStringArray( "walk" ),
+"clips": PoolStringArray( "walk_left" ),
 "times": PoolRealArray( 0 )
 }
 
@@ -202,7 +202,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": PoolStringArray( "walk" ),
+"clips": PoolStringArray( "walk_right" ),
 "times": PoolRealArray( 0 )
 }
 
@@ -252,7 +252,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 10.0, 15.0, 30.0, 15.0 ]
+"values": [ -10.0, -15.0, -30.0, -15.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:position")
@@ -296,7 +296,25 @@ tracks/1/keys = {
 "values": [ Vector2( -48.3292, -22.1509 ), Vector2( -53.986, -22.1509 ), Vector2( -59.1715, -24.2722 ) ]
 }
 
+[sub_resource type="Animation" id=31]
+resource_name = "idle_left"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 41.38, -20.69 ), Vector2( 40.3194, -22.1042 ), Vector2( 41.7336, -25.9933 ) ]
+}
+
 [sub_resource type="Animation" id=11]
+resource_name = "idle_right"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -313,6 +331,36 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=12]
+resource_name = "walk_left"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 35.7232, -21.7507 ), Vector2( 44.562, -20.69 ), Vector2( 33.9554, -20.69 ), Vector2( 34.309, -20.69 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -20.0, -5.0, -5.0, -20.0 ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "walk_right"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -435,7 +483,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 5.0, 10.0, 15.0 ]
+"values": [ -5.0, -10.0, -15.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:position")
@@ -747,17 +795,20 @@ anims/walk_left = SubResource( 9 )
 anims/walk_right = SubResource( 10 )
 
 [node name="right-leg" type="Sprite" parent="body_display"]
-position = Vector2( 41.38, -20.69 )
-rotation = 0.0872665
+position = Vector2( 35.5135, -21.5934 )
+rotation = -0.349066
 texture = ExtResource( 10 )
 
 [node name="right-leg-animation" type="AnimationPlayer" parent="body_display/right-leg"]
 playback_speed = 2.0
-anims/idle = SubResource( 11 )
-anims/walk = SubResource( 12 )
+anims/idle_left = SubResource( 31 )
+anims/idle_right = SubResource( 11 )
+anims/walk_left = SubResource( 12 )
+anims/walk_right = SubResource( 32 )
 
 [node name="body" type="Sprite" parent="body_display"]
 position = Vector2( 15, -125.814 )
+rotation = -0.0872665
 texture = ExtResource( 11 )
 flip_h = true
 
@@ -777,7 +828,7 @@ anims/walk_right = SubResource( 14 )
 position = Vector2( -13.6563, 49.7838 )
 rotation = 0.0327115
 frames = SubResource( 18 )
-animation = "idle_right"
+animation = "walk_right"
 flip_h = true
 
 [node name="mouth-animation" type="AnimationPlayer" parent="body_display/body/mouth"]
