@@ -54,6 +54,7 @@ func _ready():
 
 func _on_StompDetector_area_entered(area: Area2D) -> void:
 	#self._velocity = self._calculate_stomp_velocity(self._velocity, stomp_impulse)
+	print('DO STOMP BECAUSE JUMP ON AREA %s' % area)
 	self._do_stomp()
 	
 
@@ -139,7 +140,12 @@ func _physics_process(delta: float) -> void:
 	if direction.y != 0.0:
 		self._current_velocity.y = speed.y * direction.y
 	if self._is_jump_interrupted():
-		self._current_velocity.y = 0.0
+		if abs(self._current_velocity.y) > abs(speed.y):  # if we did super jump, do not interupt
+			print('JUMP NOT INTERUPTED: was super jump')
+			pass
+		else:  # we are in a classic jump, then stop
+			print('JUMP INTERUPTED: was in normal jump')
+			self._current_velocity.y = 0.0
 
 	# snap is a way to stuck to floor
 	var snap = self._get_snap_to_floor_vector(direction)

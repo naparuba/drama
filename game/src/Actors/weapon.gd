@@ -7,15 +7,19 @@ export var MACHINEGUN_IMPULSE = 200
 onready var sprite_machine_gun = $sprite_machine_gun
 onready var sprite_shootgun = $sprite_shootgun
 onready var animation_player_machine_gun = $sprite_machine_gun/AnimationPlayer
+onready var animation_player_shootgun_gun = $sprite_shootgun/AnimationPlayer
 
-var _current = 'machine_gun'
+onready var Shootgun_shoot = load("res://src/Actors/Shoots/Shootgun.tscn")
+
+
+var _current = 'shootgun'
 var _current_animation_player = null
 
 var _holder = null
 
 
 func _ready():
-	self.set_machine_gun()
+	self.set_shootgun()
 	self.set_idle_right()
 	
 func set_holder(holder):
@@ -24,15 +28,16 @@ func set_holder(holder):
 	
 func set_machine_gun():
 	sprite_shootgun.visible = false
-	sprite_machine_gun = true
+	sprite_machine_gun.visible = true
 	self._current = 'machine_gun'
 	self._current_animation_player = animation_player_machine_gun	
 	
 
 func set_shootgun():
 	sprite_shootgun.visible = true
-	sprite_machine_gun = false
+	sprite_machine_gun.visible = false
 	self._current = 'shootgun'
+	self._current_animation_player = animation_player_shootgun_gun
 
 
 func set_idle_right():

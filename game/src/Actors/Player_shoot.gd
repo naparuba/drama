@@ -29,7 +29,7 @@ func _get_shoot_direction() -> Vector2:
 
 func _add_shootgun():
 	var shootgun = Shootgun.instance()
-	#self._is_shooting = true
+	self._is_shooting = true
 	mouth_animation.play("firing_right")
 	shootgun.start_shoot(self)
 	#shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
@@ -37,16 +37,15 @@ func _add_shootgun():
 	shootgun.position += polar2cartesian(self._move_vec[0] * 50 , -1 * self._move_vec[1] )
 	shootgun.scale = Vector2(4, 4)  # TODO: adjust with real sprite
 	shootgun.rotation_degrees = -1 * rad2deg(self._move_vec[1] )
-	#self.add_child(shootgun)
+	self.add_child(shootgun)
 	
 	var bullet = Bullet.instance()
 	
 	bullet.set_shooter(self)
-	get_parent().add_child(bullet)
+	#get_parent().add_child(bullet)
 	bullet.global_position = self.global_position +  polar2cartesian(self._move_vec[0] * 200 , -1 * self._move_vec[1] )
 	bullet.global_position.y -= 100
 	bullet.rotation_degrees = -1 * rad2deg(self._move_vec[1] )
-	#bullet.transform = self.transform
 
 
 func _apply_reverse_shootgun_force():
@@ -66,9 +65,6 @@ func do_shoot():
 	# we did shoot, so apply an oposite force (... lol ...)
 	self._apply_reverse_shootgun_force()
 	Input.start_joy_vibration(0, 0.1, 1, 0.2)
-	#$shell_emiter.emitting = true
-	#$shell_emiter.one_shot = true
-	
 	
 
 func did_kill_enemy(enemy):
