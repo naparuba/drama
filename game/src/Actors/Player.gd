@@ -45,7 +45,7 @@ export var DASH_SPEED = 2000
 export var DASH_DURATION = 0.3
 var _current_dash_duration = 0.0
 var _dash_direction = 1  # by default a dash is on the right
-
+onready var dash_animation = $dash/AnimationPlayer
 
 
 func _init():
@@ -179,13 +179,17 @@ func _update_dashing(delta):
 			self._is_dashing = true
 			self._current_dash_duration = 0.0 
 			self._dash_direction = self._last_looking_direction  #1 if self._move_right_strength > self._move_left_strength else -1
-		
+			if self._dash_direction == 1:
+				dash_animation.play("dash_right")
+			else:
+				dash_animation.play("dash_left")
 	if self._is_dashing:
 		# And look if finishing
 		self._current_dash_duration += delta
 		if self._current_dash_duration > DASH_DURATION:
 			self._is_dashing = false
 			self._current_dash_duration = 0.0
+			dash_animation.play("no_dash")  # hide the dash animation
 
 
 func _update_moving(delta):
