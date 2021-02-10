@@ -32,14 +32,19 @@ var _move_right_strength = 0.0
 var _move_left_strength = 0.0
 var _move_up_strength = 0.0
 var _move_down_strength = 0.0
-var _move_vec = Vector2(1, 0)  # what the player is asking to aim
+var _aim_vector = Vector2(1, 0)  # what the player is asking to aim
+var _last_looking_direction = 1  # looking at right
 
 var _current_wall = TOUCH_NO_WALL
 
 # By default, we are on the floor
 var _is_on_floor = true
 
-
+var _is_dashing = false  # will be set when pushing the dash button
+export var DASH_SPEED = 2000
+export var DASH_DURATION = 0.3
+var _current_dash_duration = 0.0
+var _dash_direction = 1  # by default a dash is on the right
 
 
 
@@ -72,8 +77,12 @@ func _is_jump_interrupted():
 
 
 func _get_snap_to_floor_vector(direction) -> Vector2:
+	# If we are shooting, we must allow the shoot impact to make us
+	# fly over, so no snap in this case
+	if self._is_shooting:
+		return Vector2.ZERO
+	# Normal case, if we are not currently jumpingg try to stay on the floor
 	return Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
-
 
 
 
@@ -126,26 +135,33 @@ func _look_at_nearest_enemy():
 	
 
 func _physics_process(delta: float) -> void:
+	self._update_moving(delta)
 	var direction: = self._get_direction()
 
-	# Apply X speed
-	if direction.x != 0:
-		var _wished_speed = speed.x * direction.x
-		self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, ACCELERATION)
-	else:  # do not stop immediatly
-		var _wished_speed = 0  # want to stop
-		self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, FRICTION)
+	#### If dashing: do not look at direction, we are forcing the dash
+	if self._is_dashing:
+		self._current_velocity.x = self._dash_direction * DASH_SPEED
+		self._current_velocity.y = 0  # make the player fly during the dash
+	else:  # Normal moving
+		# Apply X speed
+		if direction.x != 0:
+			var _wished_speed = speed.x * direction.x
+			self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, ACCELERATION)
+		else:  # do not stop immediatly
+			var _wished_speed = 0  # want to stop
+			self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, FRICTION)
 		
-	# Apply Y speed if any
-	if direction.y != 0.0:
-		self._current_velocity.y = speed.y * direction.y
-	if self._is_jump_interrupted():
-		if abs(self._current_velocity.y) > abs(speed.y):  # if we did super jump, do not interupt
-			print('JUMP NOT INTERUPTED: was super jump')
-			pass
-		else:  # we are in a classic jump, then stop
-			print('JUMP INTERUPTED: was in normal jump')
-			self._current_velocity.y = 0.0
+		
+		# Apply Y speed if any
+		if direction.y != 0.0:
+			self._current_velocity.y = speed.y * direction.y
+		if self._is_jump_interrupted():
+			if abs(self._current_velocity.y) > abs(speed.y):  # if we did super jump, do not interupt
+				print('JUMP NOT INTERUPTED: was super jump')
+				pass
+			else:  # we are in a classic jump, then stop
+				print('JUMP INTERUPTED: was in normal jump')
+				self._current_velocity.y = 0.0
 
 	# snap is a way to stuck to floor
 	var snap = self._get_snap_to_floor_vector(direction)
@@ -155,21 +171,43 @@ func _physics_process(delta: float) -> void:
 	self._look_at_nearest_enemy()
 
 
-func _update_moving():
+func _update_dashing(delta):
+	# Look if the player asked to dash
+	if Input.is_action_just_pressed("dash"):
+		if not self._is_dashing:
+			print('START DASH')
+			self._is_dashing = true
+			self._current_dash_duration = 0.0 
+			self._dash_direction = self._last_looking_direction  #1 if self._move_right_strength > self._move_left_strength else -1
+		
+	if self._is_dashing:
+		# And look if finishing
+		self._current_dash_duration += delta
+		if self._current_dash_duration > DASH_DURATION:
+			self._is_dashing = false
+			self._current_dash_duration = 0.0
+
+
+func _update_moving(delta):
 	self._move_right_strength = Input.get_action_strength("move_right")
 	self._move_left_strength = Input.get_action_strength("move_left")
 	self._move_up_strength = Input.get_action_strength("move_up")
 	self._move_down_strength = Input.get_action_strength("move_down")
 	
+	self._update_dashing(delta)
+	
 	var move_x = self._move_right_strength - self._move_left_strength
 	var move_y = self._move_up_strength - self._move_down_strength
 	var cur_move_vec = cartesian2polar(move_x, move_y)
 	
+	# Save if we did look at right or left
+	if move_x != 0:
+		self._last_looking_direction = 1 if move_x > 0 else -1
+	
 	if cur_move_vec != Vector2.ZERO:
 		#print('X:', move_x, 'Y:', move_y, '=> force=', cur_move_vec[0],  'angle=', cur_move_vec[1])
-		self._move_vec = Vector2(1, cur_move_vec[1])  # save only the angle
-
-
+		self._aim_vector = Vector2(1, cur_move_vec[1])  # save only the angle
+	
 	# Now look if we did collide with a wall
 	var _previous_wall = self._current_wall
 	if not self.is_on_wall():
@@ -223,7 +261,7 @@ func _spawn_dusts(nb_each_side):
 # TODO: when boost: apply a total screen lightning like in https://www.jeuxvideo.com/videos/1271799/swimsanity-le-shooter-aquatique-est-disponible.htm
 
 func _get_direction() -> Vector2:
-	self._update_moving()
+	
 	var _asking_for_jump = Input.is_action_just_pressed("jump")
 	
 	var was_on_floor = self._is_on_floor

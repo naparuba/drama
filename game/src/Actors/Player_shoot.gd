@@ -34,22 +34,22 @@ func _add_shootgun():
 	shootgun.start_shoot(self)
 	#shootgun.position = Vector2(50, -45)  # TODO: adjust with real sprite
 	shootgun.position.y = -50  # by default it's high to match player arms
-	shootgun.position += polar2cartesian(self._move_vec[0] * 50 , -1 * self._move_vec[1] )
+	shootgun.position += polar2cartesian(self._aim_vector[0] * 50 , -1 * self._aim_vector[1] )
 	shootgun.scale = Vector2(4, 4)  # TODO: adjust with real sprite
-	shootgun.rotation_degrees = -1 * rad2deg(self._move_vec[1] )
+	shootgun.rotation_degrees = -1 * rad2deg(self._aim_vector[1] )
 	self.add_child(shootgun)
 	
 	var bullet = Bullet.instance()
 	
 	bullet.set_shooter(self)
 	#get_parent().add_child(bullet)
-	bullet.global_position = self.global_position +  polar2cartesian(self._move_vec[0] * 200 , -1 * self._move_vec[1] )
+	bullet.global_position = self.global_position +  polar2cartesian(self._aim_vector[0] * 200 , -1 * self._aim_vector[1] )
 	bullet.global_position.y -= 100
-	bullet.rotation_degrees = -1 * rad2deg(self._move_vec[1] )
+	bullet.rotation_degrees = -1 * rad2deg(self._aim_vector[1] )
 
 
 func _apply_reverse_shootgun_force():
-	var reverse_force = polar2cartesian(self._move_vec[0]  ,  self._move_vec[1] )
+	var reverse_force = polar2cartesian(self._aim_vector[0]  ,  self._aim_vector[1] )
 	var _impulse = weapon.get_impulse()
 	reverse_force[0] *=  -_impulse  # -1 = >oposite force
 	reverse_force[1] *= _impulse  #-1 but as the y is inversed, it's +1
