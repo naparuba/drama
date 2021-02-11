@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
 }, {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://git_api.gdns"
-}, {
 "base": "Actor",
 "class": "Player",
 "language": "GDScript",
@@ -48,7 +43,6 @@ _global_script_class_icons={
 "Actor": "",
 "Coin": "res://assets/coin.png",
 "Enemy": "res://assets/enemy.png",
-"GitAPI": "",
 "Player": "res://assets/player.png",
 "Portal2d": "res://assets/portal.png",
 "bullet": ""
@@ -78,7 +72,7 @@ window/stretch/aspect="expand"
 
 [gdnative]
 
-singletons=[ "res://git_api.gdnlib" ]
+singletons=[  ]
 
 [input]
 

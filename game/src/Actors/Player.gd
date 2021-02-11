@@ -23,9 +23,13 @@ onready var whole_body_animation = $body_display/whole_body
 onready var eyes = $"body_display/body/eyes-back"
 
 
-
 export var FRICTION = 0.1  # force against stop
 export var ACCELERATION = 0.2  #force against start, 0.2 is quite fast start
+
+export var X_MOVE_SHOOT_INHIBITION = 0.3  # during 0.3s, don't touch the
+
+var _current_move_inhibition = 0.0
+var _is_move_inhibition = false
 
 ### Aiming / Moving
 var _move_right_strength = 0.0
@@ -57,7 +61,6 @@ func _ready():
 	weapon.set_holder(self)
 
 
-
 func _on_StompDetector_area_entered(area: Area2D) -> void:
 	#self._velocity = self._calculate_stomp_velocity(self._velocity, stomp_impulse)
 	print('DO STOMP BECAUSE JUMP ON AREA %s' % area)
@@ -80,7 +83,7 @@ func _is_jump_interrupted():
 func _get_snap_to_floor_vector(direction) -> Vector2:
 	# If we are shooting, we must allow the shoot impact to make us
 	# fly over, so no snap in this case
-	if self._is_shooting:
+	if self.is_shooting():
 		return Vector2.ZERO
 	# Normal case, if we are not currently jumpingg try to stay on the floor
 	return Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
@@ -146,8 +149,11 @@ func _physics_process(delta: float) -> void:
 	else:  # Normal moving
 		# Apply X speed
 		if direction.x != 0:
-			var _wished_speed = speed.x * direction.x
-			self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, ACCELERATION)
+			if not self._is_move_inhibition:  # Maybe the X is blocked by a shoot and cannot go against it
+				var _wished_speed = speed.x * direction.x
+				self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, ACCELERATION)
+			else:
+				print('NO X MOVE, block to %s' % self._current_velocity.x)
 		else:  # do not stop immediatly
 			var _wished_speed = 0  # want to stop
 			self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, FRICTION)
@@ -232,13 +238,22 @@ func _update_moving(delta):
 	if _previous_wall != self._current_wall:
 		print('Switch wall colision from', _previous_wall, ' to ', self._current_wall)
 		
+		
+	# move inhibition check if deley
+	if self._is_move_inhibition:
+		self._current_move_inhibition += delta
+		if self._current_move_inhibition > X_MOVE_SHOOT_INHIBITION:
+			print('NO MORE MOVE INHIBITION')
+			self._is_move_inhibition = false
+			self._current_move_inhibition = 0.0
+
 
 func _set_lower_gravity():
 	self._current_gravity = GRAVITY / 4
 	
+	
 func _is_touching_a_wall() -> bool:
 	return self._current_wall == TOUCH_LEFT_WALL or self._current_wall == TOUCH_RIGHT_WALL
-
 
 
 # When we are jumping, put a smoke dust at our jumping position
@@ -249,7 +264,6 @@ func _spawn_jump_dust():
 # When we are jumping, put a smoke dust at our jumping position
 func _spawn_jump_reception_dust():
 	self._spawn_dusts(2)  # only one dust each side
-
 
 
 
