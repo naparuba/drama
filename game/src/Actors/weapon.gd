@@ -22,6 +22,7 @@ func _ready():
 	self.set_shootgun()
 	self.set_idle_right()
 	
+	
 func set_holder(holder):
 	self._holder = holder
 	

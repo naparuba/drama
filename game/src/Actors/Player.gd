@@ -45,6 +45,7 @@ export var DASH_SPEED = 2000
 export var DASH_DURATION = 0.3
 var _current_dash_duration = 0.0
 var _dash_direction = 1  # by default a dash is on the right
+var _is_dash_available = true  # dash is reset when getting back on the floor
 onready var dash_animation = $dash/AnimationPlayer
 
 
@@ -171,18 +172,26 @@ func _physics_process(delta: float) -> void:
 	self._look_at_nearest_enemy()
 
 
+# We are back on the floor, so we can dash
+func _dash_allow_dash():
+	self._is_dash_available = true
+	
+
 func _update_dashing(delta):
 	# Look if the player asked to dash
 	if Input.is_action_just_pressed("dash"):
-		if not self._is_dashing:
+		if not self._is_dashing and self._is_dash_available:
 			print('START DASH')
 			self._is_dashing = true
+			self._is_dash_available = false  # only one dash until we are getting back on the floor
 			self._current_dash_duration = 0.0 
 			self._dash_direction = self._last_looking_direction  #1 if self._move_right_strength > self._move_left_strength else -1
 			if self._dash_direction == 1:
 				dash_animation.play("dash_right")
 			else:
 				dash_animation.play("dash_left")
+	
+	# Detect dash stop
 	if self._is_dashing:
 		# And look if finishing
 		self._current_dash_duration += delta
@@ -282,6 +291,9 @@ func _get_direction() -> Vector2:
 	if is_landing:
 		print('Landing')
 		self._spawn_jump_reception_dust()
+		
+	if self._is_on_floor:
+		self._dash_allow_dash()
 	
 	if self._move_right_strength - self._move_left_strength == 0:
 		whole_body_animation.play("idle_right")
@@ -317,6 +329,7 @@ func _do_stomp():
 	# I prefer to always have the full stomp impulse when jumping over an ennery
 	#var stomp_jump: = -speed.y if Input.is_action_pressed("jump") else -stomp_impulse
 	self._current_velocity.y =  -speed.y
+	self._dash_allow_dash()  # we did stomp an enemy, allow a new dash
 
 
 func die() -> void:
