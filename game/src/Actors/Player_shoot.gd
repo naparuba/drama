@@ -10,7 +10,7 @@ onready var Shootgun = load("res://src/Actors/Shoots/Shootgun.tscn")
 onready var mouth_animation = $"body_display/body/mouth/mouth-animation"
 
 onready var Bullet = load('res://src/Actors/Shoots/bullet.tscn')
-onready var weapon = $"body_display/body/weapon"
+onready var weapon = $"body/weapon"
 
 
 ######################## Shooting

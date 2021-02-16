@@ -19,11 +19,12 @@ onready var camera_shake = $Camera2D/ScreenShake
 
 ## Body animation
 onready var whole_body_animation = $body_display/whole_body
-
+onready var body_animation = $body/body/AnimationPlayer
+onready var body = $body
 onready var eyes = $"body_display/body/eyes-back"
 
 
-export var FRICTION = 0.1  # force against stop
+export var FRICTION = 0.2  # force against stop
 export var ACCELERATION = 0.2  #force against start, 0.2 is quite fast start
 
 export var X_MOVE_SHOOT_INHIBITION = 0.3  # during 0.3s, don't touch the
@@ -311,15 +312,25 @@ func _get_direction() -> Vector2:
 	
 	if self._move_right_strength - self._move_left_strength == 0:
 		whole_body_animation.play("idle_right")
+		if _last_looking_direction == 1:
+			#body_animation.play("idle_right")
+			body.set_state("idle_right")
+		else:
+			#body_animation.play("idle_left")
+			body.set_state("idle_left")
 		self.weapon.set_idle_right()
 		self._eyes_reset_position()
 	else:
 		if self._move_right_strength > self._move_left_strength:
 			whole_body_animation.play("walk_right")
+			#body_animation.play("walk_right")
+			body.set_state("walk_right")
 			self.weapon.set_walk_right()
 			self._eyes_move_to_right()
 		else:
 			whole_body_animation.play("walk_left")
+			#body_animation.play("walk_left")
+			body.set_state("walk_left")
 			self.weapon.set_walk_left()
 			self._eyes_move_to_right()
 	
