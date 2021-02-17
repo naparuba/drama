@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Drama"
-run/main_scene="res://src/Screens/MainScreen.tscn"
+run/main_scene="res://src/Levels/LevelTemplate.tscn"
 config/icon="res://icon.png"
 
 [autoload]

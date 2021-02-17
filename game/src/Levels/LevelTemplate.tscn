@@ -39,7 +39,6 @@ position = Vector2( 212.957, 786.786 )
 
 [node name="Portal2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1750, 800 )
-next_scene = null
 
 [node name="Coins" type="Node2D" parent="."]
 

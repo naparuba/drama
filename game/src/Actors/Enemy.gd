@@ -8,14 +8,26 @@ onready var stomp_area: Area2D = $StompArea2D
 export var speed: = Vector2(400.0, 500.0)
 export var score: = 100
 
+onready var human = $human
+
+var _facing = 'left'
 
 func _ready() -> void:
 	self.set_physics_process(false)
 	self._current_velocity.x = -speed.x
+	self.human.set_state('walk_left')
 
 
 func _physics_process(delta: float) -> void:
-	self._current_velocity.x *= -1 if self.is_on_wall() else 1
+	if self.is_on_wall():	
+		self._current_velocity.x *= -1
+		if self._facing == 'left':
+			self._facing = 'right'
+		else:
+			self._facing = 'left'
+		human.set_state('walk_'+self._facing)
+		print('ENEMY MOVE TO %s' % 'walk_'+self._facing)
+		
 	self._current_velocity.y = self.move_and_slide(self._current_velocity, FLOOR_NORMAL).y
 
 

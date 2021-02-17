@@ -706,12 +706,12 @@ region = Rect2( 150, 416, 150, 104 )
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 150, 0, 150, 104 )
+region = Rect2( 300, 312, 150, 104 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 300, 312, 150, 104 )
+region = Rect2( 150, 0, 150, 104 )
 
 [sub_resource type="SpriteFrames" id=27]
 animations = [ {
@@ -722,12 +722,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 25 ) ],
 "loop": true,
-"name": "walk_right",
+"name": "idle_right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 26 ) ],
 "loop": true,
-"name": "idle_right",
+"name": "walk_right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 24 ) ],
@@ -816,16 +816,16 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="OccluderPolygon2D" id=32]
+[sub_resource type="OccluderPolygon2D" id=39]
 polygon = PoolVector2Array( -47.7193, -80.1353, -45.552, -86.1556, -40.2541, -93.1392, -32.7889, -96.9922, 32.4715, -96.5106, 38.7327, -94.5841, 44.9938, -89.0453, 47.6427, -82.0618, 48.1244, -17.5238, 45.957, -10.2994, 41.6224, -5.00154, 33.9164, 0.296349, -31.1032, -0.18528, -39.5316, -4.2791, -45.0704, -10.0586, -47.4785, -16.5606 )
 
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=40]
 extents = Vector2( 93.5216, 86.0714 )
 
-[sub_resource type="RectangleShape2D" id=34]
+[sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 80.052, 75.704 )
 
-[sub_resource type="RectangleShape2D" id=35]
+[sub_resource type="RectangleShape2D" id=42]
 extents = Vector2( 78.9295, 8 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -928,6 +928,7 @@ anims/walk_left = SubResource( 30 )
 anims/walk_right = SubResource( 31 )
 
 [node name="body" parent="." instance=ExtResource( 5 )]
+create_color = "white"
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -936,12 +937,12 @@ texture = ExtResource( 2 )
 offset = Vector2( 246.775, -311.052 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
-occluder = SubResource( 32 )
+occluder = SubResource( 39 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 13.4695, -99.368 )
-shape = SubResource( 33 )
+shape = SubResource( 40 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 visible = false
@@ -951,7 +952,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 modulate = Color( 0.337255, 0.223529, 1, 1 )
 position = Vector2( 12.3471, -107.49 )
-shape = SubResource( 34 )
+shape = SubResource( 41 )
 
 [node name="StompDetector" type="Area2D" parent="."]
 visible = false
@@ -960,6 +961,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
 modulate = Color( 0.337255, 0.223529, 1, 1 )
 position = Vector2( 17.3982, -3.36737 )
-shape = SubResource( 35 )
+shape = SubResource( 42 )
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
