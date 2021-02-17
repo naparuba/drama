@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=2]
+
+[node name="Trump" type="KinematicBody2D" groups=[
+"enemy",
+]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+is_moving = false
+
+[node name="human" parent="Enemy" index="0"]
+create_color = "black"
+_hat = "trump"
+
+[editable path="Enemy"]

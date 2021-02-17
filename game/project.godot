@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "bullet",
 "language": "GDScript",
 "path": "res://src/Actors/Shoots/bullet.gd"
+}, {
+"base": "Node2D",
+"class": "human",
+"language": "GDScript",
+"path": "res://src/Actors/human.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "Enemy": "res://assets/enemy.png",
 "Player": "res://assets/player.png",
 "Portal2d": "res://assets/portal.png",
-"bullet": ""
+"bullet": "",
+"human": "res://assets/player/idle/idle.png"
 }
 
 [application]

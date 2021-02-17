@@ -2,9 +2,13 @@ tool
 extends Node2D
 
 
+class_name human, "res://assets/player/idle/idle.png"
+
 export var create_color: String
 
 export var _hat = 'none'
+
+export var with_gun = false
 
 func _get_configuration_warning() -> String:
 	return "The property create_color can't be empty" if not create_color else ""
@@ -17,6 +21,7 @@ var _current_state = ''
 
 onready var animation_player = $whole_animation
 onready var hat_sprite = $hat
+onready var weapon = $weapon
 
 var SPRITE_LIGHT_COLOR = Color('ff0000')
 var SPRITE_DARK_COLOR = Color('0000ff')
@@ -50,6 +55,8 @@ func _ready():
 	
 	# Now set hat
 	self.set_hat(self._hat)
+	
+	self.weapon.visible = self.with_gun
 	
 	
 func set_color(color_name):

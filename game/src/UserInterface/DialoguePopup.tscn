@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UserInterface/DialoguePopup.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ShowDialogue"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="dialogue_popup" type="Popup"]
+pause_mode = 2
+visible = true
+margin_left = 476.0
+margin_top = 28.0
+margin_right = 1058.0
+margin_bottom = 422.0
+popup_exclusive = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="."]
+margin_left = -6.0
+margin_top = 260.0
+margin_right = 477.0
+margin_bottom = 418.0
+
+[node name="Name" type="Label" parent="back"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 295.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Your boss"
+align = 1
+
+[node name="dialogue" type="RichTextLabel" parent="back"]
+margin_left = 32.7949
+margin_top = 39.5222
+margin_right = 272.795
+margin_bottom = 109.522
+rect_clip_content = false
+custom_colors/default_color = Color( 0.490196, 0.490196, 0.490196, 1 )
+bbcode_enabled = true
+bbcode_text = "BLABLA"
+text = "BIBI"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="back/dialogue"]
+anims/ShowDialogue = SubResource( 1 )

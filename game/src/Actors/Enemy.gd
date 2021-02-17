@@ -8,17 +8,27 @@ onready var stomp_area: Area2D = $StompArea2D
 export var speed: = Vector2(400.0, 500.0)
 export var score: = 100
 
+export var is_moving = true
+
 onready var human = $human
 
 var _facing = 'left'
 
+
 func _ready() -> void:
 	self.set_physics_process(false)
-	self._current_velocity.x = -speed.x
-	self.human.set_state('walk_left')
+	if self.is_moving:		
+		self._current_velocity.x = -speed.x
+		self.human.set_state('walk_left')
+	else:
+		self.human.set_state('idle_left')
+	
 
 
 func _physics_process(delta: float) -> void:
+	if not self.is_moving:
+		return
+		
 	if self.is_on_wall():	
 		self._current_velocity.x *= -1
 		if self._facing == 'left':
