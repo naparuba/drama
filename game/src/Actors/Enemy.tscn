@@ -23,6 +23,7 @@ script = ExtResource( 1 )
 [node name="human" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 5 )
 create_color = "orange"
+_hat = "cop_green"
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false

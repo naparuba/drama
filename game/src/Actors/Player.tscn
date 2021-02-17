@@ -929,6 +929,7 @@ anims/walk_right = SubResource( 31 )
 
 [node name="body" parent="." instance=ExtResource( 5 )]
 create_color = "white"
+_hat = "turban"
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false

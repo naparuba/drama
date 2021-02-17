@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/Actors/weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/player/walk/walkcolor0010.png" type="Texture" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://assets/player/hats/hat_16.png" type="Texture" id=31]
 [ext_resource path="res://assets/player/hats/hat_13.png" type="Texture" id=32]
 [ext_resource path="res://src/Actors/human_sprite.gd" type="Script" id=33]
+[ext_resource path="res://assets/player/hats/hat_17.png" type="Texture" id=34]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle_left"
@@ -60,6 +61,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("hat:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle_right"
@@ -82,6 +95,18 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hat:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -303,14 +328,19 @@ animations = [ {
 "loop": true,
 "name": "cop",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 34 ) ],
+"loop": true,
+"name": "trump",
+"speed": 5.0
 } ]
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 16 )
 shader_param/sprite_light_color = Color( 1, 0, 0, 1 )
-shader_param/light_color = Color( 0.847059, 0.886275, 0.945098, 1 )
+shader_param/light_color = Color( 0.937255, 0.494118, 0.133333, 1 )
 shader_param/sprite_dark_color = Color( 0, 0, 1, 1 )
-shader_param/dark_color = Color( 0.517647, 0.584314, 0.752941, 1 )
+shader_param/dark_color = Color( 0.709804, 0.25098, 0.145098, 1 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -339,9 +369,9 @@ anims/walk_left = SubResource( 3 )
 anims/walk_right = SubResource( 4 )
 
 [node name="hat" type="AnimatedSprite" parent="."]
-position = Vector2( 15.5159, -114.34 )
+position = Vector2( 14.841, -115.322 )
 frames = SubResource( 5 )
-animation = "cornes"
+animation = "cop"
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 6 )

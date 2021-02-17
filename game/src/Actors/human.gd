@@ -4,8 +4,10 @@ extends Node2D
 
 export var create_color: String
 
+export var _hat = 'none'
+
 func _get_configuration_warning() -> String:
-	return "The property v can't be empty" if not create_color else ""
+	return "The property create_color can't be empty" if not create_color else ""
 
 
 
@@ -14,6 +16,7 @@ var _color = 'yellow'
 var _current_state = ''
 
 onready var animation_player = $whole_animation
+onready var hat_sprite = $hat
 
 var SPRITE_LIGHT_COLOR = Color('ff0000')
 var SPRITE_DARK_COLOR = Color('0000ff')
@@ -45,6 +48,9 @@ func _ready():
 	shader_material.set_shader_param('sprite_dark_color', SPRITE_DARK_COLOR)
 	self.set_color(self._color)
 	
+	# Now set hat
+	self.set_hat(self._hat)
+	
 	
 func set_color(color_name):
 	self._color = color_name
@@ -67,4 +73,5 @@ func set_state(state):
 	animation_player.play(state)
 	
 
-	
+func set_hat(hat_name):
+	self.hat_sprite.play(hat_name)
