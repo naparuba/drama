@@ -4,6 +4,8 @@ extends Node2D
 
 class_name human, "res://assets/player/idle/idle.png"
 
+onready var blood_mask_scene = load("res://src/Objects/blood_mask.tscn")
+
 export var create_color: String
 
 export var _hat = 'none'
@@ -90,8 +92,12 @@ func get_hit():
 
 
 func die():
+	var blood_mask = blood_mask_scene.instance()
+	blood_mask.position = self.position
+	self.get_parent().add_child(blood_mask)
 	print('HUMAN: go die')
 	animation_player.play("die_right")
 	yield( animation_player, "animation_finished")
 	print('ANIM FINISHED')
+	
 	
