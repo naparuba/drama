@@ -7,12 +7,14 @@ onready var stomp_area: Area2D = $StompArea2D
 
 export var speed: = Vector2(400.0, 500.0)
 export var score: = 100
+export var max_health = 3
 
 export var is_moving = true
 
 onready var human = $human
 
 var _facing = 'left'
+var _health = max_health
 
 
 func _ready() -> void:
@@ -47,6 +49,25 @@ func _on_StompArea2D_area_entered(other: Area2D) -> void:
 	self.die()
 
 
+func take_damage(damage):
+	self._health -= damage
+	
+	if self._health <=0:
+		self.die()
+	else:
+		self.human.get_hit()
+
 func die() -> void:
+	self.human.die()
 	PlayerData.score += score
+	var timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(2.6)
+	timer.connect("timeout", self, "delete")
+	self.add_child(timer)   # note : add before start
+	timer.start()
+
+
+func delete():
+	print('DELETE enemy')
 	self.queue_free()

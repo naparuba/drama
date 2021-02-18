@@ -20,6 +20,7 @@ var _color = 'yellow'
 var _current_state = ''
 
 onready var animation_player = $whole_animation
+onready var hit_animation = $hit_animation
 onready var hat_sprite = $hat
 onready var weapon = $weapon
 
@@ -82,3 +83,15 @@ func set_state(state):
 
 func set_hat(hat_name):
 	self.hat_sprite.play(hat_name)
+
+
+func get_hit():
+	hit_animation.play("hit")
+
+
+func die():
+	print('HUMAN: go die')
+	animation_player.play("die_right")
+	yield( animation_player, "animation_finished")
+	print('ANIM FINISHED')
+	

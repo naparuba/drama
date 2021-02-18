@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://src/Actors/weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/player/walk/walkcolor0010.png" type="Texture" id=2]
@@ -34,6 +34,130 @@
 [ext_resource path="res://assets/player/hats/hat_13.png" type="Texture" id=32]
 [ext_resource path="res://src/Actors/human_sprite.gd" type="Script" id=33]
 [ext_resource path="res://assets/player/hats/hat_17.png" type="Texture" id=34]
+[ext_resource path="res://assets/player/death/Dead0021.png" type="Texture" id=35]
+[ext_resource path="res://assets/player/death/Dead0029.png" type="Texture" id=36]
+[ext_resource path="res://assets/player/death/Dead0014.png" type="Texture" id=37]
+[ext_resource path="res://assets/player/death/Dead0019.png" type="Texture" id=38]
+[ext_resource path="res://assets/player/death/Dead0028.png" type="Texture" id=39]
+[ext_resource path="res://assets/player/death/Dead0005.png" type="Texture" id=40]
+[ext_resource path="res://assets/player/death/Dead0001.png" type="Texture" id=41]
+[ext_resource path="res://assets/player/death/Dead0023.png" type="Texture" id=42]
+[ext_resource path="res://assets/player/death/Dead0025.png" type="Texture" id=43]
+[ext_resource path="res://assets/player/death/Dead0008.png" type="Texture" id=44]
+[ext_resource path="res://assets/player/death/Dead0018.png" type="Texture" id=45]
+[ext_resource path="res://assets/player/death/Dead0030.png" type="Texture" id=46]
+[ext_resource path="res://assets/player/death/Dead0002.png" type="Texture" id=47]
+[ext_resource path="res://assets/player/death/Dead0004.png" type="Texture" id=48]
+[ext_resource path="res://assets/player/death/Dead0013.png" type="Texture" id=49]
+[ext_resource path="res://assets/player/death/Dead0012.png" type="Texture" id=50]
+[ext_resource path="res://assets/player/death/Dead0015.png" type="Texture" id=51]
+[ext_resource path="res://assets/player/death/Dead0016.png" type="Texture" id=52]
+[ext_resource path="res://assets/player/death/Dead0020.png" type="Texture" id=53]
+[ext_resource path="res://assets/player/death/Dead0024.png" type="Texture" id=54]
+[ext_resource path="res://assets/player/death/Dead0009.png" type="Texture" id=55]
+[ext_resource path="res://assets/player/death/Dead0027.png" type="Texture" id=56]
+[ext_resource path="res://assets/player/death/Dead0026.png" type="Texture" id=57]
+[ext_resource path="res://assets/player/death/Dead0031.png" type="Texture" id=58]
+[ext_resource path="res://assets/player/death/Dead0033.png" type="Texture" id=59]
+[ext_resource path="res://assets/player/death/Dead0006.png" type="Texture" id=60]
+[ext_resource path="res://assets/player/death/Dead0010.png" type="Texture" id=61]
+[ext_resource path="res://assets/player/death/Dead0022.png" type="Texture" id=62]
+[ext_resource path="res://assets/player/death/Dead0032.png" type="Texture" id=63]
+[ext_resource path="res://assets/player/death/Dead0011.png" type="Texture" id=64]
+[ext_resource path="res://assets/player/death/Dead0003.png" type="Texture" id=65]
+[ext_resource path="res://assets/player/death/Dead0007.png" type="Texture" id=66]
+[ext_resource path="res://assets/player/death/Dead0017.png" type="Texture" id=67]
+
+[sub_resource type="Animation" id=9]
+resource_name = "die_left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hat:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "die_right"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "die_right" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hat:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 32 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle_left"
@@ -244,44 +368,9 @@ tracks/5/keys = {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "none",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "classe",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 32 ) ],
 "loop": true,
 "name": "cerre_tete",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "sherif",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "eye_brow",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 34 ) ],
-"loop": true,
-"name": "trump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ) ],
-"loop": true,
-"name": "cop_green",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "batiment",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ) ],
@@ -299,24 +388,9 @@ animations = [ {
 "name": "cop_north_korea",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 30 ) ],
-"loop": true,
-"name": "bonnet_crade",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 29 ) ],
-"loop": true,
-"name": "turban",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "cop_russia",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "dundy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 28 ) ],
@@ -324,23 +398,73 @@ animations = [ {
 "name": "cop",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 31 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "cornes",
+"name": "batiment",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": true,
+"name": "cop_green",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ) ],
+"loop": true,
+"name": "bonnet_crade",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "classe",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "eye_brow",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 34 ) ],
+"loop": true,
+"name": "trump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ) ],
+"loop": true,
+"name": "turban",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "sherif",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "dundy",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "none",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "classe_blanc",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "cornes",
+"speed": 5.0
 } ]
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 16 )
 shader_param/sprite_light_color = Color( 1, 0, 0, 1 )
-shader_param/light_color = Color( 0.847059, 0.886275, 0.945098, 1 )
+shader_param/light_color = Color( 0.247059, 0.278431, 0.309804, 1 )
 shader_param/sprite_dark_color = Color( 0, 0, 1, 1 )
-shader_param/dark_color = Color( 0.517647, 0.584314, 0.752941, 1 )
+shader_param/dark_color = Color( 0.113725, 0.117647, 0.145098, 1 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -353,7 +477,28 @@ animations = [ {
 "loop": true,
 "name": "walk_right",
 "speed": 24.0
+}, {
+"frames": [ ExtResource( 41 ), ExtResource( 47 ), ExtResource( 65 ), ExtResource( 48 ), ExtResource( 40 ), ExtResource( 60 ), ExtResource( 66 ), ExtResource( 44 ), ExtResource( 55 ), ExtResource( 61 ), ExtResource( 64 ), ExtResource( 50 ), ExtResource( 49 ), ExtResource( 37 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 67 ), ExtResource( 45 ), ExtResource( 38 ), ExtResource( 53 ), ExtResource( 35 ), ExtResource( 62 ), ExtResource( 42 ), ExtResource( 54 ), ExtResource( 43 ), ExtResource( 57 ), ExtResource( 56 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 46 ), ExtResource( 58 ), ExtResource( 63 ), ExtResource( 59 ) ],
+"loop": false,
+"name": "die_right",
+"speed": 15.0
 } ]
+
+[sub_resource type="Animation" id=8]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="human" type="Node2D"]
 script = ExtResource( 4 )
@@ -364,6 +509,8 @@ position = Vector2( 33.2867, -52.1845 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="whole_animation" type="AnimationPlayer" parent="."]
+anims/die_left = SubResource( 9 )
+anims/die_right = SubResource( 10 )
 anims/idle_left = SubResource( 1 )
 anims/idle_right = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
@@ -379,6 +526,11 @@ playing = true
 material = SubResource( 6 )
 position = Vector2( -3, -54 )
 frames = SubResource( 7 )
-animation = "walk_right"
-frame = 5
+animation = "die_right"
+frame = 32
+playing = true
+flip_h = true
 script = ExtResource( 33 )
+
+[node name="hit_animation" type="AnimationPlayer" parent="."]
+anims/hit = SubResource( 8 )

@@ -19,6 +19,6 @@ func _on_body_entered(other):
 	print("BODY ENTERED %s" % (str(other.get_groups ( ))))
 	if other.is_in_group(Groups.ENEMY):
 		print('ENNEMY DETECTED')
-		other.die()
+		other.take_damage(1)
 		self.shooter.did_kill_enemy(other)
 		
