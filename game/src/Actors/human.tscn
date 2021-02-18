@@ -68,7 +68,7 @@
 [ext_resource path="res://assets/player/death/Dead0007.png" type="Texture" id=66]
 [ext_resource path="res://assets/player/death/Dead0017.png" type="Texture" id=67]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=1]
 resource_name = "die_left"
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:animation")
@@ -107,7 +107,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=2]
 resource_name = "die_right"
 length = 2.0
 tracks/0/type = "value"
@@ -158,88 +158,148 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 0, 32 ]
 }
-
-[sub_resource type="Animation" id=1]
-resource_name = "idle_left"
-tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
+tracks/4/type = "value"
+tracks/4/path = NodePath("weapon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "idle" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("hat:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "idle_right"
-tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "idle" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("hat:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"update": 0,
+"values": [ Vector2( 33.2867, -52.1845 ) ]
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "walk_left"
-loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hat:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("weapon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_idle_left"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("weapon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -33.287, -52.184 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hat:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("weapon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_idle_right"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("weapon:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 33.2867, -52.1845 ) ]
+}
+
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:flip_h")
 tracks/0/interp = 1
@@ -288,9 +348,34 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("weapon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_walk_left"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("weapon:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -33.287, -52.184 ) ]
+}
 
-[sub_resource type="Animation" id=4]
-resource_name = "walk_right"
+[sub_resource type="Animation" id=6]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -365,52 +450,48 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("weapon")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_walk_right"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("weapon:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 33.2867, -52.1845 ) ]
+}
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 32 ) ],
 "loop": true,
 "name": "cerre_tete",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 25 ) ],
+"frames": [ ExtResource( 31 ) ],
 "loop": true,
-"name": "king",
+"name": "cornes",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 26 ) ],
+"frames": [ ExtResource( 20 ) ],
 "loop": true,
-"name": "bonnet",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "cop_north_korea",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "cop_russia",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 28 ) ],
-"loop": true,
-"name": "cop",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "batiment",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ) ],
-"loop": true,
-"name": "cop_green",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 30 ) ],
-"loop": true,
-"name": "bonnet_crade",
+"name": "classe_blanc",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ) ],
@@ -423,14 +504,19 @@ animations = [ {
 "name": "eye_brow",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 34 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "trump",
+"name": "cop_north_korea",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 29 ) ],
+"frames": [ ExtResource( 27 ) ],
 "loop": true,
-"name": "turban",
+"name": "cop_green",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "king",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
@@ -438,9 +524,24 @@ animations = [ {
 "name": "sherif",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "dundy",
+"name": "cop_russia",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "cop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "bonnet",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "batiment",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -448,25 +549,35 @@ animations = [ {
 "name": "none",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 30 ) ],
 "loop": true,
-"name": "classe_blanc",
+"name": "bonnet_crade",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 31 ) ],
+"frames": [ ExtResource( 29 ) ],
 "loop": true,
-"name": "cornes",
+"name": "turban",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 34 ) ],
+"loop": true,
+"name": "trump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "dundy",
 "speed": 5.0
 } ]
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 16 )
 shader_param/sprite_light_color = Color( 1, 0, 0, 1 )
-shader_param/light_color = Color( 0.247059, 0.278431, 0.309804, 1 )
+shader_param/light_color = Color( 0.952941, 0.92549, 0.372549, 1 )
 shader_param/sprite_dark_color = Color( 0, 0, 1, 1 )
-shader_param/dark_color = Color( 0.113725, 0.117647, 0.145098, 1 )
+shader_param/dark_color = Color( 0.764706, 0.533333, 0.168627, 1 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -484,8 +595,7 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="Animation" id=8]
-resource_name = "hit"
+[sub_resource type="Animation" id=10]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:modulate")
@@ -503,34 +613,35 @@ tracks/0/keys = {
 [node name="human" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="weapon" parent="." instance=ExtResource( 1 )]
-visible = false
-position = Vector2( 33.2867, -52.1845 )
-scale = Vector2( 0.5, 0.5 )
-
 [node name="whole_animation" type="AnimationPlayer" parent="."]
-anims/die_left = SubResource( 9 )
-anims/die_right = SubResource( 10 )
-anims/idle_left = SubResource( 1 )
-anims/idle_right = SubResource( 2 )
-anims/walk_left = SubResource( 3 )
-anims/walk_right = SubResource( 4 )
+anims/die_left = SubResource( 1 )
+anims/die_right = SubResource( 2 )
+anims/idle_left = SubResource( 3 )
+anims/idle_right = SubResource( 4 )
+anims/walk_left = SubResource( 5 )
+anims/walk_right = SubResource( 6 )
 
 [node name="hat" type="AnimatedSprite" parent="."]
-position = Vector2( 14.841, -115.322 )
-frames = SubResource( 5 )
+position = Vector2( 13, -118 )
+frames = SubResource( 7 )
 animation = "none"
 playing = true
+flip_h = true
 
 [node name="sprite" type="AnimatedSprite" parent="."]
-material = SubResource( 6 )
+material = SubResource( 8 )
 position = Vector2( -3, -54 )
-frames = SubResource( 7 )
-animation = "die_right"
-frame = 32
+frames = SubResource( 9 )
+animation = "walk_right"
+frame = 5
 playing = true
 flip_h = true
 script = ExtResource( 33 )
 
 [node name="hit_animation" type="AnimationPlayer" parent="."]
-anims/hit = SubResource( 8 )
+anims/hit = SubResource( 10 )
+
+[node name="weapon" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -33.287, -52.184 )
+scale = Vector2( 0.5, 0.5 )

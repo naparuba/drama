@@ -59,7 +59,14 @@ func _init():
 	
 
 func _ready():
-	weapon.set_holder(self)
+	print('Player::_ready')
+	print('Player::_ready:: body is %s' % self.body)
+	#self.weapon = self.body.get_weapon()
+	print('Player::_ready:: weapon is %s' % self.body.get_weapon())
+	self._get_weapon().set_holder(self)
+
+
+
 
 
 func _on_StompDetector_area_entered(area: Area2D) -> void:
@@ -89,7 +96,10 @@ func _get_snap_to_floor_vector(direction) -> Vector2:
 	# Normal case, if we are not currently jumpingg try to stay on the floor
 	return Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
 
-
+func _get_body():
+	print('GIVE BACK BODY %s' % self.body)
+	return self.body
+	
 
 func _eyes_move_to_right():
 	eyes.set_eyes_position(10, 0)
@@ -267,6 +277,9 @@ func _spawn_jump_reception_dust():
 	self._spawn_dusts(2)  # only one dust each side
 
 
+func add_to_world(obj):
+	self.get_parent().add_child(obj)
+
 
 func _spawn_dusts(nb_each_side):
 	var dust_position = self.global_position
@@ -318,20 +331,20 @@ func _get_direction() -> Vector2:
 		else:
 			#body_animation.play("idle_left")
 			body.set_state("idle_left")
-		self.weapon.set_idle_right()
+		self._get_weapon().set_idle_right()
 		self._eyes_reset_position()
 	else:
 		if self._move_right_strength > self._move_left_strength:
 			whole_body_animation.play("walk_right")
 			#body_animation.play("walk_right")
 			body.set_state("walk_right")
-			self.weapon.set_walk_right()
+			self._get_weapon().set_walk_right()
 			self._eyes_move_to_right()
 		else:
 			whole_body_animation.play("walk_left")
 			#body_animation.play("walk_left")
 			body.set_state("walk_left")
-			self.weapon.set_walk_left()
+			self._get_weapon().set_walk_left()
 			self._eyes_move_to_right()
 	
 	var new_direction = Vector2(

@@ -11,6 +11,7 @@ onready var animation_player_shootgun_gun = $sprite_shootgun/AnimationPlayer
 
 onready var Shootgun_shoot = load("res://src/Actors/Shoots/Shootgun.tscn")
 onready var Shootgun = load("res://src/Actors/Shoots/Shootgun.tscn")
+onready var Bullet = load('res://src/Actors/Shoots/bullet.tscn')
 
 var _current = 'shootgun'
 var _current_animation_player = null
@@ -19,9 +20,13 @@ var _holder = null
 
 
 func _ready():
-	self.set_shootgun()
+	self.set_machine_gun()
 	self.set_idle_right()
 	
+
+func add_to_world(obj):
+	self.get_parent().add_to_world(obj)
+
 
 func set_holder(holder):
 	self._holder = holder
@@ -49,7 +54,7 @@ func set_idle_right():
 
 
 func set_idle_left():
-	self._current_animation_player.play('idle_right')
+	self._current_animation_player.play('idle_left')
 
 
 func set_walk_right():
@@ -57,7 +62,8 @@ func set_walk_right():
 
 
 func set_walk_left():
-	self._current_animation_player.play('walk_right')
+	print('weapon::walk_left')
+	self._current_animation_player.play('walk_left')
 
 
 func get_impulse():
@@ -66,26 +72,27 @@ func get_impulse():
 	return MACHINEGUN_IMPULSE
 
 
-func shoot(aim_vetor):
+func shoot(aim_vector):
 	if self._is_shooting:
 		return
-	self._is_shooting = true
-	var shootgun = Shootgun.instance()
-	shootgun.start_shoot(self._holder)
-	shootgun.position.y = -50  # by default it's high to match player arms
-	shootgun.position += polar2cartesian(aim_vetor[0] * 50 , -1 * aim_vetor[1] )
-	shootgun.scale = Vector2(4, 4)  # TODO: adjust with real sprite
-	shootgun.rotation_degrees = -1 * rad2deg(aim_vetor[1] )
-	self._holder.add_child(shootgun)
 	Input.start_joy_vibration(0, 0.1, 1, 0.2)
+	if self._current == 'shootgun':
+		self._is_shooting = true
+		var shootgun = Shootgun.instance()
+		shootgun.start_shoot(self._holder)
+		shootgun.position.y = -50  # by default it's high to match player arms
+		shootgun.position += polar2cartesian(aim_vector[0] * 50 , -1 * aim_vector[1] )
+		shootgun.scale = Vector2(4, 4)  # TODO: adjust with real sprite
+		shootgun.rotation_degrees = -1 * rad2deg(aim_vector[1] )
+		self._holder.add_child(shootgun)
+	else:
+		# Bullet base code
+		var bullet = Bullet.instance()
+		bullet.set_shooter(self)
+		self.add_to_world(bullet)
+		bullet.global_position = self.global_position +  polar2cartesian(aim_vector[0] * 200 , -1 * aim_vector[1] )
+		bullet.rotation_degrees = -1 * rad2deg(aim_vector[1] )
 	
-	#Bullet base code
-	#var bullet = Bullet.instance()
-	#bullet.set_shooter(self)
-	#get_parent().add_child(bullet)
-	#bullet.global_position = self.global_position +  polar2cartesian(self._aim_vector[0] * 200 , -1 * self._aim_vector[1] )
-	#bullet.global_position.y -= 100
-	#bullet.rotation_degrees = -1 * rad2deg(self._aim_vector[1] )
 	
 func shoot_finished():
 	self._is_shooting = false

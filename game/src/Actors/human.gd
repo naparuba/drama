@@ -49,6 +49,7 @@ onready var shader_material = $sprite.material
 
 
 func _ready():
+	print('human::_ready. Weapon is %s' % self.weapon)
 	# IMPORTANT: in human_sprite we did duplicate the shader_material of this sprite
 	if self.create_color != '':
 		self._color = create_color
@@ -61,6 +62,15 @@ func _ready():
 	
 	self.weapon.visible = self.with_gun
 	
+	
+func get_weapon():
+	return self.weapon
+	
+
+
+func add_to_world(obj):
+	self.get_parent().add_to_world(obj)
+
 	
 func set_color(color_name):
 	self._color = color_name

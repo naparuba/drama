@@ -15,15 +15,14 @@ func set_shooter(shooter):
 func _on_body_entered(other):
 	print('bullet did touch something %s' % other)
 	if other.is_in_group('enemy'):
-		other.die()
+		other.take_damage(1)
 	self.queue_free()
 	
 
-
+# useless now
 func _on_area_entered(area):
 	return
-	print('BULLET DID TOUCH a wall %s' % area)
-	#self.queue_free()
+
 
 
 func _process(delta):
@@ -33,4 +32,4 @@ func _process(delta):
 
 func _onarea_shape_entered(area_id, area, area_shape, self_shape):
 	return
-	print('AREA SHAPE ENTERED')
+

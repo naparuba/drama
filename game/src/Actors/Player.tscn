@@ -720,11 +720,6 @@ animations = [ {
 "name": "normal",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 24 ) ],
-"loop": true,
-"name": "firing_right",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 25 ) ],
 "loop": true,
 "name": "walk_right",
@@ -733,6 +728,11 @@ animations = [ {
 "frames": [ SubResource( 26 ) ],
 "loop": true,
 "name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 24 ) ],
+"loop": true,
+"name": "firing_right",
 "speed": 5.0
 } ]
 
