@@ -21,7 +21,7 @@ onready var camera_shake = $Camera2D/ScreenShake
 onready var sound_walk = $sounds/walk
 onready var sound_landing = $sounds/landing
 onready var sound_dash = $sounds/dash
-
+onready var sound_jump = $sounds/jump
 
 ## Body animation
 onready var whole_body_animation = $body_display/whole_body
@@ -321,6 +321,7 @@ func _get_direction() -> Vector2:
 
 	# When jumping, add a little dust
 	if is_start_to_jump:
+		self.sound_jump.play()
 		self._spawn_jump_dust()
 		
 	#when landing, add more dusts
