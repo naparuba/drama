@@ -19,6 +19,8 @@ onready var camera_shake = $Camera2D/ScreenShake
 
 ## Sounds
 onready var sound_walk = $sounds/walk
+onready var sound_landing = $sounds/landing
+onready var sound_dash = $sounds/dash
 
 
 ## Body animation
@@ -212,6 +214,7 @@ func _update_dashing(delta):
 				dash_animation.play("dash_right")
 			else:
 				dash_animation.play("dash_left")
+			self.sound_dash.play()
 	
 	# Detect dash stop
 	if self._is_dashing:
@@ -323,6 +326,7 @@ func _get_direction() -> Vector2:
 	#when landing, add more dusts
 	if is_landing:
 		print('Landing')
+		sound_landing.play()
 		self._spawn_jump_reception_dust()
 		
 	if self._is_on_floor:
@@ -340,8 +344,13 @@ func _get_direction() -> Vector2:
 		self._get_weapon().set_idle_right()
 		self._eyes_reset_position()
 	else:
-		if not sound_walk.playing:
-			sound_walk.play()
+		# no step on the air ^^
+		if self._is_on_floor:
+			if not sound_walk.playing:  
+				sound_walk.play()
+		else:
+			if sound_walk.playing:
+				sound_walk.stop()
 		if self._move_right_strength > self._move_left_strength:
 			whole_body_animation.play("walk_right")
 			#body_animation.play("walk_right")
