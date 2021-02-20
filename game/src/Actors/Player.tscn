@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/Actors/weapon.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/player/right-leg.png" type="Texture" id=10]
 [ext_resource path="res://assets/player/body.png" type="Texture" id=11]
+[ext_resource path="res://assets/player/sounds/walk.ogg" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dash_left"
@@ -828,6 +829,10 @@ extents = Vector2( 80.052, 75.704 )
 [sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 78.9295, 8 )
 
+[sub_resource type="AudioStreamRandomPitch" id=36]
+audio_stream = ExtResource( 12 )
+random_pitch = 1.5
+
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 4
 script = ExtResource( 1 )
@@ -967,5 +972,10 @@ shape = SubResource( 35 )
 
 [node name="sounds" type="Node2D" parent="."]
 visible = false
+
+[node name="walk" type="AudioStreamPlayer2D" parent="sounds"]
+stream = SubResource( 36 )
+volume_db = 10.0
+attenuation = 1.03527
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]

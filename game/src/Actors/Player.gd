@@ -17,6 +17,9 @@ onready var dust_scene = load("res://src/Objects/Dust.tscn")
 onready var camera_shake = $Camera2D/ScreenShake
 
 
+## Sounds
+onready var sound_walk = $sounds/walk
+
 
 ## Body animation
 onready var whole_body_animation = $body_display/whole_body
@@ -327,6 +330,7 @@ func _get_direction() -> Vector2:
 	
 	if self._move_right_strength - self._move_left_strength == 0:
 		whole_body_animation.play("idle_right")
+		sound_walk.stop()
 		if _last_looking_direction == 1:
 			#body_animation.play("idle_right")
 			body.set_state("idle_right")
@@ -336,6 +340,8 @@ func _get_direction() -> Vector2:
 		self._get_weapon().set_idle_right()
 		self._eyes_reset_position()
 	else:
+		if not sound_walk.playing:
+			sound_walk.play()
 		if self._move_right_strength > self._move_left_strength:
 			whole_body_animation.play("walk_right")
 			#body_animation.play("walk_right")

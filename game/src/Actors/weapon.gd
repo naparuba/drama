@@ -21,8 +21,8 @@ var _holder = null
 
 
 func _ready():
-	self.set_machine_gun()
-	#self.set_shootgun()
+	#self.set_machine_gun()
+	self.set_shootgun()
 	self.set_idle_right()
 	
 
