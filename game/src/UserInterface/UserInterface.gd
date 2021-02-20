@@ -7,7 +7,7 @@ onready var fps_label: Label = $Fps
 onready var pause_overlay: ColorRect = $PauseOverlay
 onready var title_label: Label = $PauseOverlay/Title
 onready var main_screen_button: Button = $PauseOverlay/PauseMenu/MainScreenButton
-
+onready var sound_game_over = $sounds/game_over
 
 const MESSAGE_DIED: = "You died"
 
@@ -27,6 +27,7 @@ func _process(delta):
 func _on_Player_died() -> void:
 	self.paused = true
 	title_label.text = MESSAGE_DIED
+	self.sound_game_over.play()
 
 
 func _on_Player_reset() -> void:

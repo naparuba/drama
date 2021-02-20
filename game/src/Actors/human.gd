@@ -5,6 +5,7 @@ extends Node2D
 class_name human, "res://assets/player/idle/idle.png"
 
 onready var blood_mask_scene = load("res://src/Objects/blood_mask.tscn")
+onready var sound_kill = $sound_kill
 
 export var create_color: String
 
@@ -107,7 +108,9 @@ func die():
 	self.get_parent().add_child(blood_mask)
 	print('HUMAN: go die')
 	animation_player.play("die_right")
+	sound_kill.play()
 	yield( animation_player, "animation_finished")
+	yield(sound_kill, "finished")
 	print('ANIM FINISHED')
 	
 	

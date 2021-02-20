@@ -4,6 +4,8 @@ extends Actor
 class_name Enemy, "res://assets/enemy.png"
 
 onready var stomp_area: Area2D = $StompArea2D
+onready var stomp_area_shape = $StompArea2D/CollisionShape2D
+onready var collision_shape = $ CollisionShape2D
 
 export var speed: = Vector2(400.0, 500.0)
 export var score: = 100
@@ -15,6 +17,7 @@ onready var human = $human
 
 var _facing = 'left'
 var _health = max_health
+var _is_dead = false
 
 
 func _ready() -> void:
@@ -46,10 +49,12 @@ func _physics_process(delta: float) -> void:
 func _on_StompArea2D_area_entered(other: Area2D) -> void:
 	if other.global_position.y > stomp_area.global_position.y:
 		return
-	self.die()
+	self.take_damage(2)
 
 
 func take_damage(damage):
+	if self._is_dead:  # dead do not dead twice ^^
+		return
 	self._health -= damage
 	
 	if self._health <=0:
@@ -57,7 +62,15 @@ func take_damage(damage):
 	else:
 		self.human.get_hit()
 
+func is_dead():
+	return self._is_dead
+
+
 func die() -> void:
+	self.is_moving = false
+	self._is_dead = true
+	self.stomp_area_shape.disabled = true
+	self.collision_shape.disabled = true
 	self.human.die()
 	PlayerData.score += score
 	var timer = Timer.new()

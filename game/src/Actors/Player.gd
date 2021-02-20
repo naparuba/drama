@@ -17,6 +17,7 @@ onready var dust_scene = load("res://src/Objects/Dust.tscn")
 onready var camera_shake = $Camera2D/ScreenShake
 
 
+
 ## Body animation
 onready var whole_body_animation = $body_display/whole_body
 onready var body_animation = $body/body/AnimationPlayer
@@ -77,7 +78,8 @@ func _on_StompDetector_area_entered(area: Area2D) -> void:
 
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-	self.die()
+	if not body.is_dead():
+		self.die()
 
 
 func _is_jumping() -> bool:

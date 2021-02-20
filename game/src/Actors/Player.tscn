@@ -964,5 +964,8 @@ collision_mask = 16
 modulate = Color( 0.337255, 0.223529, 1, 1 )
 position = Vector2( 17.3982, -3.36737 )
 shape = SubResource( 35 )
+
+[node name="sounds" type="Node2D" parent="."]
+visible = false
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]

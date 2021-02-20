@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://src/Actors/weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/player/walk/walkcolor0010.png" type="Texture" id=2]
@@ -67,6 +67,7 @@
 [ext_resource path="res://assets/player/death/Dead0003.png" type="Texture" id=65]
 [ext_resource path="res://assets/player/death/Dead0007.png" type="Texture" id=66]
 [ext_resource path="res://assets/player/death/Dead0017.png" type="Texture" id=67]
+[ext_resource path="res://assets/player/sounds/kill-splash.wav" type="AudioStream" id=68]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die_left"
@@ -484,14 +485,14 @@ animations = [ {
 "name": "cerre_tete",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 31 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "cornes",
+"name": "batiment",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 29 ) ],
 "loop": true,
-"name": "classe_blanc",
+"name": "turban",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ) ],
@@ -504,14 +505,9 @@ animations = [ {
 "name": "eye_brow",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
+"frames": [ ExtResource( 34 ) ],
 "loop": true,
-"name": "cop_north_korea",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ) ],
-"loop": true,
-"name": "cop_green",
+"name": "trump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ) ],
@@ -519,14 +515,9 @@ animations = [ {
 "name": "king",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 27 ) ],
 "loop": true,
-"name": "sherif",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "cop_russia",
+"name": "cop_green",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 28 ) ],
@@ -539,14 +530,14 @@ animations = [ {
 "name": "bonnet",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ) ],
+"frames": [ ExtResource( 31 ) ],
 "loop": true,
-"name": "batiment",
+"name": "cornes",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "none",
+"name": "cop_russia",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 30 ) ],
@@ -554,14 +545,24 @@ animations = [ {
 "name": "bonnet_crade",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 29 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "turban",
+"name": "cop_north_korea",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 34 ) ],
+"frames": [  ],
 "loop": true,
-"name": "trump",
+"name": "none",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "classe_blanc",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "sherif",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
@@ -573,9 +574,9 @@ animations = [ {
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 16 )
 shader_param/sprite_light_color = Color( 1, 0, 0, 1 )
-shader_param/light_color = Color( 0.952941, 0.92549, 0.372549, 1 )
+shader_param/light_color = Color( 0.847059, 0.886275, 0.945098, 1 )
 shader_param/sprite_dark_color = Color( 0, 0, 1, 1 )
-shader_param/dark_color = Color( 0.764706, 0.533333, 0.168627, 1 )
+shader_param/dark_color = Color( 0.517647, 0.584314, 0.752941, 1 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -610,6 +611,10 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="AudioStreamRandomPitch" id=11]
+audio_stream = ExtResource( 68 )
+random_pitch = 2.0
+
 [node name="human" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -633,7 +638,7 @@ material = SubResource( 8 )
 position = Vector2( -3, -54 )
 frames = SubResource( 9 )
 animation = "walk_right"
-frame = 5
+frame = 6
 playing = true
 flip_h = true
 script = ExtResource( 33 )
@@ -645,3 +650,6 @@ anims/hit = SubResource( 10 )
 visible = false
 position = Vector2( -33.287, -52.184 )
 scale = Vector2( 0.5, 0.5 )
+
+[node name="sound_kill" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 11 )
