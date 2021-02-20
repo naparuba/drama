@@ -1,12 +1,13 @@
 extends Area2D
 
-
+onready var sound_shoot = $sounds/shoot
 var shooter : Node
 
 
 func start_shoot(shooter : Node) -> void:
 	self.shooter = shooter
 	$AnimatedSprite/AnimationPlayer.play("shoot")
+	$sounds/shoot.play()
 
 
 func finish():

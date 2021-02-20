@@ -1,0 +1,13 @@
+[remap]
+
+importer="LDtk.import"
+type="PackedScene"
+path="res://.import/myworld.ldtk-104e1b334c35e3df4e54e458d5d3cf7f.tscn"
+
+[deps]
+
+source_file="res://src/Levels/myworld.ldtk"
+dest_files=[ "res://.import/myworld.ldtk-104e1b334c35e3df4e54e458d5d3cf7f.tscn" ]
+
+[params]
+
