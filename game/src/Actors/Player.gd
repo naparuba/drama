@@ -299,7 +299,7 @@ func _spawn_dusts(nb_each_side):
 		dust.scale.y *= abs(_i/3.0)
 		get_parent().add_child(dust)
 		
-		
+
 # TODO: jump: jump buffer, to allow jump a bit before landing, or exiting a platform (coyote_time)
 # TODO: shader border avec ce qu'il peux interagir? desature color for hits
 # MUSICS & sound effect!
