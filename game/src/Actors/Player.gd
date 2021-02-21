@@ -372,6 +372,7 @@ func _get_direction() -> Vector2:
 	# Maybe we are wall jumping
 	if _asking_for_jump and self._is_touching_a_wall():
 		print('WALL JUMP from %s' % self._current_wall)
+		self.sound_jump.play()
 		new_direction[1] = -Input.get_action_strength("jump")
 		# NOTE: to evade player input, we simulate a huge force against the wall
 		new_direction[0] = 10

@@ -64,7 +64,6 @@ func set_walk_right():
 
 
 func set_walk_left():
-	print('weapon::walk_left')
 	self._current_animation_player.play('walk_left')
 
 
