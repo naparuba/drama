@@ -11,7 +11,7 @@ extends "res://src/Actors/Player_shoot.gd"
 class_name Player, "res://assets/player.png"
 
 
-export var speed: = Vector2(1000.0, 1500.0)
+export var speed: = Vector2(600.0, 600.0)
 
 onready var dust_scene = load("res://src/Objects/Dust.tscn")
 onready var camera_shake = $Camera2D/ScreenShake
@@ -121,8 +121,30 @@ func _eyes_reset_position():
 ############# Moving / Inputs
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("shoot"):
+		print('SHOOT TO %s' % self.get_global_mouse_position())
+		print('PLAYER POSITION: %s' % self.global_position)
 		self.do_shoot()
-
+		return
+	if Input.is_action_just_pressed("go_to"):
+		print('GO TO from child')
+		if event.get('global_position') == null:
+			print('BAD EVENT: %s' % event)
+			return
+		print('PATH: %s' % event.global_position)
+		print('WINDOWS SIZE: %s' % OS.window_size)
+		print('VIEWPORT %s' % get_viewport().size)
+		var p = event.global_position / OS.window_size * get_viewport().size
+		print('CALCUL: %s' % p)
+		print('MOUSE POS %s' % self.get_global_mouse_position())
+		var nav_2d = get_parent().get_node("Navigation2D")
+		var new_path = nav_2d.get_simple_path(
+			self.global_position,
+			# Scales the mouse position from the window's coordinate system to the viewport's.
+			self.get_global_mouse_position()
+		)
+		self.set_path(new_path)
+		get_parent().get_node("Line2D").points = new_path
+		print('NEw path: %s' % new_path)
 
 func _find_nearest_enemy() -> Enemy:
 	var all_enemies = get_tree().get_nodes_in_group("enemy")
@@ -176,24 +198,23 @@ func _physics_process(delta: float) -> void:
 			var _wished_speed = 0  # want to stop
 			self._current_velocity.x = lerp(self._current_velocity.x, _wished_speed, FRICTION)
 		
-		
+		self._current_velocity.y = speed.y * direction.y
 		# Apply Y speed if any
-		if direction.y != 0.0:
-			self._current_velocity.y = speed.y * direction.y
-		if self._is_jump_interrupted():
-			if abs(self._current_velocity.y) > abs(speed.y):  # if we did super jump, do not interupt
-				print('JUMP NOT INTERUPTED: was super jump')
-				pass
-			else:  # we are in a classic jump, then stop
-				print('JUMP INTERUPTED: was in normal jump')
-				self._current_velocity.y = 0.0
+		#if direction.y != 0.0:
+		#	self._current_velocity.y = speed.y * direction.y
+		#if self._is_jump_interrupted():
+		#	if abs(self._current_velocity.y) > abs(speed.y):  # if we did super jump, do not interupt
+		#		print('JUMP NOT INTERUPTED: was super jump')
+		#		pass
+		#	else:  # we are in a classic jump, then stop
+		#		print('JUMP INTERUPTED: was in normal jump')
+		#		self._current_velocity.y = 0.0
 
 	# snap is a way to stuck to floor
-	var snap = self._get_snap_to_floor_vector(direction)
-	self._current_velocity = move_and_slide_with_snap(
-		self._current_velocity, snap, FLOOR_NORMAL, true
-	)
-	self._look_at_nearest_enemy()
+	#var snap = self._get_snap_to_floor_vector(direction)
+	#print('CURRENT SPEED: %s' % self._current_velocity)
+	self._current_velocity = move_and_slide(self._current_velocity)
+	#self._look_at_nearest_enemy()
 
 
 # We are back on the floor, so we can dash
@@ -320,20 +341,20 @@ func _get_direction() -> Vector2:
 	var is_landing = not was_on_floor and self._is_on_floor
 
 	# When jumping, add a little dust
-	if is_start_to_jump:
-		self.sound_jump.play()
-		self._spawn_jump_dust()
+	#if is_start_to_jump:
+	#	self.sound_jump.play()
+	#	self._spawn_jump_dust()
 		
 	#when landing, add more dusts
-	if is_landing:
-		print('Landing')
-		sound_landing.play()
-		self._spawn_jump_reception_dust()
+	#if is_landing:
+	#	print('Landing')
+	#	sound_landing.play()
+	#	self._spawn_jump_reception_dust()
 		
 	if self._is_on_floor:
 		self._dash_allow_dash()
 	
-	if self._move_right_strength - self._move_left_strength == 0:
+	if self._move_right_strength == 0 and self._move_left_strength == 0 and self._move_down_strength == 0 and self._move_up_strength == 0:
 		whole_body_animation.play("idle_right")
 		sound_walk.stop()
 		if _last_looking_direction == 1:
@@ -345,13 +366,14 @@ func _get_direction() -> Vector2:
 		self._get_weapon().set_idle_right()
 		self._eyes_reset_position()
 	else:
+		sound_walk.play()
 		# no step on the air ^^
-		if self._is_on_floor:
-			if not sound_walk.playing:  
-				sound_walk.play()
-		else:
-			if sound_walk.playing:
-				sound_walk.stop()
+		#if self._is_on_floor:
+		#	if not sound_walk.playing:  
+		#		sound_walk.play()
+		#else:
+		#	if sound_walk.playing:
+		#		sound_walk.stop()
 		if self._move_right_strength > self._move_left_strength:
 			whole_body_animation.play("walk_right")
 			#body_animation.play("walk_right")
@@ -367,17 +389,18 @@ func _get_direction() -> Vector2:
 	
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,
-		-Input.get_action_strength("jump") if is_start_to_jump else 0.0
+		self._move_down_strength - self._move_up_strength
+#		-Input.get_action_strength("jump") if is_start_to_jump else 0.0
 	)
 	# Maybe we are wall jumping
-	if _asking_for_jump and self._is_touching_a_wall():
-		print('WALL JUMP from %s' % self._current_wall)
-		self.sound_jump.play()
-		new_direction[1] = -Input.get_action_strength("jump")
-		# NOTE: to evade player input, we simulate a huge force against the wall
-		new_direction[0] = 10
-		if self._current_wall == TOUCH_RIGHT_WALL:
-			new_direction[0] *= -1  # need to inverse force to get lower x
+	#if _asking_for_jump and self._is_touching_a_wall():
+	#	print('WALL JUMP from %s' % self._current_wall)
+	#	self.sound_jump.play()
+	#	new_direction[1] = -Input.get_action_strength("jump")
+	#	# NOTE: to evade player input, we simulate a huge force against the wall
+	#	new_direction[0] = 10
+	#	if self._current_wall == TOUCH_RIGHT_WALL:
+	#		new_direction[0] *= -1  # need to inverse force to get lower x
 	return new_direction
 	
 
@@ -393,3 +416,43 @@ func die() -> void:
 	PlayerData.deaths += 1
 	queue_free()
 
+
+
+
+
+
+####FOR SAVING
+
+
+#func _ready():
+#	self.set_process(false)
+
+var _paths = PoolVector2Array()
+
+func _process(delta: float) -> void:
+	var move_distance : = 400 * delta
+	move_along_path(move_distance)
+
+func move_along_path(distance : float) -> void:
+	var last_point : = position
+	for index in range(_paths.size()):
+		var distance_to_next = last_point.distance_to(_paths[0])
+		if distance <= distance_to_next and distance >= 0.0:
+			position = last_point.linear_interpolate(_paths[0], distance / distance_to_next)
+			break
+		elif _paths.size() == 1 and distance >= distance_to_next:
+			position = _paths[0]
+			set_process(false)
+			break
+
+		distance -= distance_to_next
+		last_point = _paths[0]
+		_paths.remove(0)
+
+
+func set_path(value : PoolVector2Array) -> void:
+	if value.size() == 0:
+		return
+	_paths = value
+	_paths.remove(0)
+	set_process(true)

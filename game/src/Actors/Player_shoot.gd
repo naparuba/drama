@@ -51,6 +51,7 @@ func do_shoot():
 		return
 	# We can shoot, add the shootgun
 	mouth_animation.play("firing_right")
+	print('AIM VECTOR: %s' % self._aim_vector)
 	self._get_weapon().shoot(self._aim_vector)
 	# we did shoot, so apply an oposite force (... lol ...)
 	self._apply_reverse_shootgun_force()

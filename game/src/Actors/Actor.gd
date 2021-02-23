@@ -5,7 +5,7 @@ class_name Actor
 const FLOOR_NORMAL: = Vector2.UP
 
 
-export var GRAVITY: = 3500.0
+export var GRAVITY: = 0  #3500.0
 
 var _current_velocity: = Vector2.ZERO
 

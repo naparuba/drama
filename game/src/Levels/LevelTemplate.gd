@@ -1,15 +1,26 @@
-extends Node2D
+extends Node
 
-onready var trump_animation = $trump_animation
-onready var dialogue_pop = $popups/dialogue_popup
+onready var nav_2d : Navigation2D = $Navigation2D
+onready var line_2d : Line2D = $Line2D
+onready var character =  $Player
+
+
+onready var nav_poly : NavigationPolygonInstance = $Navigation2D/NavigationPolygonInstance
+onready var collision_box = $Navigation2D/collision_box
 
 
 func _ready():
-	self.step_1_trump_hello()
+	return
+	
+	
+	
 
-func step_1_trump_hello():
-	trump_animation.play("trump_salut")
-	dialogue_pop.name = 'Your Boss'
-	dialogue_pop.dialogue = 'Hi, I am your [b][shake][color=red]Boss[/color][/shake][/b]. Do it!'
-	dialogue_pop.open()
+func _unhandled_input(event: InputEvent) -> void:
+	#print('Input: %s' % event)
+	if not event is InputEventMouseButton:
+		return
+	if event.button_index != BUTTON_RIGHT or not event.pressed:
+		return
+	print('PARENT %s' % event)
+	return
 	
