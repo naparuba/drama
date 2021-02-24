@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/player/sounds/landing.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/player/sounds/dash.ogg" type="AudioStream" id=14]
 [ext_resource path="res://assets/player/sounds/jump.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/lights/light.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dash_left"
@@ -997,5 +998,11 @@ stream = SubResource( 38 )
 
 [node name="jump" type="AudioStreamPlayer2D" parent="sounds"]
 stream = SubResource( 39 )
+
+[node name="light" type="Light2D" parent="."]
+texture = ExtResource( 16 )
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
