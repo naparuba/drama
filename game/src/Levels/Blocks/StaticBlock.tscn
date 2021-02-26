@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+
+[node name="Staticbox" type="StaticBody2D" groups=[
+"obstacle",
+]]
+light_mask = 8
+
+[node name="collision_box" type="CollisionPolygon2D" parent="."]
+light_mask = 8
+
+[node name="light_occluder" type="LightOccluder2D" parent="collision_box"]
+modulate = Color( 0.00784314, 0, 1, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
+light_mask = 8
+occluder = SubResource( 1 )
+light_mask = 8

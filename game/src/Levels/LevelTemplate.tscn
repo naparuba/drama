@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Actors/Player-platformer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Actors/Trump.tscn" type="PackedScene" id=7]
@@ -891,7 +891,7 @@ position = Vector2( 3562.91, 779.156 )
 next_scene = null
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1048.96, 794.786 )
+position = Vector2( 1177.32, 656.443 )
 
 [node name="Coins" type="Node2D" parent="."]
 

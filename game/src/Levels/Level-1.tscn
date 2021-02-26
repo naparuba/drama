@@ -1,11 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/maps/test-desert.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/levels/1/map-1.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player-top-down.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=3]
 [ext_resource path="res://src/Levels/Blocks/StaticBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Levels/LevelTemplate.gd" type="Script" id=9]
-
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 1958.81, -608.476, 5047.17, -600.925, 5047.17, 1639.83, 1966.36, 1643.6 )
@@ -32,34 +31,10 @@ navpoly = SubResource( 1 )
 [node name="Staticbox" parent="Navigation2D" instance=ExtResource( 4 )]
 
 [node name="collision_box" parent="Navigation2D/Staticbox" index="0"]
-polygon = PoolVector2Array( 1385.54, 934.618, 1938.65, 1289.51, 1974.51, 1247.98, 1951.86, 1227.22, 2025.48, 1276.3, 2031.15, 1314.06, 2153.85, 1395.23, 2238.8, 1289.51, 1863.14, 1010.13, 1846.15, 1017.68, 1470.49, 751.507, 1394.98, 866.659 )
-
-[node name="Staticbox2" parent="Navigation2D" instance=ExtResource( 4 )]
-
-[node name="collision_box" parent="Navigation2D/Staticbox2" index="0"]
-polygon = PoolVector2Array( 503.958, 502.324, 590.795, 570.283, 692.733, 428.702, 609.672, 368.294 )
-
-[node name="Staticbox3" parent="Navigation2D" instance=ExtResource( 4 )]
-
-[node name="Staticbox6" parent="Navigation2D" instance=ExtResource( 4 )]
-
-[node name="collision_box" parent="Navigation2D/Staticbox6" index="0"]
-polygon = PoolVector2Array( 959.747, 1219.89, 816.278, 1184.02, 625.615, 1066.98, 434.953, 859.331, 763.421, 447.802, 1178.73, 759.281 )
-
-[node name="Staticbox5" parent="Navigation2D" instance=ExtResource( 4 )]
-
-[node name="collision_box" parent="Navigation2D/Staticbox5" index="0"]
-polygon = PoolVector2Array( 1119.36, 1046, 1243.96, 1127.17, 1287.37, 1053.55, 1172.22, 968.598 )
+polygon = PoolVector2Array( 84.3933, 327.164, 81.5616, 415.888, 224.087, 419.664, 224.087, 327.164 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1905.75, 312.281 )
+position = Vector2( 321.929, 410.444 )
+scale = Vector2( 0.2, 0.2 )
 
 [editable path="Navigation2D/Staticbox"]
-
-[editable path="Navigation2D/Staticbox2"]
-
-[editable path="Navigation2D/Staticbox3"]
-
-[editable path="Navigation2D/Staticbox6"]
-
-[editable path="Navigation2D/Staticbox5"]
