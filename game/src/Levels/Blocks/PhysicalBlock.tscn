@@ -2,7 +2,7 @@
 
 [sub_resource type="OccluderPolygon2D" id=1]
 
-[node name="Staticbox" type="StaticBody2D" groups=[
+[node name="physical_block" type="StaticBody2D" groups=[
 "obstacle",
 ]]
 light_mask = 8

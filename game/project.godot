@@ -29,10 +29,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Player.gd"
 }, {
+"base": "Actor",
+"class": "PlayerPlatformer",
+"language": "GDScript",
+"path": "res://src/Actors/Player-platformer.gd"
+}, {
+"base": "Actor",
+"class": "PlayerTopDown",
+"language": "GDScript",
+"path": "res://src/Actors/Player-top-down.gd"
+}, {
 "base": "Area2D",
 "class": "Portal2d",
 "language": "GDScript",
 "path": "res://src/Objects/Portal2D.gd"
+}, {
+"base": "Node2D",
+"class": "TurtleTopDown",
+"language": "GDScript",
+"path": "res://src/Actors/Turtles/top-down/turtle-top-down.gd"
 }, {
 "base": "Area2D",
 "class": "bullet",
@@ -49,7 +64,10 @@ _global_script_class_icons={
 "Coin": "res://assets/coin.png",
 "Enemy": "res://assets/enemy.png",
 "Player": "res://assets/player.png",
+"PlayerPlatformer": "res://assets/player.png",
+"PlayerTopDown": "res://assets/player.png",
 "Portal2d": "res://assets/portal.png",
+"TurtleTopDown": "res://assets/player/turtles/top-down/icon.png",
 "bullet": "",
 "human": "res://assets/player/idle/idle.png"
 }
@@ -95,6 +113,7 @@ jump={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
 pause={
@@ -127,7 +146,7 @@ move_down={
 }
 dash={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777240,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
  ]
 }

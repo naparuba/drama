@@ -48,8 +48,9 @@ func _load_and_compute_collision_and_light(_collision_box, _navigation_polygon):
 	# Add the shape to the navigation polygon (so will be REMOVED from the shape)
 	self.__update_navigation_polygon(_navigation_polygon, new_polygon)
 
-	# And also update the shape of the light occluder
-	self.__update_light_polygon(_light_occluder, new_light_polygon)
+	# And also update the shape of the light occluder, if not a transparent block
+	if _light_occluder != null:
+		self.__update_light_polygon(_light_occluder, new_light_polygon)
 	return
 
 	

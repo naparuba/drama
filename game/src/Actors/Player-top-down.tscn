@@ -1,10 +1,10 @@
 [gd_scene load_steps=56 format=2]
 
-[ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/Player-top-down.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
 [ext_resource path="res://src/UserInterface/ScreenShake.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/player/dash.png" type="Texture" id=4]
-[ext_resource path="res://src/Actors/human.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Actors/Turtles/top-down/turtle-top-down.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/player/left-leg.png" type="Texture" id=6]
 [ext_resource path="res://assets/player/mouths.png" type="Texture" id=7]
 [ext_resource path="res://src/Actors/Player-eyes.tscn" type="PackedScene" id=8]
@@ -725,11 +725,6 @@ animations = [ {
 "name": "normal",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 24 ) ],
-"loop": true,
-"name": "firing_right",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 25 ) ],
 "loop": true,
 "name": "walk_right",
@@ -738,6 +733,11 @@ animations = [ {
 "frames": [ SubResource( 26 ) ],
 "loop": true,
 "name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 24 ) ],
+"loop": true,
+"name": "firing_right",
 "speed": 5.0
 } ]
 
@@ -825,7 +825,7 @@ tracks/1/keys = {
 polygon = PoolVector2Array( -47.7193, -80.1353, -45.552, -86.1556, -40.2541, -93.1392, -32.7889, -96.9922, 32.4715, -96.5106, 38.7327, -94.5841, 44.9938, -89.0453, 47.6427, -82.0618, 48.1244, -17.5238, 45.957, -10.2994, 41.6224, -5.00154, 33.9164, 0.296349, -31.1032, -0.18528, -39.5316, -4.2791, -45.0704, -10.0586, -47.4785, -16.5606 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 93.5216, 86.0714 )
+extents = Vector2( 2.75323, 2.54628 )
 
 [sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 80.052, 75.704 )
@@ -853,6 +853,7 @@ script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.3, 0.3 )
 process_mode = 0
 limit_smoothed = true
 smoothing_enabled = true
@@ -944,9 +945,7 @@ anims/walk_left = SubResource( 30 )
 anims/walk_right = SubResource( 31 )
 
 [node name="body" parent="." instance=ExtResource( 5 )]
-create_color = "white"
-_hat = "turban"
-with_gun = true
+create_color = "leo"
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -958,8 +957,8 @@ offset = Vector2( 246.775, -311.052 )
 occluder = SubResource( 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 13.4695, -99.368 )
+position = Vector2( 0.106005, -7.60529 )
+scale = Vector2( -1.89325, 3.20757 )
 shape = SubResource( 33 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
@@ -1000,6 +999,7 @@ stream = SubResource( 38 )
 stream = SubResource( 39 )
 
 [node name="light" type="Light2D" parent="."]
+position = Vector2( 0, -8 )
 texture = ExtResource( 16 )
 range_item_cull_mask = 8
 shadow_enabled = true

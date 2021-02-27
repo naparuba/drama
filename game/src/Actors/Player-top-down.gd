@@ -11,7 +11,7 @@ extends "res://src/Actors/Player_shoot.gd"
 class_name PlayerTopDown, "res://assets/player.png"
 
 
-export var speed: = Vector2(600.0, 600.0)
+export var speed: = Vector2(100.0, 100.0)
 
 onready var dust_scene = load("res://src/Objects/Dust.tscn")
 onready var camera_shake = $Camera2D/ScreenShake

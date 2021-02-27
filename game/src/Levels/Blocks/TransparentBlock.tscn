@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="transparent_block" type="StaticBody2D" groups=[
+"obstacle",
+]]
+light_mask = 8
+
+[node name="collision_box" type="CollisionPolygon2D" parent="."]
+light_mask = 8

@@ -14,7 +14,7 @@ void fragment() {
     float d = max(max(d4.r, d4.g), d4.b);
     if(d < 0.5) {
         col = light_color;
-		COLOR = col;
+		//COLOR = col;
 		return
     }
 	
