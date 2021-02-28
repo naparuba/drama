@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/5-miniboss.ogg-a39d38b16481f733937b6eeb84e7785d.oggstr"
+
+[deps]
+
+source_file="res://assets/musics/5-miniboss.ogg"
+dest_files=[ "res://.import/5-miniboss.ogg-a39d38b16481f733937b6eeb84e7785d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

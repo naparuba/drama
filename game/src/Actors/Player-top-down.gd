@@ -14,6 +14,7 @@ class_name PlayerTopDown, "res://assets/player.png"
 export var speed: = Vector2(100.0, 100.0)
 
 onready var dust_scene = load("res://src/Objects/Dust.tscn")
+onready var camera = $Camera2D
 onready var camera_shake = $Camera2D/ScreenShake
 
 
@@ -85,6 +86,16 @@ func _on_StompDetector_area_entered(area: Area2D) -> void:
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	if not body.is_dead():
 		self.die()
+
+
+
+func set_camera_limit(top_left_position, size):
+	camera.limit_left = top_left_position[0]
+	camera.limit_top = top_left_position[1]
+	camera.limit_right = camera.limit_left + size[0]
+	camera.limit_bottom = camera.limit_top + size[1]
+	print('CAMERA LIMIT:', camera.limit_left,camera.limit_top, camera.limit_right,  camera.limit_bottom )
+	
 
 
 func _is_jumping() -> bool:
@@ -355,7 +366,7 @@ func _get_direction() -> Vector2:
 		self._dash_allow_dash()
 	
 	if self._move_right_strength == 0 and self._move_left_strength == 0 and self._move_down_strength == 0 and self._move_up_strength == 0:
-		whole_body_animation.play("idle_right")
+		#whole_body_animation.play("idle_right")
 		sound_walk.stop()
 		if _last_looking_direction == 1:
 			#body_animation.play("idle_right")
@@ -375,16 +386,30 @@ func _get_direction() -> Vector2:
 		#	if sound_walk.playing:
 		#		sound_walk.stop()
 		if self._move_right_strength > self._move_left_strength:
-			whole_body_animation.play("walk_right")
+			#whole_body_animation.play("walk_right")
 			#body_animation.play("walk_right")
 			body.set_state("walk_right")
 			self._get_weapon().set_walk_right()
 			self._eyes_move_to_right()
-		else:
-			whole_body_animation.play("walk_left")
+		elif self._move_left_strength > self._move_right_strength:
+			#whole_body_animation.play("walk_left")
 			#body_animation.play("walk_left")
 			body.set_state("walk_left")
 			self._get_weapon().set_walk_left()
+			self._eyes_move_to_right()
+		elif self._move_up_strength > self._move_down_strength:
+			#whole_body_animation.play("walk_up")
+			#body_animation.play("walk_left")
+			body.set_state("walk_up")
+		elif self._move_down_strength > self._move_up_strength :
+			#whole_body_animation.play("walk_down")
+			#body_animation.play("walk_left")
+			body.set_state("walk_down")
+		else:
+			#whole_body_animation.play("idle_right")
+			#body_animation.play("walk_left")
+			body.set_state("idle_right")
+			#self._get_weapon().set_walk_left()
 			self._eyes_move_to_right()
 	
 	var new_direction = Vector2(

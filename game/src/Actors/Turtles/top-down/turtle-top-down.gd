@@ -28,7 +28,7 @@ onready var hat_sprite = $hat
 onready var weapon = $weapon
 
 var SPRITE_LIGHT_COLOR = Color('bc00bc')
-var SPRITE_DARK_COLOR = Color('333333')
+var SPRITE_DARK_COLOR = Color('ffffff')
 
 var COLORS = {
 	#             light              dark
@@ -76,7 +76,7 @@ func set_color(color_name):
 	
 	
 func set_state(state):
-	if state !='idle_left' and state != 'idle_right' and state != 'walk_left' and state != 'walk_right':
+	if state !='idle_left' and state != 'idle_right' and state != 'walk_left' and state != 'walk_right' and state != 'walk_up' and state != 'walk_down':
 		print('ERROR: %s is not managed' % state)
 		return
 		

@@ -5,11 +5,12 @@ onready var background = $background
 
 func _ready():
 	print('back ground %s' % get_node("background"))
-	var limit_left = background.texture.get_size()
+	var size = background.texture.get_size()
 	var background_position = background.position
 	# Position: top left part
 	
-	print('SPRITE LIMITS: %s' % limit_left, background_position)
+	print('SPRITE LIMITS: %s' % size, background_position)
+	player.set_camera_limit(background_position, size)
 	
 	return
 	#$Player/Camera2D.limit_left = map_limits.position.x * map_cellsize.x

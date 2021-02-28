@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Actors/weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/player/turtles/top-down/walk.png" type="Texture" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://src/Actors/human_sprite.gd" type="Script" id=33]
 [ext_resource path="res://assets/player/sounds/kill-splash.wav" type="AudioStream" id=68]
 
-[sub_resource type="Animation" id=1]
-resource_name = "die_left"
+[sub_resource type="Animation" id=28]
+resource_name = "SETUP"
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:animation")
 tracks/0/interp = 1
@@ -31,7 +31,34 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "die_left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "die" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -47,7 +74,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "die_right" ]
+"values": [ "die" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:flip_h")
@@ -59,31 +86,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 32 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("weapon:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 33.2867, -52.1845 ) ]
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -97,7 +100,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "idle" ]
+"values": [ "walk_horizontal" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:flip_h")
@@ -110,32 +113,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("weapon")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_idle_left"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("weapon:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -33.287, -52.184 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -163,8 +140,37 @@ tracks/1/keys = {
 "update": 1,
 "values": [ false ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("weapon")
+
+[sub_resource type="Animation" id=29]
+resource_name = "walk_down"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "walk_down" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -172,22 +178,8 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_idle_right"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("weapon:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 33.2867, -52.1845 ) ]
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -225,33 +217,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "walk_right" ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("weapon")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_walk_left"
-} ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("weapon:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -33.287, -52.184 ) ]
+"values": [ "walk_horizontal" ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -293,50 +259,53 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("sprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 11 ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("weapon")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+
+[sub_resource type="Animation" id=30]
+resource_name = "walk_up"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_walk_right"
-} ]
+"update": 1,
+"values": [ "walk_up" ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("weapon:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 33.2867, -52.1845 ) ]
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 16 )
 shader_param/sprite_light_color = Color( 0.737255, 0, 0.737255, 1 )
 shader_param/light_color = Color( 0.12549, 0.219608, 0.92549, 1 )
-shader_param/sprite_dark_color = Color( 0.2, 0.2, 0.2, 1 )
+shader_param/sprite_dark_color = Color( 1, 1, 1, 1 )
 shader_param/dark_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="AtlasTexture" id=8]
@@ -377,35 +346,35 @@ region = Rect2( 28, 0, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 36, 14, 18 )
+region = Rect2( 0, 54, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 2 )
-region = Rect2( 14, 36, 14, 18 )
+region = Rect2( 42, 18, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 2 )
-region = Rect2( 28, 36, 14, 18 )
+region = Rect2( 56, 18, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
-region = Rect2( 42, 18, 14, 18 )
+region = Rect2( 0, 36, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 2 )
-region = Rect2( 56, 18, 14, 18 )
+region = Rect2( 14, 36, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 2 )
-region = Rect2( 42, 0, 14, 18 )
+region = Rect2( 28, 36, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 2 )
-region = Rect2( 56, 0, 14, 18 )
+region = Rect2( 42, 0, 14, 18 )
 
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 54, 14, 18 )
+region = Rect2( 56, 0, 14, 18 )
 
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
@@ -429,24 +398,24 @@ animations = [ {
 "name": "walk_up",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"frames": [ SubResource( 17 ) ],
 "loop": true,
-"name": "walk_down",
-"speed": 10.0
+"name": "die",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ) ],
+"frames": [ SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
 "name": "attack_horizontal",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 22 ), SubResource( 23 ) ],
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "walk_down",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
 "name": "attack_up",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 24 ) ],
-"loop": true,
-"name": "die",
 "speed": 5.0
 } ]
 
@@ -473,19 +442,23 @@ random_pitch = 2.0
 script = ExtResource( 4 )
 
 [node name="whole_animation" type="AnimationPlayer" parent="."]
+autoplay = "SETUP"
+anims/SETUP = SubResource( 28 )
 anims/die_left = SubResource( 1 )
 anims/die_right = SubResource( 2 )
 anims/idle_left = SubResource( 3 )
 anims/idle_right = SubResource( 4 )
+anims/walk_down = SubResource( 29 )
 anims/walk_left = SubResource( 5 )
 anims/walk_right = SubResource( 6 )
+anims/walk_up = SubResource( 30 )
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 7 )
 position = Vector2( -0.640305, -9.40194 )
 frames = SubResource( 25 )
-animation = "walk_up"
-frame = 2
+animation = "walk_down"
+frame = 1
 playing = true
 script = ExtResource( 33 )
 
