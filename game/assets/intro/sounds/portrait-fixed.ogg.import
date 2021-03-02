@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/portrait-fixed.ogg-78d291e288eb540974c6a74c3abd15fd.oggstr"
+
+[deps]
+
+source_file="res://assets/intro/sounds/portrait-fixed.ogg"
+dest_files=[ "res://.import/portrait-fixed.ogg-78d291e288eb540974c6a74c3abd15fd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

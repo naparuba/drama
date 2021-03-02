@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/leo-slash.ogg-cb133ac184b78b4bc1f6dc1c0124b6ab.oggstr"
+
+[deps]
+
+source_file="res://assets/intro/sounds/leo-slash.ogg"
+dest_files=[ "res://.import/leo-slash.ogg-cb133ac184b78b4bc1f6dc1c0124b6ab.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

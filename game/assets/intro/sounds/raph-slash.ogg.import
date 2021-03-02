@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/raph-slash.ogg-aa41cf34a8bf4eb403bf69973f2d4ddf.oggstr"
+
+[deps]
+
+source_file="res://assets/intro/sounds/raph-slash.ogg"
+dest_files=[ "res://.import/raph-slash.ogg-aa41cf34a8bf4eb403bf69973f2d4ddf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

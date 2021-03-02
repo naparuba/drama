@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=2]
+[gd_scene load_steps=130 format=2]
 
 [ext_resource path="res://assets/intro/intro.png" type="Texture" id=1]
 [ext_resource path="res://assets/musics/1-title.ogg" type="AudioStream" id=2]
@@ -21,6 +21,13 @@
 [ext_resource path="res://assets/intro/intro-2.png" type="Texture" id=19]
 [ext_resource path="res://assets/intro/intro-4.png" type="Texture" id=20]
 [ext_resource path="res://assets/intro/traveling_light.png" type="Texture" id=21]
+[ext_resource path="res://assets/intro/sounds/leo-slash.ogg" type="AudioStream" id=22]
+[ext_resource path="res://assets/intro/sounds/typing.ogg" type="AudioStream" id=23]
+[ext_resource path="res://assets/intro/sounds/portrait-fixed.ogg" type="AudioStream" id=24]
+[ext_resource path="res://assets/intro/sounds/don-slash.ogg" type="AudioStream" id=25]
+[ext_resource path="res://assets/intro/sounds/portrait-fixed-multi4.ogg" type="AudioStream" id=26]
+[ext_resource path="res://assets/intro/sounds/raph-slash.ogg" type="AudioStream" id=27]
+[ext_resource path="res://assets/intro/sounds/press-start-button.ogg" type="AudioStream" id=28]
 
 [sub_resource type="Animation" id=1]
 resource_name = "intro"
@@ -249,7 +256,7 @@ tracks/18/loop_wrap = true
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = {
-"times": PoolRealArray( 18, 18.8, 21.7, 36.5, 37, 38.5 ),
+"times": PoolRealArray( 18, 18.8, 21.7, 36.5, 36.8, 38.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 176, 115 ), Vector2( 76, 115 ), Vector2( 76, 115 ), Vector2( 222, 123 ), Vector2( 110, 122 ), Vector2( 110, 122 ) ]
@@ -345,7 +352,7 @@ tracks/26/loop_wrap = true
 tracks/26/imported = false
 tracks/26/enabled = true
 tracks/26/keys = {
-"times": PoolRealArray( -0.1, 0.1, 26, 28.9, 37, 38.5 ),
+"times": PoolRealArray( -0.1, 0.1, 26, 28.9, 36.8, 38.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, false, true, false, true, false ]
@@ -357,7 +364,7 @@ tracks/27/loop_wrap = true
 tracks/27/imported = false
 tracks/27/enabled = true
 tracks/27/keys = {
-"times": PoolRealArray( 26, 26.9, 28.9, 37, 37.5, 38.5 ),
+"times": PoolRealArray( 26, 26.9, 28.9, 36.8, 37.2, 38.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 176, 115 ), Vector2( 76, 118 ), Vector2( 76, 118 ), Vector2( 222, 123 ), Vector2( 156, 123 ), Vector2( 156, 123 ) ]
@@ -417,7 +424,7 @@ tracks/32/loop_wrap = true
 tracks/32/imported = false
 tracks/32/enabled = true
 tracks/32/keys = {
-"times": PoolRealArray( 0, 33, 36, 37.5, 38.5 ),
+"times": PoolRealArray( 0, 33, 36, 37.2, 38.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false, true, false ]
@@ -429,7 +436,7 @@ tracks/33/loop_wrap = true
 tracks/33/imported = false
 tracks/33/enabled = true
 tracks/33/keys = {
-"times": PoolRealArray( 33, 34, 36, 37.5, 38, 38.5 ),
+"times": PoolRealArray( 33, 34, 36, 37.2, 37.4, 38.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 176, 115 ), Vector2( 76, 115 ), Vector2( 76, 115 ), Vector2( 222, 123 ), Vector2( 201, 123 ), Vector2( 201, 123 ) ]
@@ -529,6 +536,90 @@ tracks/41/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 47, 187 ), Vector2( 47, 187 ), Vector2( 210, 45 ), Vector2( 210, 45 ) ]
+}
+tracks/42/type = "value"
+tracks/42/path = NodePath("sounds/leo-slash:playing")
+tracks/42/interp = 1
+tracks/42/loop_wrap = true
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/keys = {
+"times": PoolRealArray( 8.2, 8.9, 9.6, 10.3, 23.4, 24.5, 25.6, 26.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, false, true, true, true, false ]
+}
+tracks/43/type = "value"
+tracks/43/path = NodePath("sounds/portrait-fixed:playing")
+tracks/43/interp = 1
+tracks/43/loop_wrap = true
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/keys = {
+"times": PoolRealArray( 10.6, 10.9, 18.8, 19.3, 26.7, 27.2, 34, 34.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/44/type = "value"
+tracks/44/path = NodePath("sounds/typing:playing")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/keys = {
+"times": PoolRealArray( 10.6, 12.3, 19.2, 21.1, 26.9, 28.6, 34, 35.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/45/type = "value"
+tracks/45/path = NodePath("sounds/raph-slash:playing")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/keys = {
+"times": PoolRealArray( 15.9, 16.8, 17.6, 18.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, false ]
+}
+tracks/46/type = "value"
+tracks/46/path = NodePath("sounds/don-slash:playing")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/keys = {
+"times": PoolRealArray( 30.8, 31.6, 32.6, 33.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, false ]
+}
+tracks/47/type = "value"
+tracks/47/path = NodePath("sounds/portrait-fixed-multi4:playing")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/keys = {
+"times": PoolRealArray( 36.5, 37.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/48/type = "value"
+tracks/48/path = NodePath("push-start/black-box:visible")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="AtlasTexture" id=2]
@@ -1012,6 +1103,34 @@ animations = [ {
 "speed": 4.0
 } ]
 
+[sub_resource type="Animation" id=101]
+resource_name = "push-start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("press-start:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("black-box:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true, false, true ]
+}
+
 [node name="Title" type="Control"]
 script = ExtResource( 5 )
 __meta__ = {
@@ -1040,6 +1159,7 @@ __meta__ = {
 
 [node name="title_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -20.0
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1189,3 +1309,42 @@ visible = false
 position = Vector2( 210, 45 )
 texture = ExtResource( 21 )
 mode = 2
+
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="leo-slash" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 22 )
+
+[node name="raph-slash" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 27 )
+
+[node name="don-slash" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 25 )
+
+[node name="typing" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 23 )
+
+[node name="portrait-fixed" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 24 )
+
+[node name="portrait-fixed-multi4" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 26 )
+
+[node name="push-start" type="Node2D" parent="."]
+
+[node name="push-start-animation" type="AnimationPlayer" parent="push-start"]
+anims/push-start = SubResource( 101 )
+
+[node name="press-start" type="AudioStreamPlayer2D" parent="push-start"]
+stream = ExtResource( 28 )
+
+[node name="black-box" type="ColorRect" parent="push-start"]
+margin_left = 82.4346
+margin_top = 129.607
+margin_right = 122.435
+margin_bottom = 169.607
+rect_scale = Vector2( 2.30041, 0.474772 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
