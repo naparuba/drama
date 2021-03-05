@@ -86,8 +86,9 @@ SlowTime="*res://src/Autoload/SlowTime.gd"
 
 [display]
 
-window/size/width=1290
-window/size/height=720
+window/size/width=760
+window/size/height=760
+window/size/always_on_top=true
 
 [gdnative]
 
