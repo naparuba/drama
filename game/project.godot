@@ -75,7 +75,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Drama"
-run/main_scene="res://src/Screens/Title.tscn"
+run/main_scene="res://src/Levels/LevelTemplate.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -86,8 +86,8 @@ SlowTime="*res://src/Autoload/SlowTime.gd"
 
 [display]
 
-window/size/width=760
-window/size/height=760
+window/size/width=1200
+window/size/height=720
 window/size/always_on_top=true
 
 [gdnative]

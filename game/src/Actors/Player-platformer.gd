@@ -146,6 +146,7 @@ func _unhandled_input(event):
 		get_parent().get_node("Line2D").points = new_path
 		print('NEw path: %s' % new_path)
 
+
 func _find_nearest_enemy() -> Enemy:
 	var all_enemies = get_tree().get_nodes_in_group("enemy")
 	#print('ALL ENEMIES', all_enemies)

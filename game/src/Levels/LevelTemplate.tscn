@@ -901,7 +901,7 @@ position = Vector2( 1177.32, 656.443 )
 position = Vector2( 3923.69, 883.108 )
 
 [node name="Trump" parent="." instance=ExtResource( 7 )]
-position = Vector2( 638.088, 796.321 )
+position = Vector2( 574.088, 730.321 )
 
 [node name="popups" type="CanvasLayer" parent="."]
 

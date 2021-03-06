@@ -71,8 +71,10 @@ func die() -> void:
 	self._is_dead = true
 	self.stomp_area_shape.disabled = true
 	self.collision_shape.disabled = true
+	PlayerData.kill_enemy(score)
 	self.human.die()
-	PlayerData.score += score
+	
+	
 	var timer = Timer.new()
 	timer.set_one_shot(true)
 	timer.set_wait_time(2.6)
