@@ -821,7 +821,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 33.3635, 49.6498 )
+extents = Vector2( 8.07279, 4.85801 )
 
 [sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 31.8801, 11.0675 )
@@ -841,7 +841,7 @@ audio_stream = ExtResource( 15 )
 random_pitch = 1.5
 
 [sub_resource type="RectangleShape2D" id=38]
-extents = Vector2( 33.4078, 52.9219 )
+extents = Vector2( 8.64834, 22.2892 )
 
 [node name="Player-platformer" type="KinematicBody2D"]
 collision_mask = 4
@@ -948,6 +948,7 @@ anims/walk_left = SubResource( 30 )
 anims/walk_right = SubResource( 31 )
 
 [node name="body" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1.40181, -1.358 )
 create_color = "white"
 _hat = "turban"
 with_gun = true
@@ -958,7 +959,8 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 modulate = Color( 0.337255, 0.223529, 1, 1 )
-position = Vector2( -3.11262, -61.1109 )
+position = Vector2( 0.224477, -25.0702 )
+scale = Vector2( -1.13737, 2.67767 )
 shape = SubResource( 32 )
 
 [node name="StompDetector" type="Area2D" parent="."]
@@ -988,7 +990,8 @@ stream = SubResource( 36 )
 stream = SubResource( 37 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.96772, -51.8927 )
+position = Vector2( 0.11338, -17.703 )
+scale = Vector2( 1, 0.719999 )
 shape = SubResource( 38 )
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]

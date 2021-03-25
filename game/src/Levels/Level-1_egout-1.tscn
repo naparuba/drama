@@ -111,7 +111,6 @@ next_scene = ExtResource( 6 )
 
 [node name="Player-platformer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 109.767, -46.6001 )
-scale = Vector2( 0.3, 0.3 )
 
 [editable path="blocs/physical_block"]
 
