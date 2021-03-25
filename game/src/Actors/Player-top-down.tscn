@@ -1001,6 +1001,7 @@ stream = SubResource( 39 )
 [node name="light" type="Light2D" parent="."]
 position = Vector2( 0, -8 )
 texture = ExtResource( 16 )
+energy = 0.3
 range_item_cull_mask = 8
 shadow_enabled = true
 shadow_item_cull_mask = 8

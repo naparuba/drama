@@ -1,0 +1,13 @@
+[remap]
+
+importer="MagicaVoxel-Importer"
+type="Mesh"
+path="res://.import/egout-2.vox-6d91e6c8c95550ef312d0590810dd3de.mesh"
+
+[deps]
+
+source_file="res://assets/levels/1/egout-2.vox"
+dest_files=[ "res://.import/egout-2.vox-6d91e6c8c95550ef312d0590810dd3de.mesh" ]
+
+[params]
+

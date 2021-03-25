@@ -1,0 +1,155 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/levels/1/map-1.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/Player-top-down.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Levels/Blocks/TransparentBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/Blocks/PhysicalBlock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/Level-1.gd" type="Script" id=6]
+[ext_resource path="res://assets/musics/2-map.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/levels/1/real/eau-1.png" type="Texture" id=8]
+[ext_resource path="res://assets/levels/1/real/front-1.png" type="Texture" id=9]
+[ext_resource path="res://assets/levels/1/real/back-1.png" type="Texture" id=10]
+[ext_resource path="res://assets/levels/1/real/middle-1.png" type="Texture" id=11]
+[ext_resource path="res://assets/levels/1/real/middle-1.toit-1.png" type="Texture" id=12]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1958.81, -608.476, 5047.17, -600.925, 5047.17, 1639.83, 1966.36, 1643.6 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 1958.81, -608.476, 5047.17, -600.925, 5047.17, 1639.83, 1966.36, 1643.6 ) ]
+
+[node name="level-1" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="background_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="background" type="Sprite" parent="."]
+visible = false
+light_mask = 8
+position = Vector2( -8.13867, 5.06409 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="eau-1" type="Sprite" parent="."]
+position = Vector2( 228.293, 499.149 )
+scale = Vector2( 0.97563, 0.707706 )
+texture = ExtResource( 8 )
+
+[node name="back-1" type="Sprite" parent="."]
+position = Vector2( 230.697, 147.75 )
+scale = Vector2( 0.17, 0.17 )
+texture = ExtResource( 10 )
+
+[node name="middle-1" type="Sprite" parent="."]
+light_mask = 8
+position = Vector2( 211.239, 339.999 )
+rotation = 0.00209667
+scale = Vector2( 0.0956327, 0.147708 )
+texture = ExtResource( 11 )
+
+[node name="Turtle" parent="." instance=ExtResource( 2 )]
+position = Vector2( 83.2495, 314.195 )
+
+[node name="middle-1toit-1" type="Sprite" parent="."]
+position = Vector2( 174.499, 298.001 )
+scale = Vector2( 0.096, 0.145 )
+texture = ExtResource( 12 )
+
+[node name="front-1" type="Sprite" parent="."]
+position = Vector2( 134.74, 429.914 )
+rotation = -0.138353
+scale = Vector2( 0.0956327, 0.147708 )
+texture = ExtResource( 9 )
+
+[node name="front-2" type="Sprite" parent="."]
+position = Vector2( 254.589, 406.103 )
+rotation = -0.138353
+scale = Vector2( 0.0956327, 0.147708 )
+texture = ExtResource( 9 )
+
+[node name="front-3" type="Sprite" parent="."]
+position = Vector2( 369.279, 387.054 )
+rotation = -0.138353
+scale = Vector2( 0.0956327, 0.147708 )
+texture = ExtResource( 9 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+visible = false
+light_mask = 8
+script = ExtResource( 3 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+position = Vector2( -1969.33, 603.117 )
+navpoly = SubResource( 1 )
+
+[node name="physical_block" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block" index="0"]
+polygon = PoolVector2Array( 129.115, 367.851, 229.182, 350.613, 218.671, 292.171, 121.127, 308.148 )
+
+[node name="transparent_block" parent="." instance=ExtResource( 4 )]
+
+[node name="collision_box" parent="transparent_block" index="0"]
+polygon = PoolVector2Array( -8.43288, 419.225, 60.4322, 406.511, 57.7836, 312.749, 87.4485, 306.392, 86.9188, 266.662, 181.147, 263.323, 196.164, 318.051, 232.205, 311.711, 242.55, 344.08, 326.311, 330.065, 338.992, 350.755, 447.114, 348.085, 457.793, 381.456, 460.796, 402.48, 469.473, 402.48, 477.148, 405.483, 482.821, 411.156, 487.06, 420.841, 488.494, 243.3, 371.028, 253.979, 379.037, 290.353, 303.285, 298.696, 286.6, 223.611, 315.966, 217.604, 308.876, 187.202, 340.66, 185.613, 328.476, 134.759, 3.22121, 149.062, 7.98878, 95.029, -28.5627, 97.6777 )
+
+[node name="physical_block2" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block2" index="0"]
+polygon = PoolVector2Array( 91.6822, 89.0499, 92.1276, 99.9634, 86.7822, 100.409, 59.1644, 101.522, 59.6098, 50.5185, 141.127, 49.4049, 140.013, 97.2907, 105.714, 98.627, 104.377, 88.8271 )
+
+[node name="physical_block3" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block3" index="0"]
+polygon = PoolVector2Array( -19.3626, 86.5539, -7.06023, 10.7555, 189.777, 10.3586, 189.381, -11.0713, -17.7752, -7.10277, -27.6964, 90.5224 )
+
+[node name="transparent_block2" parent="." instance=ExtResource( 4 )]
+
+[node name="collision_box" parent="transparent_block2" index="0"]
+polygon = PoolVector2Array( 195.333, 60.7586, 248.908, 61.5523, 241.765, 7.5807, 189.381, 9.56495 )
+
+[node name="physical_block4" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block4" index="0"]
+polygon = PoolVector2Array( 237.4, -18.2146, 245.337, 29.8043, 274.307, 29.8043, 270.338, 8.3744, 384.234, 6.78701, 488.606, 244.103, 528.688, 237.754, 390.981, -20.5957 )
+
+[node name="physical_block5" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block5" index="0"]
+polygon = PoolVector2Array( 333.041, 94.4909, 410.426, 90.1256, 398.521, 40.1225, 315.976, 45.2815 )
+
+[node name="physical_block6" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block6" index="0"]
+polygon = PoolVector2Array( 406.061, 201.244, 406.855, 192.91, 419.951, 192.91, 418.363, 200.053, 454.08, 196.085, 447.73, 154.415, 360.423, 159.574, 371.138, 201.641 )
+
+[node name="physical_block7" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block7" index="0"]
+polygon = PoolVector2Array( 265.576, 80.6012, 274.704, 132.192, 190.174, 134.97, 186.206, 82.5854 )
+
+[node name="physical_block8" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block8" index="0"]
+polygon = PoolVector2Array( 52, 313.5, 64.5, 314, 71, 423.5, 346.5, 369.5, 338.5, 347, 446, 347, 460.5, 403.5, 54.5, 474.5 )
+
+[editable path="physical_block"]
+
+[editable path="transparent_block"]
+
+[editable path="physical_block2"]
+
+[editable path="physical_block3"]
+
+[editable path="transparent_block2"]
+
+[editable path="physical_block4"]
+
+[editable path="physical_block5"]
+
+[editable path="physical_block6"]
+
+[editable path="physical_block7"]
+
+[editable path="physical_block8"]

@@ -1,0 +1,13 @@
+[remap]
+
+importer="MagicaVoxel-Importer"
+type="Mesh"
+path="res://.import/map-1-14.vox-219efdd7c7548a30161525b95d599a1b.mesh"
+
+[deps]
+
+source_file="res://assets/levels/1/voxels/map-1-14.vox"
+dest_files=[ "res://.import/map-1-14.vox-219efdd7c7548a30161525b95d599a1b.mesh" ]
+
+[params]
+
