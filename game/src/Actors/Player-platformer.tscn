@@ -710,12 +710,12 @@ region = Rect2( 150, 416, 150, 104 )
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 150, 0, 150, 104 )
+region = Rect2( 300, 312, 150, 104 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 7 )
-region = Rect2( 300, 312, 150, 104 )
+region = Rect2( 150, 0, 150, 104 )
 
 [sub_resource type="SpriteFrames" id=27]
 animations = [ {
@@ -726,17 +726,17 @@ animations = [ {
 }, {
 "frames": [ SubResource( 25 ) ],
 "loop": true,
-"name": "walk_right",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 26 ) ],
-"loop": true,
 "name": "idle_right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 24 ) ],
 "loop": true,
 "name": "firing_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ) ],
+"loop": true,
+"name": "walk_right",
 "speed": 5.0
 } ]
 
