@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/levels/1/map-1.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player-top-down.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://src/Levels/Blocks/PhysicalBlock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Levels/Level-1.gd" type="Script" id=6]
 [ext_resource path="res://assets/musics/2-map.ogg" type="AudioStream" id=7]
+[ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/Level-1_egout-1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Levels/Level-1_egout-2.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 1958.81, -608.476, 5047.17, -600.925, 5047.17, 1639.83, 1966.36, 1643.6 )
@@ -86,6 +89,28 @@ polygon = PoolVector2Array( -8.97377, 325.421, 0.00592804, 325.421, 0.286545, 45
 
 [node name="Turtle" parent="." instance=ExtResource( 2 )]
 position = Vector2( 93.8584, 314.227 )
+
+[node name="portals" type="Node2D" parent="."]
+
+[node name="to_egout_1-a" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 119.783, 314.049 )
+scale = Vector2( 0.1, 0.1 )
+next_scene = ExtResource( 9 )
+
+[node name="to_egout_1-b" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 183.881, 457.341 )
+scale = Vector2( 0.1, 0.1 )
+next_scene = ExtResource( 9 )
+
+[node name="to_egout_2-a" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 312.076, 441.449 )
+scale = Vector2( 0.1, 0.1 )
+next_scene = ExtResource( 10 )
+
+[node name="to_egout_2-b" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 311.811, 345.303 )
+scale = Vector2( 0.1, 0.1 )
+next_scene = ExtResource( 10 )
 
 [editable path="physical_block"]
 

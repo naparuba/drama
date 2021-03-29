@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/background.png" type="Texture" id=1]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/levels/1/egout-2.png" type="Texture" id=3]
+[ext_resource path="res://src/Actors/Player-platformer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/Level02.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=7]
+[ext_resource path="res://src/Levels/Blocks/PhysicalBlock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/level-platformer.gd" type="Script" id=9]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1022.56, -217.705, 1024.06, 7.04156, -21.7615, 5.54321, -21.7615, -216.206 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -21.7615, -216.206, -21.7615, 5.54321, 1024.06, 7.04156, 1022.56, -217.705 ) ]
+
+[node name="Level-1_egout-2" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="fond-black" type="ColorRect" parent="."]
+margin_left = -101.0
+margin_top = -314.0
+margin_right = 1248.0
+margin_bottom = 191.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 379.326, -97.1451 )
+texture = ExtResource( 3 )
+
+[node name="limits" type="Node2D" parent="."]
+
+[node name="right" type="Node2D" parent="limits"]
+position = Vector2( 1017.15, -76.0858 )
+
+[node name="left" type="Node2D" parent="limits"]
+position = Vector2( -0.629959, -108.983 )
+
+[node name="top" type="Node2D" parent="limits"]
+position = Vector2( 171.664, -202.847 )
+
+[node name="bottom" type="Node2D" parent="limits"]
+position = Vector2( 120.637, 40.6325 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+light_mask = 8
+script = ExtResource( 7 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="blocs" type="Node2D" parent="."]
+
+[node name="physical_block" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block" index="0"]
+polygon = PoolVector2Array( 24.0077, -178.158, 23.674, -192.508, 0.648026, -192.508, 0.314316, -1.62587, 477.853, -2.62701, 478.187, -16.9765, 8.65706, -18.3114, 8.99077, -66.3656, 25.0088, -66.3656, 25.3425, -82.05, 88.08, -82.05, 88.08, -97.4006, 8.32336, -98.7354, 9.6582, -177.825 )
+
+[node name="physical_block2" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block2" index="0"]
+polygon = PoolVector2Array( 471.846, -2.29329, 472.514, -33.3283, 487.197, -32.9946, 486.863, -17.6439, 728.469, -17.3102, 728.469, -162.474, 712.451, -162.474, 712.451, -178.492, 647.044, -177.825, 647.378, -113.752, 710.449, -113.419, 710.449, -98.068, 694.431, -97.7343, 693.43, -82.7173, 664.397, -83.051, 664.731, -98.4017, 632.027, -98.068, 632.027, -178.826, 487.531, -179.16, 487.197, -82.7173, 472.514, -82.7173, 472.18, -178.826, 42.3617, -179.16, 42.3617, -192.842, 755.834, -192.842, 756.835, -2.62697 )
+
+[node name="physical_block3" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block3" index="0"]
+polygon = PoolVector2Array( 391.089, -80.7151, 390.755, -34.6631, 376.739, -34.6631, 377.073, -81.0488 )
+
+[node name="physical_block4" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block4" index="0"]
+polygon = PoolVector2Array( 137.279, -83.2468, 137.279, -97.1059, 246.577, -97.1059, 246.892, -81.9868 )
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" parent="InterfaceLayer" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Portal2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 7522.13, -69.5925 )
+next_scene = ExtResource( 6 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Player-platformer" parent="." instance=ExtResource( 4 )]
+position = Vector2( 36.6916, -112.116 )
+
+[editable path="blocs/physical_block"]
+
+[editable path="blocs/physical_block2"]
+
+[editable path="blocs/physical_block3"]
+
+[editable path="blocs/physical_block4"]
