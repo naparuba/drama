@@ -90,6 +90,14 @@ polygon = PoolVector2Array( -8.97377, 325.421, 0.00592804, 325.421, 0.286545, 45
 [node name="Turtle" parent="." instance=ExtResource( 2 )]
 position = Vector2( 93.8584, 314.227 )
 
+[node name="teleport_points" type="Node2D" parent="."]
+
+[node name="a" type="Node2D" parent="teleport_points"]
+position = Vector2( 99, 299 )
+
+[node name="b" type="Node2D" parent="teleport_points"]
+position = Vector2( 208, 441.5 )
+
 [node name="portals" type="Node2D" parent="."]
 
 [node name="to_egout_1-a" parent="portals" instance=ExtResource( 8 )]
@@ -101,6 +109,7 @@ next_scene = ExtResource( 9 )
 position = Vector2( 183.881, 457.341 )
 scale = Vector2( 0.1, 0.1 )
 next_scene = ExtResource( 9 )
+teleport_point = "b"
 
 [node name="to_egout_2-a" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 312.076, 441.449 )
@@ -111,6 +120,7 @@ next_scene = ExtResource( 10 )
 position = Vector2( 311.811, 345.303 )
 scale = Vector2( 0.1, 0.1 )
 next_scene = ExtResource( 10 )
+teleport_point = "b"
 
 [editable path="physical_block"]
 

@@ -7,6 +7,7 @@ class_name Portal2d, "res://assets/portal.png"
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 export var next_scene: PackedScene
+export var teleport_point = 'a'
 
 
 func _on_body_entered(body: PhysicsBody2D):
@@ -22,4 +23,5 @@ func teleport() -> void:
 	anim_player.play("fade_out")
 	yield(anim_player, "animation_finished")
 	get_tree().paused = false
-	get_tree().change_scene_to(next_scene)
+	ScenesChanger.change_scene(next_scene, {'teleport_point': self.teleport_point})
+	
