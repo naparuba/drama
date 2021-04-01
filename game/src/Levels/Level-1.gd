@@ -1,7 +1,9 @@
-extends Node2D
+extends "res://src/Levels/Level.gd"
 
-onready var player = $Turtle
+#onready var player = $Turtle
 onready var background = $background
+
+
 
 func _ready():
 	print('back ground %s' % get_node("background"))
@@ -9,11 +11,10 @@ func _ready():
 	var background_position = background.position
 	# Position: top left part
 	
+	self._set_player_teleport()
+	
 	print('SPRITE LIMITS: %s' % size, background_position)
 	player.set_camera_limit(background_position, size)
 	
 	return
-	#$Player/Camera2D.limit_left = map_limits.position.x * map_cellsize.x
-	#$Player/Camera2D.limit_right = map_limits.end.x * map_cellsize.x
-	#$Player/Camera2D.limit_top = map_limits.position.y * map_cellsize.y
-	#$Player/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
+	

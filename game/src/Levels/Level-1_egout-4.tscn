@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/levels/1/egout-3.png" type="Texture" id=3]
+[ext_resource path="res://assets/levels/1/egout-4.png" type="Texture" id=3]
 [ext_resource path="res://src/Actors/Player-platformer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=7]
@@ -14,7 +14,7 @@ vertices = PoolVector2Array( 1022.56, -217.705, 1024.06, 7.04156, -21.7615, 5.54
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -21.7615, -216.206, -21.7615, 5.54321, 1024.06, 7.04156, 1022.56, -217.705 ) ]
 
-[node name="Level-1_egout-2" type="Node2D"]
+[node name="Level-1_egout-4" type="Node2D"]
 script = ExtResource( 9 )
 
 [node name="fond-black" type="ColorRect" parent="."]
@@ -28,7 +28,7 @@ __meta__ = {
 }
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 508.727, -97.7152 )
+position = Vector2( 381.591, -98.441 )
 texture = ExtResource( 3 )
 
 [node name="limits" type="Node2D" parent="."]
@@ -54,25 +54,10 @@ navpoly = SubResource( 1 )
 
 [node name="blocs" type="Node2D" parent="."]
 
-[node name="physical_block4" parent="blocs" instance=ExtResource( 8 )]
-
-[node name="collision_box" parent="blocs/physical_block4" index="0"]
-polygon = PoolVector2Array( 986.3, -4.99646, 985.926, -83.283, 953.712, -83.6576, 954.087, -98.2661, 986.3, -98.6407, 986.3, -179.924, 521.097, -178.299, 520.722, -98.5145, 567.919, -98.1399, 568.294, -83.5314, 473.526, -83.1568, 473.526, -98.5145, 505.365, -98.5145, 506.114, -179.423, 217.69, -177.55, 217.315, -147.959, 200.834, -146.835, 201.208, -98.5145, 247.281, -97.7653, 247.656, -83.1568, 153.637, -83.906, 153.637, -98.889, 184.352, -98.889, 185.476, -163.316, 169.369, -163.316, 170.119, -178.299, 42.7624, -180.172, 42.7624, -194.781, 1009.92, -192.533, 1009.17, -3.7464 )
-
 [node name="physical_block" parent="blocs" instance=ExtResource( 8 )]
 
 [node name="collision_box" parent="blocs/physical_block" index="0"]
-polygon = PoolVector2Array( 24.1183, -179.253, 24.1183, -194.73, 1.10103, -194.333, -0.0895233, -3.05118, 359.457, -4.2417, 360.25, -66.5472, 377.712, -66.5472, 378.506, -82.4212, 407.872, -82.0243, 407.872, -97.8983, 313.819, -97.1046, 313.422, -82.4212, 329.693, -82.0243, 329.693, -66.5472, 344.773, -66.1503, 345.567, -17.3378, 8.64112, -18.5283, 9.43482, -67.3409, 25.7057, -67.7377, 26.1025, -82.818, 88.0112, -82.0243, 88.0112, -97.5015, 8.24427, -97.8983, 9.03798, -178.856 )
-
-[node name="physical_block2" parent="blocs" instance=ExtResource( 8 )]
-
-[node name="collision_box" parent="blocs/physical_block2" index="0"]
-polygon = PoolVector2Array( 353.107, -3.84483, 352.71, -18.1314, 697.528, -18.1043, 698.196, -83.5115, 634.124, -83.8452, 633.79, -98.5284, 792.636, -97.5273, 792.636, -82.1766, 712.545, -81.8429, 712.212, -17.7706, 1014.55, -17.4369, 1014.89, 0.249741 )
-
-[node name="physical_block3" parent="blocs" instance=ExtResource( 8 )]
-
-[node name="collision_box" parent="blocs/physical_block3" index="0"]
-polygon = PoolVector2Array( 858.195, -84.0322, 858.569, -97.5169, 887.786, -97.5169, 887.412, -84.0322 )
+polygon = PoolVector2Array( 23.4142, -179.207, 23.4142, -194.763, 1.14035, -194.763, 0.0833149, -2.4846, 745.257, -3.15205, 746.592, -195.035, 715.223, -195.035, 715.223, -180.686, 730.24, -180.352, 730.24, -114.611, 666.835, -114.277, 666.501, -99.9279, 713.888, -98.9268, 713.888, -84.2435, 730.574, -83.9098, 730.574, -18.8364, 616.92, -18.8177, 617.235, -50.0007, 506.047, -49.6858, 505.732, -35.1967, 473.289, -35.1967, 473.289, -18.8177, 328.083, -19.1327, 328.083, -50.9457, 184.767, -50.3157, 184.767, -34.5667, 153.584, -34.2517, 153.584, -18.5027, 40.1911, -19.1327, 40.1911, -34.5667, 25.702, -34.2517, 25.702, -50.6307, 8.69306, -50.3157, 9.00804, -99.4526, 89.328, -100.083, 89.958, -114.572, 9.32302, -114.257, 10.268, -178.513 )
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -97,20 +82,24 @@ position = Vector2( 36.6916, -112.116 )
 
 [node name="teleport_points" type="Node2D" parent="."]
 
-[node name="e" type="Node2D" parent="teleport_points"]
+[node name="f" type="Node2D" parent="teleport_points"]
+position = Vector2( 30, -123 )
+
+[node name="g" type="Node2D" parent="teleport_points"]
+position = Vector2( 705.937, -127.768 )
 
 [node name="portals" type="Node2D" parent="."]
 
-[node name="level1_e" parent="portals" instance=ExtResource( 5 )]
+[node name="level1_f" parent="portals" instance=ExtResource( 5 )]
 position = Vector2( 33.3977, -173.055 )
 scale = Vector2( 0.1, 0.1 )
 next_scene_path = "/src/Levels/Level-1.tscn"
-teleport_point = "e"
+teleport_point = "f"
 
-[editable path="blocs/physical_block4"]
+[node name="level1_g" parent="portals" instance=ExtResource( 5 )]
+position = Vector2( 706.686, -174.644 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1.tscn"
+teleport_point = "f"
 
 [editable path="blocs/physical_block"]
-
-[editable path="blocs/physical_block2"]
-
-[editable path="blocs/physical_block3"]

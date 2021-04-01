@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/levels/1/map-1.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player-top-down.tscn" type="PackedScene" id=2]
@@ -8,8 +8,6 @@
 [ext_resource path="res://src/Levels/Level-1.gd" type="Script" id=6]
 [ext_resource path="res://assets/musics/2-map.ogg" type="AudioStream" id=7]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/Levels/Level-1_egout-1.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/Levels/Level-1_egout-2.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 1958.81, -608.476, 5047.17, -600.925, 5047.17, 1639.83, 1966.36, 1643.6 )
@@ -42,50 +40,52 @@ navpoly = SubResource( 1 )
 [node name="collision_box" parent="physical_block" index="0"]
 polygon = PoolVector2Array( 80.2462, 419.941, 225.393, 417.823, 223.803, 325.12, 80.2462, 326.709 )
 
-[node name="transparent_block" parent="." instance=ExtResource( 4 )]
+[node name="physical_block8" parent="." instance=ExtResource( 5 )]
 
-[node name="collision_box" parent="transparent_block" index="0"]
-polygon = PoolVector2Array( -8.71849, 324.457, -0.21402, 325.716, 0.730919, 341.15, 30.969, 341.15, 32.8589, 276.895, 191.294, 277.524, 191.924, 325.086, 224.052, 325.086, 224.367, 340.206, 255.235, 340.206, 256.495, 405.091, 415.245, 405.406, 416.505, 436.275, 447.373, 435.96, 448.318, 467.458, 463.752, 467.773, 463.437, 421.155, 487.06, 420.841, 488.005, 339.576, 351.619, 340.521, 351.934, 372.964, 288.308, 371.704, 287.363, 308.708, 319.491, 309.023, 319.176, 277.21, 351.304, 277.21, 351.934, 213.583, 31.9139, 211.064, 31.9139, 148.383, -8.40353, 149.328 )
-
-[node name="physical_block2" parent="." instance=ExtResource( 5 )]
-
-[node name="collision_box" parent="physical_block2" index="0"]
-polygon = PoolVector2Array( 112.864, 146.808, 112.549, 163.817, 80.4209, 163.817, 80.4209, 69.3225, 158.851, 69.6375, 160.426, 163.817, 126.723, 164.447, 126.408, 146.493 )
-
-[node name="physical_block3" parent="." instance=ExtResource( 5 )]
-
-[node name="collision_box" parent="physical_block3" index="0"]
-polygon = PoolVector2Array( 0.100922, 147.753, 1.67583, 36.2496, 222.792, 36.5646, 224.052, 4.75159, -8.08856, 5.69653, -8.40354, 148.068 )
-
-[node name="transparent_block2" parent="." instance=ExtResource( 4 )]
-
-[node name="collision_box" parent="transparent_block2" index="0"]
-polygon = PoolVector2Array( 223.422, 116.885, 287.363, 116.885, 287.363, 3.80664, 224.052, 3.49166 )
-
-[node name="physical_block4" parent="." instance=ExtResource( 5 )]
-
-[node name="collision_box" parent="physical_block4" index="0"]
-polygon = PoolVector2Array( 287.363, 5.38155, 287.048, 68.3776, 321.066, 67.4327, 321.696, 36.2496, 464.067, 37.1946, 463.964, 339.046, 488.343, 339.343, 494.586, 4.87897 )
-
-[node name="physical_block5" parent="." instance=ExtResource( 5 )]
-
-[node name="collision_box" parent="physical_block5" index="0"]
-polygon = PoolVector2Array( 368.53, 164.827, 448.504, 164.233, 448.207, 69.3935, 369.125, 69.6908 )
-
-[node name="physical_block6" parent="." instance=ExtResource( 5 )]
-
-[node name="collision_box" parent="physical_block6" index="0"]
-polygon = PoolVector2Array( 399.747, 291.478, 399.45, 276.018, 415.801, 276.018, 416.098, 292.667, 447.018, 292.964, 447.612, 229.639, 369.125, 229.639, 368.233, 292.964 )
+[node name="collision_box" parent="physical_block8" index="0"]
+polygon = PoolVector2Array( -8.97377, 325.421, 0.00592804, 325.421, 0.286545, 451.978, 32.8348, 452.122, 31.7154, 460.958, 48.2718, 461.239, 47.9939, 452.188, 159.396, 452.679, 159.395, 461.519, 175.671, 461.239, 175.675, 452.751, 255.085, 453.101, 255.647, 462.361, 273.045, 461.8, 272.762, 453.49, 318.785, 454.504, 318.785, 461.519, 336.464, 461.519, 336.455, 454.349, 447.307, 453.381, 448.149, 469.376, 448.71, 497.438, 463.863, 497.157, 463.863, 421.11, 487.435, 420.549, 487.996, 500.805, -8.41259, 499.963 )
 
 [node name="physical_block7" parent="." instance=ExtResource( 5 )]
 
 [node name="collision_box" parent="physical_block7" index="0"]
 polygon = PoolVector2Array( 287.367, 134.503, 286.772, 212.098, 208.582, 212.396, 208.284, 132.719 )
 
-[node name="physical_block8" parent="." instance=ExtResource( 5 )]
+[node name="physical_block6" parent="." instance=ExtResource( 5 )]
 
-[node name="collision_box" parent="physical_block8" index="0"]
-polygon = PoolVector2Array( -8.97377, 325.421, 0.00592804, 325.421, 0.286545, 451.978, 32.8348, 452.122, 31.7154, 460.958, 48.2718, 461.239, 47.9939, 452.188, 159.396, 452.679, 159.395, 461.519, 175.671, 461.239, 175.675, 452.751, 255.085, 453.101, 255.647, 462.361, 273.045, 461.8, 272.762, 453.49, 318.785, 454.504, 318.785, 461.519, 336.464, 461.519, 336.455, 454.349, 447.307, 453.381, 448.149, 469.376, 448.71, 497.438, 463.863, 497.157, 463.863, 421.11, 487.435, 420.549, 487.996, 500.805, -8.41259, 499.963 )
+[node name="collision_box" parent="physical_block6" index="0"]
+polygon = PoolVector2Array( 399.747, 291.478, 399.45, 276.018, 415.801, 276.018, 416.098, 292.667, 447.018, 292.964, 447.612, 229.639, 369.125, 229.639, 368.233, 292.964 )
+
+[node name="physical_block5" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block5" index="0"]
+polygon = PoolVector2Array( 368.53, 164.827, 448.504, 164.233, 448.207, 69.3935, 369.125, 69.6908 )
+
+[node name="physical_block4" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block4" index="0"]
+polygon = PoolVector2Array( 287.363, 5.38155, 287.048, 68.3776, 321.066, 67.4327, 321.696, 36.2496, 464.067, 37.1946, 463.964, 339.046, 488.343, 339.343, 494.586, 4.87897 )
+
+[node name="transparent_block2" parent="." instance=ExtResource( 4 )]
+
+[node name="collision_box" parent="transparent_block2" index="0"]
+polygon = PoolVector2Array( 223.422, 116.885, 287.363, 116.885, 287.363, 3.80664, 224.052, 3.49166 )
+
+[node name="physical_block3" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block3" index="0"]
+polygon = PoolVector2Array( 0.100922, 147.753, 1.67583, 36.2496, 222.792, 36.5646, 224.052, 4.75159, -8.08856, 5.69653, -8.40354, 148.068 )
+
+[node name="physical_block2" parent="." instance=ExtResource( 5 )]
+
+[node name="collision_box" parent="physical_block2" index="0"]
+polygon = PoolVector2Array( 112.864, 146.808, 112.549, 163.817, 80.4209, 163.817, 80.4209, 69.3225, 158.851, 69.6375, 160.426, 163.817, 126.723, 164.447, 126.408, 146.493 )
+
+[node name="transparent_block" parent="." instance=ExtResource( 4 )]
+
+[node name="collision_box" parent="transparent_block" index="0"]
+polygon = PoolVector2Array( -8.71849, 324.457, -0.21402, 325.716, 0.730919, 341.15, 30.969, 341.15, 32.8589, 276.895, 191.294, 277.524, 191.924, 325.086, 224.052, 325.086, 224.367, 340.206, 255.235, 340.206, 256.495, 405.091, 415.245, 405.406, 416.505, 436.275, 447.373, 435.96, 448.318, 467.458, 463.752, 467.773, 463.437, 421.155, 487.06, 420.841, 488.005, 339.576, 351.619, 340.521, 351.934, 372.964, 288.308, 371.704, 287.363, 308.708, 319.491, 309.023, 319.176, 277.21, 351.304, 277.21, 351.934, 213.583, 31.9139, 211.064, 31.9139, 148.383, -8.40353, 149.328 )
+
+[node name="blocs" type="Node2D" parent="."]
 
 [node name="Turtle" parent="." instance=ExtResource( 2 )]
 position = Vector2( 93.8584, 314.227 )
@@ -98,46 +98,62 @@ position = Vector2( 99, 299 )
 [node name="b" type="Node2D" parent="teleport_points"]
 position = Vector2( 208, 441.5 )
 
+[node name="c" type="Node2D" parent="teleport_points"]
+position = Vector2( 328.5, 426 )
+
+[node name="d" type="Node2D" parent="teleport_points"]
+position = Vector2( 332.5, 323 )
+
+[node name="e" type="Node2D" parent="teleport_points"]
+position = Vector2( 325.715, 183.098 )
+
 [node name="portals" type="Node2D" parent="."]
 
 [node name="to_egout_1-a" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 119.783, 314.049 )
 scale = Vector2( 0.1, 0.1 )
-next_scene = ExtResource( 9 )
+next_scene_path = "/src/Levels/Level-1_egout-1.tscn"
 
 [node name="to_egout_1-b" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 183.881, 457.341 )
 scale = Vector2( 0.1, 0.1 )
-next_scene = ExtResource( 9 )
+next_scene_path = "/src/Levels/Level-1_egout-1.tscn"
 teleport_point = "b"
 
-[node name="to_egout_2-a" parent="portals" instance=ExtResource( 8 )]
+[node name="to_egout_2-c" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 312.076, 441.449 )
 scale = Vector2( 0.1, 0.1 )
-next_scene = ExtResource( 10 )
+next_scene_path = "/src/Levels/Level-1_egout-2.tscn"
+teleport_point = "c"
 
-[node name="to_egout_2-b" parent="portals" instance=ExtResource( 8 )]
+[node name="to_egout_2-d" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 311.811, 345.303 )
 scale = Vector2( 0.1, 0.1 )
-next_scene = ExtResource( 10 )
-teleport_point = "b"
+next_scene_path = "/src/Levels/Level-1_egout-2.tscn"
+teleport_point = "d"
+
+[node name="to_egout_3-e" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 311.811, 185.733 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1_egout-3.tscn"
+teleport_point = "e"
 
 [editable path="physical_block"]
 
-[editable path="transparent_block"]
-
-[editable path="physical_block2"]
-
-[editable path="physical_block3"]
-
-[editable path="transparent_block2"]
-
-[editable path="physical_block4"]
-
-[editable path="physical_block5"]
-
-[editable path="physical_block6"]
+[editable path="physical_block8"]
 
 [editable path="physical_block7"]
 
-[editable path="physical_block8"]
+[editable path="physical_block6"]
+
+[editable path="physical_block5"]
+
+[editable path="physical_block4"]
+
+[editable path="transparent_block2"]
+
+[editable path="physical_block3"]
+
+[editable path="physical_block2"]
+
+[editable path="transparent_block"]

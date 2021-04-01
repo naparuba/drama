@@ -825,7 +825,7 @@ tracks/1/keys = {
 polygon = PoolVector2Array( -47.7193, -80.1353, -45.552, -86.1556, -40.2541, -93.1392, -32.7889, -96.9922, 32.4715, -96.5106, 38.7327, -94.5841, 44.9938, -89.0453, 47.6427, -82.0618, 48.1244, -17.5238, 45.957, -10.2994, 41.6224, -5.00154, 33.9164, 0.296349, -31.1032, -0.18528, -39.5316, -4.2791, -45.0704, -10.0586, -47.4785, -16.5606 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 2.75323, 2.54628 )
+extents = Vector2( 2.75323, 2.07157 )
 
 [sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 80.052, 75.704 )
@@ -957,7 +957,7 @@ offset = Vector2( 246.775, -311.052 )
 occluder = SubResource( 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.106005, -7.60529 )
+position = Vector2( -0.081495, -8.98029 )
 scale = Vector2( -1.89325, 3.20757 )
 shape = SubResource( 33 )
 

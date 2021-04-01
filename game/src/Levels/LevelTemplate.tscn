@@ -888,6 +888,7 @@ tile_data = PoolIntArray( 65531, 6, 0, 65532, 6, 0, 65533, 6, 0, 65534, 6, 0, 65
 
 [node name="Portal2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 3562.91, 779.156 )
+next_scene_path = ""
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1177.32, 656.443 )

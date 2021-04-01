@@ -102,9 +102,7 @@ __meta__ = {
 [node name="UserInterface" parent="InterfaceLayer" instance=ExtResource( 2 )]
 visible = false
 
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Player-platformer" parent="." instance=ExtResource( 4 )]
+[node name="Turtle" parent="." instance=ExtResource( 4 )]
 position = Vector2( 109.767, -46.6001 )
 
 [node name="teleport_points" type="Node2D" parent="."]
@@ -120,10 +118,12 @@ position = Vector2( 958, -105 )
 [node name="level1_a" parent="portals" instance=ExtResource( 5 )]
 position = Vector2( 32, -168 )
 scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1.tscn"
 
 [node name="level1_b" parent="portals" instance=ExtResource( 5 )]
 position = Vector2( 959, -168 )
 scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1.tscn"
 teleport_point = "b"
 
 [editable path="blocs/physical_block"]
