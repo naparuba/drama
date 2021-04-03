@@ -98,6 +98,7 @@ position = Vector2( 36.6916, -112.116 )
 [node name="teleport_points" type="Node2D" parent="."]
 
 [node name="e" type="Node2D" parent="teleport_points"]
+position = Vector2( 34.8356, -115.744 )
 
 [node name="portals" type="Node2D" parent="."]
 

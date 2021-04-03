@@ -59,6 +59,21 @@ navpoly = SubResource( 1 )
 [node name="collision_box" parent="blocs/physical_block" index="0"]
 polygon = PoolVector2Array( 23.4142, -179.207, 23.4142, -194.763, 1.14035, -194.763, 0.0833149, -2.4846, 745.257, -3.15205, 746.592, -195.035, 715.223, -195.035, 715.223, -180.686, 730.24, -180.352, 730.24, -114.611, 666.835, -114.277, 666.501, -99.9279, 713.888, -98.9268, 713.888, -84.2435, 730.574, -83.9098, 730.574, -18.8364, 616.92, -18.8177, 617.235, -50.0007, 506.047, -49.6858, 505.732, -35.1967, 473.289, -35.1967, 473.289, -18.8177, 328.083, -19.1327, 328.083, -50.9457, 184.767, -50.3157, 184.767, -34.5667, 153.584, -34.2517, 153.584, -18.5027, 40.1911, -19.1327, 40.1911, -34.5667, 25.702, -34.2517, 25.702, -50.6307, 8.69306, -50.3157, 9.00804, -99.4526, 89.328, -100.083, 89.958, -114.572, 9.32302, -114.257, 10.268, -178.513 )
 
+[node name="physical_block3" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block3" index="0"]
+polygon = PoolVector2Array( 473.604, -99.7672, 473.604, -114.256, 569.673, -114.256, 569.358, -99.7672 )
+
+[node name="physical_block4" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block4" index="0"]
+polygon = PoolVector2Array( 696.295, -180.402, 696.925, -194.891, 41.766, -194.576, 41.766, -180.087 )
+
+[node name="physical_block2" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block2" index="0"]
+polygon = PoolVector2Array( 153.269, -100.082, 153.584, -114.571, 312.964, -114.571, 313.594, -99.7672 )
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -97,9 +112,15 @@ next_scene_path = "/src/Levels/Level-1.tscn"
 teleport_point = "f"
 
 [node name="level1_g" parent="portals" instance=ExtResource( 5 )]
-position = Vector2( 706.686, -174.644 )
+position = Vector2( 706.371, -170.549 )
 scale = Vector2( 0.1, 0.1 )
 next_scene_path = "/src/Levels/Level-1.tscn"
-teleport_point = "f"
+teleport_point = "g"
 
 [editable path="blocs/physical_block"]
+
+[editable path="blocs/physical_block3"]
+
+[editable path="blocs/physical_block4"]
+
+[editable path="blocs/physical_block2"]
