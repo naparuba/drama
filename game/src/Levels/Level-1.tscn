@@ -113,6 +113,12 @@ position = Vector2( 279.642, 125.413 )
 [node name="g" type="Node2D" parent="teleport_points"]
 position = Vector2( 72.1266, 124.664 )
 
+[node name="h" type="Node2D" parent="teleport_points"]
+position = Vector2( 406.838, 310.874 )
+
+[node name="i" type="Node2D" parent="teleport_points"]
+position = Vector2( 120.848, 177.724 )
+
 [node name="portals" type="Node2D" parent="."]
 
 [node name="to_egout_1-a" parent="portals" instance=ExtResource( 8 )]
@@ -155,6 +161,18 @@ position = Vector2( 56.3497, 137.413 )
 scale = Vector2( 0.1, 0.1 )
 next_scene_path = "/src/Levels/Level-1_egout-4.tscn"
 teleport_point = "g"
+
+[node name="to_house_1-h" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 407.919, 298.25 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1_house-1.tscn"
+teleport_point = "h"
+
+[node name="to_house_2-i" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 119.594, 167.102 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1_house-2.1.tscn"
+teleport_point = "i"
 
 [editable path="physical_block"]
 
