@@ -1,0 +1,154 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/background.png" type="Texture" id=1]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/levels/2/floor-1.png" type="Texture" id=3]
+[ext_resource path="res://src/Actors/Player-platformer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=7]
+[ext_resource path="res://src/Levels/Blocks/PhysicalBlock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/level-platformer.gd" type="Script" id=9]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1022.56, -217.705, 1024.06, 7.04156, -21.7615, 5.54321, -21.7615, -216.206 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -21.7615, -216.206, -21.7615, 5.54321, 1024.06, 7.04156, 1022.56, -217.705 ) ]
+
+[node name="Level-1_egout-1" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="fond-black" type="ColorRect" parent="."]
+margin_left = -101.0
+margin_top = -314.0
+margin_right = 1248.0
+margin_bottom = 191.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 380.844, -97.3873 )
+texture = ExtResource( 3 )
+
+[node name="limits" type="Node2D" parent="."]
+
+[node name="right" type="Node2D" parent="limits"]
+position = Vector2( 1017.15, -76.0858 )
+
+[node name="left" type="Node2D" parent="limits"]
+position = Vector2( -0.629959, -108.983 )
+
+[node name="top" type="Node2D" parent="limits"]
+position = Vector2( 171.664, -202.847 )
+
+[node name="bottom" type="Node2D" parent="limits"]
+position = Vector2( 120.637, 40.6325 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+light_mask = 8
+script = ExtResource( 7 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="blocs" type="Node2D" parent="."]
+
+[node name="physical_block" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block" index="0"]
+polygon = PoolVector2Array( 10.1648, -17.6735, 11.5011, -176.699, 695.266, -176.699, 694.82, -193.626, -0.525887, -194.517, -2.75313, 4.59891, 766.093, 0.144409, 764.311, -194.072, 716.202, -194.072, 716.202, -176.699, 745.156, -176.254, 746.047, -16.7827 )
+
+[node name="physical_block2" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block2" index="0"]
+polygon = PoolVector2Array( 89.455, -114.782, 121.082, -114.336, 121.527, -128.591, 89.455, -129.036 )
+
+[node name="physical_block3" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block3" index="0"]
+polygon = PoolVector2Array( 138.009, -113.445, 137.564, -128.591, 153.6, -127.7, 154.045, -113 )
+
+[node name="physical_block4" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block4" index="0"]
+polygon = PoolVector2Array( 153.154, -97.4091, 153.154, -113, 186.117, -112.109, 186.563, -97.4091 )
+
+[node name="physical_block5" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block5" index="0"]
+polygon = PoolVector2Array( 186.117, -96.5182, 250.708, -96.0727, 250.708, -81.8183, 218.635, -81.8183, 218.19, -64.4458, 185.672, -64.8913 )
+
+[node name="physical_block6" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block6" index="0"]
+polygon = PoolVector2Array( 250.208, -32.472, 249.911, -63.986, 282.02, -63.6887, 282.02, -48.229, 314.128, -48.5263, 314.128, -32.7693 )
+
+[node name="physical_block7" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block7" index="0"]
+polygon = PoolVector2Array( 377.944, -48.3398, 410.072, -48.0249, 410.387, -80.1528, 377.944, -79.8379 )
+
+[node name="physical_block8" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block8" index="0"]
+polygon = PoolVector2Array( 409.757, -112.596, 473.698, -112.596, 474.013, -128.66, 409.757, -128.66 )
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" parent="InterfaceLayer" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Turtle" parent="." instance=ExtResource( 4 )]
+position = Vector2( 92.9301, -24.1509 )
+
+[node name="teleport_points" type="Node2D" parent="."]
+
+[node name="b" type="Node2D" parent="teleport_points"]
+position = Vector2( 72, -28 )
+
+[node name="d" type="Node2D" parent="teleport_points"]
+position = Vector2( 704.047, -31.3371 )
+
+[node name="portals" type="Node2D" parent="."]
+
+[node name="level2_b" parent="portals" instance=ExtResource( 5 )]
+position = Vector2( 37.6123, -13.1003 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-2.tscn"
+teleport_point = "b"
+
+[node name="floor2_d" parent="portals" instance=ExtResource( 5 )]
+position = Vector2( 704.713, -172.005 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-2_floor-2.tscn"
+teleport_point = "d"
+
+[editable path="blocs/physical_block"]
+
+[editable path="blocs/physical_block2"]
+
+[editable path="blocs/physical_block3"]
+
+[editable path="blocs/physical_block4"]
+
+[editable path="blocs/physical_block5"]
+
+[editable path="blocs/physical_block6"]
+
+[editable path="blocs/physical_block7"]
+
+[editable path="blocs/physical_block8"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/levels/2/map-2.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/Player-top-down.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=3]
+[ext_resource path="res://src/Levels/Blocks/TransparentBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/Level-1.gd" type="Script" id=6]
+[ext_resource path="res://assets/musics/2-map.ogg" type="AudioStream" id=7]
+[ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=8]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1958.81, -608.476, 5047.17, -600.925, 5047.17, 1639.83, 1966.36, 1643.6 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 1958.81, -608.476, 5047.17, -600.925, 5047.17, 1639.83, 1966.36, 1643.6 ) ]
+
+[node name="level-1" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="background_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="background" type="Sprite" parent="."]
+light_mask = 8
+position = Vector2( -8.13867, 5.06409 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+light_mask = 8
+script = ExtResource( 3 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+position = Vector2( -1969.33, 603.117 )
+navpoly = SubResource( 1 )
+
+[node name="transparent_block2" parent="." instance=ExtResource( 4 )]
+
+[node name="collision_box" parent="transparent_block2" index="0"]
+polygon = PoolVector2Array( 417.237, 68.8529, 474.838, 0.740318, -18.3474, 3.263, -12.0407, 68.012 )
+
+[node name="transparent_block" parent="." instance=ExtResource( 4 )]
+
+[node name="collision_box" parent="transparent_block" index="0"]
+polygon = PoolVector2Array( -7.41572, 198.771, 162.025, 199.612, 161.184, 134.022, 151.934, 134.022, 148.571, 115.943, 123.344, 116.784, 132.594, 136.545, 40.9358, 135.704, -6.99527, 182.794, -7.41572, 57.0804, 33.7882, 68.012, 18.6521, 73.8983, 19.0725, 86.5118, 33.7882, 86.5118, 35.0495, 103.33, 415.976, 102.909, 418.498, 87.3527, 432.373, 86.9322, 431.953, 72.2165, 411.351, 66.7507, 496.702, 34.7966, 495.034, 255.165, -13.288, 252.642, -22.9583, 166.03, -9.50394, 164.768 )
+
+[node name="blocs" type="Node2D" parent="."]
+
+[node name="Turtle" parent="." instance=ExtResource( 2 )]
+position = Vector2( 32.8318, 185.938 )
+
+[node name="teleport_points" type="Node2D" parent="."]
+
+[node name="a" type="Node2D" parent="teleport_points"]
+position = Vector2( 40.6461, 184.52 )
+
+[node name="b" type="Node2D" parent="teleport_points"]
+position = Vector2( 116.626, 163.167 )
+
+[node name="c" type="Node2D" parent="teleport_points"]
+position = Vector2( 82.1196, 93.19 )
+
+[node name="portals" type="Node2D" parent="."]
+
+[node name="to_floor_1-b" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 139.987, 143.996 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-2_floor-1.tscn"
+teleport_point = "b"
+
+[node name="to_floor_3-c" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 57.2771, 105.272 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1_egout-2.tscn"
+teleport_point = "c"
+
+[node name="to_fucking_water" parent="portals" instance=ExtResource( 8 )]
+position = Vector2( 360.077, 82.6469 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-1_egout-2.tscn"
+
+[editable path="transparent_block2"]
+
+[editable path="transparent_block"]

@@ -1,0 +1,161 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/background.png" type="Texture" id=1]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/levels/2/floor-3.png" type="Texture" id=3]
+[ext_resource path="res://src/Actors/Player-platformer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=7]
+[ext_resource path="res://src/Levels/Blocks/PhysicalBlock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/level-platformer.gd" type="Script" id=9]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1022.56, -217.705, 1024.06, 7.04156, -21.7615, 5.54321, -21.7615, -216.206 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -21.7615, -216.206, -21.7615, 5.54321, 1024.06, 7.04156, 1022.56, -217.705 ) ]
+
+[node name="Level-1_egout-1" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="fond-black" type="ColorRect" parent="."]
+margin_left = -101.0
+margin_top = -314.0
+margin_right = 1248.0
+margin_bottom = 191.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 380.844, -97.3873 )
+texture = ExtResource( 3 )
+
+[node name="limits" type="Node2D" parent="."]
+
+[node name="right" type="Node2D" parent="limits"]
+position = Vector2( 1017.15, -76.0858 )
+
+[node name="left" type="Node2D" parent="limits"]
+position = Vector2( -0.629959, -108.983 )
+
+[node name="top" type="Node2D" parent="limits"]
+position = Vector2( 171.664, -202.847 )
+
+[node name="bottom" type="Node2D" parent="limits"]
+position = Vector2( 120.637, 40.6325 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+light_mask = 8
+script = ExtResource( 7 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="blocs" type="Node2D" parent="."]
+
+[node name="physical_block" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block" index="0"]
+polygon = PoolVector2Array( 25.0945, 0.688202, 25.0945, -17.6661, 10.4861, -17.6661, 10.8606, -50.2542, 58.0573, -49.8797, 59.181, -81.7187, 89.8963, -82.0933, 90.2709, -130.039, 58.0573, -130.039, 58.0573, -80.595, 10.1115, -80.9695, 10.4861, -177.985, 745.78, -176.861, 745.031, -18.0406, 42.6997, -17.2914, 43.4488, 2.18663, 764.135, -0.809998, 762.262, -198.587, -0.75103, -195.59, -1.87476, 3.31029 )
+
+[node name="physical_block2" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block2" index="0"]
+polygon = PoolVector2Array( 553.997, -113.932, 553.997, -129.665, 570.104, -129.665, 570.479, -113.183 )
+
+[node name="physical_block3" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block3" index="0"]
+polygon = PoolVector2Array( 537.141, -114.681, 537.516, -129.665, 506.426, -129.29, 506.426, -114.307 )
+
+[node name="physical_block4" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block4" index="0"]
+polygon = PoolVector2Array( 506.051, -98.2001, 506.051, -113.932, 474.212, -113.558, 474.212, -98.2001 )
+
+[node name="physical_block5" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block5" index="0"]
+polygon = PoolVector2Array( 473.838, -82.4678, 474.212, -97.4509, 410.16, -97.0763, 410.534, -80.9695 )
+
+[node name="physical_block6" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block6" index="0"]
+polygon = PoolVector2Array( 409.785, -50.2542, 409.411, -81.7187, 346.107, -81.7187, 346.482, -49.5051 )
+
+[node name="physical_block7" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block7" index="0"]
+polygon = PoolVector2Array( 313.894, -98.2001, 346.107, -97.8255, 346.482, -113.183, 314.268, -113.183 )
+
+[node name="physical_block8" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block8" index="0"]
+polygon = PoolVector2Array( 313.519, -114.307, 313.894, -130.039, 217.627, -129.29, 218.002, -113.558 )
+
+[node name="physical_block9" parent="blocs" instance=ExtResource( 8 )]
+
+[node name="collision_box" parent="blocs/physical_block9" index="0"]
+polygon = PoolVector2Array( 218.002, -98.5746, 218.002, -113.932, 153.575, -113.932, 154.324, -129.665, 120.986, -129.665, 121.361, -98.5746 )
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" parent="InterfaceLayer" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Turtle" parent="." instance=ExtResource( 4 )]
+position = Vector2( 99.1989, -31.4805 )
+
+[node name="teleport_points" type="Node2D" parent="."]
+
+[node name="e" type="Node2D" parent="teleport_points"]
+position = Vector2( 53.9796, -22.3266 )
+
+[node name="c" type="Node2D" parent="teleport_points"]
+position = Vector2( 17.9394, -87.734 )
+
+[node name="portals" type="Node2D" parent="."]
+
+[node name="floor2_e" parent="portals" instance=ExtResource( 5 )]
+position = Vector2( 33.6077, 3.58499 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-2_floor-2.tscn"
+teleport_point = "e"
+
+[node name="level2_c" parent="portals" instance=ExtResource( 5 )]
+position = Vector2( 38.2939, -77.2314 )
+scale = Vector2( 0.1, 0.1 )
+next_scene_path = "/src/Levels/Level-2.tscn"
+teleport_point = "c"
+
+[editable path="blocs/physical_block"]
+
+[editable path="blocs/physical_block2"]
+
+[editable path="blocs/physical_block3"]
+
+[editable path="blocs/physical_block4"]
+
+[editable path="blocs/physical_block5"]
+
+[editable path="blocs/physical_block6"]
+
+[editable path="blocs/physical_block7"]
+
+[editable path="blocs/physical_block8"]
+
+[editable path="blocs/physical_block9"]
