@@ -11,10 +11,11 @@ extends "res://src/Actors/Player_shoot.gd"
 class_name PlayerWater, "res://assets/player/turtles/water/player.png"
 
 
-export var speed: = Vector2(60.0, 200.0)
+export var speed: = Vector2(50.0, 60.0)
 
 onready var camera_shake = $Camera2D/ScreenShake
 
+onready var fucking_right_drift = 2  # on this level, we are always drifting to the right (+x)
 
 ## Body animation
 onready var sprite = $sprite
@@ -99,22 +100,20 @@ func _physics_process(delta: float) -> void:
 		if direction.y != 0.0:
 			self._current_velocity.y = speed.y * direction.y
 		if self._is_jump_interrupted():
-			if abs(self._current_velocity.y) > abs(speed.y):  # if we did super jump, do not interupt
-				print('JUMP NOT INTERUPTED: was super jump')
-				pass
-			else:  # we are in a classic jump, then stop
+#			if abs(self._current_velocity.y) > abs(speed.y):  # if we did super jump, do not interupt
+#				print('JUMP NOT INTERUPTED: was super jump')
+#				pass
+#			else:  # we are in a classic jump, then stop
 				print('JUMP INTERUPTED: was in normal jump')
 				self._current_velocity.y = 0.0
 
 	# snap is a way to stuck to floor
 	var snap = self._get_snap_to_floor_vector(direction)
-	#print('CURRENT SPEED: %s' % self._current_velocity)
+	# print('CURRENT SPEED: %s' % self._current_velocity)
+	self._current_velocity.x += self.fucking_right_drift
 	self._current_velocity = move_and_slide_with_snap(
 		self._current_velocity, snap, FLOOR_NORMAL, true
 	)
-
-
-
 
 
 
@@ -170,20 +169,16 @@ func _get_direction() -> Vector2:
 	
 	var _asking_for_jump = Input.is_action_just_pressed("jump")
 	
-	var was_on_floor = self._is_on_floor
-	self._is_on_floor = self.is_on_floor()
+	#var was_on_floor = self._is_on_floor
+	#self._is_on_floor = self.is_on_floor()
 	if _asking_for_jump:
-		print('ASK JUMP', self._is_on_floor)
-	var is_start_to_jump = self._is_on_floor and _asking_for_jump
-	var is_landing = not was_on_floor and self._is_on_floor
+		print('ASK JUMP')
+	var is_start_to_jump = _asking_for_jump  # on water, we can always jump
+	#var is_landing = not was_on_floor and self._is_on_floor
 
 	# When jumping, add a little dust
-	if is_start_to_jump:
-		self.sound_jump.play()
-		
-		
-
-
+	#if is_start_to_jump:
+	#	self.sound_jump.play()
 	
 	if self._move_right_strength == 0 and self._move_left_strength == 0 and self._move_down_strength == 0 and self._move_up_strength == 0:
 		sprite.play('idle')
@@ -193,40 +188,28 @@ func _get_direction() -> Vector2:
 			sprite.flip_h = true  # left
 			
 	else:
-		# no step on the air ^^
-		if self._is_on_floor:
-			if not sound_walk.playing:  
-				sound_walk.play()
+		if self._move_right_strength > self._move_left_strength:  # go right
+			sprite.play('moving')
+			sprite.flip_h = false
 		else:
-			if sound_walk.playing:
-				sound_walk.stop()
-		if self._move_right_strength > self._move_left_strength:
-			whole_body_animation.play("walk_right")
-			#body_animation.play("walk_right")
-			body.set_state("walk_right")
-			self._get_weapon().set_walk_right()
-			self._eyes_move_to_right()
-		else:
-			whole_body_animation.play("walk_left")
-			#body_animation.play("walk_left")
-			body.set_state("walk_left")
-			self._get_weapon().set_walk_left()
-			self._eyes_move_to_right()
-	
+			sprite.play('moving')
+			sprite.flip_h = true
+
 	var new_direction = Vector2(
 		self._move_right_strength - self._move_left_strength,
 		#self._move_down_strength - self._move_up_strength
 		-Input.get_action_strength("jump") if is_start_to_jump else 0.0
 	)
-	# Maybe we are wall jumping
-	if _asking_for_jump and self._is_touching_a_wall():
-		print('WALL JUMP from %s' % self._current_wall)
-		self.sound_jump.play()
-		new_direction[1] = -Input.get_action_strength("jump")
-	#	# NOTE: to evade player input, we simulate a huge force against the wall
-		new_direction[0] = 10
-		if self._current_wall == TOUCH_RIGHT_WALL:
-			new_direction[0] *= -1  # need to inverse force to get lower x
+	print('NEW DIRECTION Y: %s' % new_direction.y)
+#	# Maybe we are wall jumping
+#	if _asking_for_jump and self._is_touching_a_wall():
+#		print('WALL JUMP from %s' % self._current_wall)
+#		self.sound_jump.play()
+#		new_direction[1] = -Input.get_action_strength("jump")
+#	#	# NOTE: to evade player input, we simulate a huge force against the wall
+#		new_direction[0] = 10
+#		if self._current_wall == TOUCH_RIGHT_WALL:
+#			new_direction[0] *= -1  # need to inverse force to get lower x
 	return new_direction
 	
 
