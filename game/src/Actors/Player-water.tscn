@@ -1,0 +1,183 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://src/Actors/Player-water.gd" type="Script" id=1]
+[ext_resource path="res://assets/player/turtles/water/in-water.png" type="Texture" id=2]
+[ext_resource path="res://src/UserInterface/ScreenShake.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/player/sounds/walk.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/player/sounds/landing.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/player/sounds/dash.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/player/sounds/jump.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/lights/light.png" type="Texture" id=16]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 27, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 54, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 135, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 81, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 108, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 135, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 243, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 270, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 162, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 189, 0, 27, 31 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 216, 0, 27, 31 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "moving",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "bombing",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "down",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 8.07279, 4.85801 )
+
+[sub_resource type="AudioStreamRandomPitch" id=15]
+audio_stream = ExtResource( 12 )
+random_pitch = 1.5
+
+[sub_resource type="AudioStreamRandomPitch" id=16]
+audio_stream = ExtResource( 13 )
+
+[sub_resource type="AudioStreamRandomPitch" id=17]
+audio_stream = ExtResource( 14 )
+
+[sub_resource type="AudioStreamRandomPitch" id=18]
+audio_stream = ExtResource( 15 )
+random_pitch = 1.5
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 9.29328, 7.90562 )
+
+[node name="Player-water" type="KinematicBody2D"]
+collision_mask = 4
+script = ExtResource( 1 )
+
+[node name="light" type="Light2D" parent="."]
+position = Vector2( 0.667435, -10.6787 )
+texture = ExtResource( 16 )
+range_item_cull_mask = 8
+shadow_enabled = true
+shadow_item_cull_mask = 8
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.3, 0.3 )
+process_mode = 0
+limit_bottom = 0
+limit_smoothed = true
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_right = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 3 )]
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.667419, -13.0147 )
+frames = SubResource( 13 )
+animation = "idle"
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+modulate = Color( 0.337255, 0.223529, 1, 1 )
+position = Vector2( 1.22561, -11.0544 )
+scale = Vector2( -1.13737, 1.03767 )
+shape = SubResource( 14 )
+
+[node name="sounds" type="Node2D" parent="."]
+visible = false
+
+[node name="walk" type="AudioStreamPlayer2D" parent="sounds"]
+stream = SubResource( 15 )
+volume_db = 10.0
+attenuation = 1.03527
+
+[node name="landing" type="AudioStreamPlayer2D" parent="sounds"]
+stream = SubResource( 16 )
+volume_db = -10.0
+
+[node name="dash" type="AudioStreamPlayer2D" parent="sounds"]
+stream = SubResource( 17 )
+
+[node name="jump" type="AudioStreamPlayer2D" parent="sounds"]
+stream = SubResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -0.22033, -10.0277 )
+scale = Vector2( 1, 0.719999 )
+shape = SubResource( 19 )
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]

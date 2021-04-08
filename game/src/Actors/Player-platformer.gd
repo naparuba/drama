@@ -8,7 +8,7 @@ extends "res://src/Actors/Player_shoot.gd"
 # apply movement
 # apply display
 
-class_name PlayerPlatformer, "res://assets/player.png"
+class_name PlayerPlatformer, "res://assets/player/turtles/platformer/player.png"
 
 
 export var speed: = Vector2(60.0, 200.0)

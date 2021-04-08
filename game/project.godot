@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Player-top-down.gd"
 }, {
+"base": "Actor",
+"class": "PlayerWater",
+"language": "GDScript",
+"path": "res://src/Actors/Player-water.gd"
+}, {
 "base": "Area2D",
 "class": "Portal2d",
 "language": "GDScript",
@@ -64,8 +69,9 @@ _global_script_class_icons={
 "Coin": "res://assets/coin.png",
 "Enemy": "res://assets/enemy.png",
 "Player": "res://assets/player.png",
-"PlayerPlatformer": "res://assets/player.png",
-"PlayerTopDown": "res://assets/player.png",
+"PlayerPlatformer": "res://assets/player/turtles/platformer/player.png",
+"PlayerTopDown": "res://assets/player/turtles/top-down/icon.png",
+"PlayerWater": "res://assets/player/turtles/water/player.png",
 "Portal2d": "res://assets/portal.png",
 "TurtleTopDown": "res://assets/player/turtles/top-down/icon.png",
 "bullet": "",
