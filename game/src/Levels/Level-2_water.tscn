@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/levels/2/water.png" type="Texture" id=3]
 [ext_resource path="res://src/Actors/Player-water.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Levels/Blocks/PhysicalBlock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Objects/bomb.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/Navigation2D.gd" type="Script" id=7]
+[ext_resource path="res://src/Objects/deadly_algues.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Levels/level-platformer.gd" type="Script" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
@@ -26,6 +28,41 @@ color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="deadly_algues" type="Node2D" parent="."]
+
+[node name="deadly_algues" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 618.011, -23.3345 )
+
+[node name="deadly_algues2" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 649.958, -7.06367 )
+
+[node name="deadly_algues3" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 681.904, -23.3345 )
+
+[node name="deadly_algues4" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 1033.97, -71.2356 )
+
+[node name="deadly_algues5" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 1034.21, -33.0087 )
+
+[node name="deadly_algues6" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 1034.21, 4.8744 )
+
+[node name="deadly_algues7" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 1994.22, -406.783 )
+
+[node name="deadly_algues8" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 1994.02, -375.034 )
+
+[node name="deadly_algues9" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 1898.12, -7.16011 )
+
+[node name="deadly_algues10" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 1929.98, -7.39607 )
+
+[node name="deadly_algues11" parent="deadly_algues" instance=ExtResource( 8 )]
+position = Vector2( 2026.01, -7.39607 )
 
 [node name="background" type="Sprite" parent="."]
 position = Vector2( 1145.04, -292.274 )
@@ -121,6 +158,32 @@ __meta__ = {
 
 [node name="UserInterface" parent="InterfaceLayer" instance=ExtResource( 2 )]
 visible = false
+
+[node name="bombs" type="Node2D" parent="."]
+
+[node name="bomb" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 217.825, -116.708 )
+
+[node name="bomb2" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 934.109, -47.6631 )
+
+[node name="bomb3" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 569.953, -334.756 )
+
+[node name="bomb4" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 1129.79, -317.859 )
+
+[node name="bomb5" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 1486.19, -287.157 )
+
+[node name="bomb6" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 1969.74, -502.317 )
+
+[node name="bomb7" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 1969.74, -250.601 )
+
+[node name="bomb8" parent="bombs" instance=ExtResource( 6 )]
+position = Vector2( 2053.27, -154.335 )
 
 [node name="Turtle" parent="." instance=ExtResource( 4 )]
 position = Vector2( 95.8622, -72.3171 )

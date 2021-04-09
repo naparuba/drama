@@ -157,6 +157,16 @@ position = Vector2( 1.22561, -11.0544 )
 scale = Vector2( -1.13737, 1.03767 )
 shape = SubResource( 14 )
 
+[node name="BombDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombDetector"]
+modulate = Color( 0.337255, 0.223529, 1, 1 )
+position = Vector2( 1.22561, -11.0544 )
+scale = Vector2( -1.13737, 1.03767 )
+shape = SubResource( 14 )
+
 [node name="sounds" type="Node2D" parent="."]
 visible = false
 
@@ -181,3 +191,4 @@ position = Vector2( -0.22033, -10.0277 )
 scale = Vector2( 1, 0.719999 )
 shape = SubResource( 19 )
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
+[connection signal="area_entered" from="BombDetector" to="." method="_on_BombDetector_area_entered"]

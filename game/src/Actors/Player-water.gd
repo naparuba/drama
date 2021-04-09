@@ -171,8 +171,8 @@ func _get_direction() -> Vector2:
 	
 	#var was_on_floor = self._is_on_floor
 	#self._is_on_floor = self.is_on_floor()
-	if _asking_for_jump:
-		print('ASK JUMP')
+	#if _asking_for_jump:
+	#	print('ASK JUMP')
 	var is_start_to_jump = _asking_for_jump  # on water, we can always jump
 	#var is_landing = not was_on_floor and self._is_on_floor
 
@@ -200,7 +200,7 @@ func _get_direction() -> Vector2:
 		#self._move_down_strength - self._move_up_strength
 		-Input.get_action_strength("jump") if is_start_to_jump else 0.0
 	)
-	print('NEW DIRECTION Y: %s' % new_direction.y)
+	#print('NEW DIRECTION Y: %s' % new_direction.y)
 #	# Maybe we are wall jumping
 #	if _asking_for_jump and self._is_touching_a_wall():
 #		print('WALL JUMP from %s' % self._current_wall)
@@ -220,3 +220,7 @@ func die() -> void:
 	PlayerData.deaths += 1
 	queue_free()
 
+
+
+func _on_BombDetector_area_entered(area):
+	print('Turtle enter to aread %s' % area)
