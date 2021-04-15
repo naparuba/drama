@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/water.png-b45ec21de224019d82663a5d2cbca33f.stex"
+path="res://.import/zap-base.png-4fb27cb1180e5611df843799efc5cd5a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/levels/2/water.png"
-dest_files=[ "res://.import/water.png-b45ec21de224019d82663a5d2cbca33f.stex" ]
+source_file="res://assets/levels/2/zap-base.png"
+dest_files=[ "res://.import/zap-base.png-4fb27cb1180e5611df843799efc5cd5a.stex" ]
 
 [params]
 
