@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/background.png" type="Texture" id=1]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://assets/levels/2/zap.png" type="Texture" id=11]
 [ext_resource path="res://src/Objects/zap.gd" type="Script" id=12]
 [ext_resource path="res://src/Objects/zapper.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Objects/looper.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Objects/eletric_algues.tscn" type="PackedScene" id=15]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 1022.56, -217.705, 1024.06, 7.04156, -21.7615, 5.54321, -21.7615, -216.206 )
@@ -35,6 +37,10 @@ color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 1145.04, -292.274 )
+texture = ExtResource( 3 )
 
 [node name="deadly_algues" type="Node2D" parent="."]
 
@@ -70,10 +76,6 @@ position = Vector2( 1929.98, -7.39607 )
 
 [node name="deadly_algues11" parent="deadly_algues" instance=ExtResource( 8 )]
 position = Vector2( 2026.01, -7.39607 )
-
-[node name="background" type="Sprite" parent="."]
-position = Vector2( 1145.04, -292.274 )
-texture = ExtResource( 3 )
 
 [node name="limits" type="Node2D" parent="."]
 
@@ -279,6 +281,333 @@ shape = SubResource( 2 )
 [node name="zap2" parent="zappers" instance=ExtResource( 13 )]
 position = Vector2( -0.153122, -0.112912 )
 
+[node name="zap7" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1026.58, -169.974 )
+
+[node name="zap8" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1251.94, -199.405 )
+
+[node name="zap9" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1391.53, -371.789 )
+
+[node name="zap10" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1283.9, -166.61 )
+
+[node name="top" parent="zappers/zap10/fixed" index="0"]
+position = Vector2( 173.611, -94.4377 )
+
+[node name="zapper_1" parent="zappers/zap10/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap10/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap10/sprites" index="2"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap10/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap10/sprites" index="7"]
+visible = false
+
+[node name="zap11" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1448.71, -323.017 )
+
+[node name="top" parent="zappers/zap11/fixed" index="0"]
+position = Vector2( 174.328, -92.9662 )
+
+[node name="zapper_1" parent="zappers/zap11/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap11/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap11/sprites" index="2"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap11/sprites" index="6"]
+visible = false
+
+[node name="zap12" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1523.55, -308.722 )
+
+[node name="top" parent="zappers/zap12/fixed" index="0"]
+position = Vector2( 174.516, -108.511 )
+
+[node name="zapper_1" parent="zappers/zap12/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap12/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap12/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap12/sprites" index="3"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap12/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap12/sprites" index="7"]
+visible = false
+
+[node name="zapper_3" parent="zappers/zap12/sprites" index="8"]
+visible = false
+
+[node name="zap13" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1572.32, -370.107 )
+
+[node name="top" parent="zappers/zap13/fixed" index="0"]
+position = Vector2( 172.455, -79.2942 )
+
+[node name="zapper_1" parent="zappers/zap13/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap13/sprites" index="1"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap13/sprites" index="7"]
+visible = false
+
+[node name="zap14" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1723.68, -396.175 )
+
+[node name="top" parent="zappers/zap14/fixed" index="0"]
+position = Vector2( 172.95, -100.091 )
+flip_h = true
+
+[node name="zapper_1" parent="zappers/zap14/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap14/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap14/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap14/sprites" index="3"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap14/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap14/sprites" index="7"]
+visible = false
+
+[node name="shape" parent="zappers/zap14/area" index="0"]
+position = Vector2( 174.136, -120.997 )
+scale = Vector2( 1, 0.52 )
+
+[node name="zap15" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1763.21, -167.451 )
+
+[node name="top" parent="zappers/zap15/fixed" index="0"]
+position = Vector2( 172.554, -115.767 )
+flip_h = true
+
+[node name="zapper_1" parent="zappers/zap15/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap15/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap15/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap15/sprites" index="3"]
+visible = false
+
+[node name="zapper_9" parent="zappers/zap15/sprites" index="4"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap15/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap15/sprites" index="7"]
+visible = false
+
+[node name="zapper_3" parent="zappers/zap15/sprites" index="8"]
+visible = false
+
+[node name="shape" parent="zappers/zap15/area" index="0"]
+position = Vector2( 174.297, -133.306 )
+scale = Vector2( 1, 0.360005 )
+
+[node name="zap16" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1700.14, -23.6581 )
+
+[node name="top" parent="zappers/zap16/fixed" index="0"]
+position = Vector2( 172.355, -115.172 )
+flip_h = true
+
+[node name="zapper_1" parent="zappers/zap16/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap16/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap16/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap16/sprites" index="3"]
+visible = false
+
+[node name="zapper_9" parent="zappers/zap16/sprites" index="4"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap16/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap16/sprites" index="7"]
+visible = false
+
+[node name="zapper_3" parent="zappers/zap16/sprites" index="8"]
+visible = false
+
+[node name="shape" parent="zappers/zap16/area" index="0"]
+position = Vector2( 174.061, -130.238 )
+scale = Vector2( 1, 0.439998 )
+
+[node name="zap17" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1901.95, -21.1353 )
+
+[node name="top" parent="zappers/zap17/fixed" index="0"]
+position = Vector2( 175.133, -107.83 )
+
+[node name="zapper_1" parent="zappers/zap17/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap17/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap17/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap17/sprites" index="3"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap17/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap17/sprites" index="7"]
+visible = false
+
+[node name="zapper_3" parent="zappers/zap17/sprites" index="8"]
+visible = false
+
+[node name="shape" parent="zappers/zap17/area" index="0"]
+position = Vector2( 174.061, -127.17 )
+scale = Vector2( 1, 0.44 )
+
+[node name="zap18" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 1922.98, -7.681 )
+
+[node name="top" parent="zappers/zap18/fixed" index="0"]
+position = Vector2( 172.752, -116.164 )
+flip_h = true
+
+[node name="zapper_1" parent="zappers/zap18/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap18/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap18/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap18/sprites" index="3"]
+visible = false
+
+[node name="zapper_9" parent="zappers/zap18/sprites" index="4"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap18/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap18/sprites" index="7"]
+visible = false
+
+[node name="zapper_3" parent="zappers/zap18/sprites" index="8"]
+visible = false
+
+[node name="shape" parent="zappers/zap18/area" index="0"]
+position = Vector2( 172.881, -131.89 )
+scale = Vector2( -0.746977, 0.351717 )
+
+[node name="zap5" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 716.427, 89.3415 )
+
+[node name="top" parent="zappers/zap5/fixed" index="0"]
+position = Vector2( 173.826, -110.366 )
+
+[node name="zapper_1" parent="zappers/zap5/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap5/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap5/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap5/sprites" index="3"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap5/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap5/sprites" index="7"]
+visible = false
+
+[node name="zap6" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 739.42, 89.3415 )
+
+[node name="top" parent="zappers/zap6/fixed" index="0"]
+position = Vector2( 173.826, -110.366 )
+
+[node name="zapper_1" parent="zappers/zap6/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap6/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap6/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap6/sprites" index="3"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap6/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap6/sprites" index="7"]
+visible = false
+
+[node name="zap4" parent="zappers" instance=ExtResource( 13 )]
+position = Vector2( 283.937, 68.4456 )
+
+[node name="top" parent="zappers/zap4/fixed" index="0"]
+position = Vector2( 172.954, -101.293 )
+
+[node name="zapper_1" parent="zappers/zap4/sprites" index="0"]
+visible = false
+
+[node name="zapper_5" parent="zappers/zap4/sprites" index="1"]
+visible = false
+
+[node name="zapper_6" parent="zappers/zap4/sprites" index="2"]
+visible = false
+
+[node name="zapper_8" parent="zappers/zap4/sprites" index="3"]
+visible = false
+
+[node name="zapper_2" parent="zappers/zap4/sprites" index="6"]
+visible = false
+
+[node name="zapper_7" parent="zappers/zap4/sprites" index="7"]
+visible = false
+
 [node name="zap3" parent="zappers" instance=ExtResource( 13 )]
 position = Vector2( 177.767, 10.9776 )
 
@@ -293,6 +622,205 @@ visible = false
 
 [node name="zapper_7" parent="zappers/zap3/sprites" index="7"]
 visible = false
+
+[node name="loopers" type="Node2D" parent="."]
+
+[node name="looper" parent="loopers" instance=ExtResource( 14 )]
+position = Vector2( 826.025, -292.377 )
+
+[node name="looper2" parent="loopers" instance=ExtResource( 14 )]
+position = Vector2( 1200.23, -110.707 )
+
+[node name="eletric_algues" type="Node2D" parent="."]
+
+[node name="algues" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 617.153, -338.755 )
+rotation = 3.14159
+
+[node name="algues2" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 680.439, -354.665 )
+rotation = 3.14159
+
+[node name="algues3" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 713.673, -354.311 )
+rotation = 3.14159
+
+[node name="algues4" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 809.839, -338.932 )
+rotation = 3.14159
+
+[node name="algues5" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 874.661, -258.114 )
+
+[node name="algues6" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1098.03, -290.104 )
+
+[node name="algues7" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1130.02, -274.109 )
+
+[node name="algues8" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1162.29, -322.375 )
+rotation = 3.14159
+
+[node name="algues9" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1401.94, -370.641 )
+rotation = 4.71239
+
+[node name="algues10" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1402.78, -403.473 )
+rotation = 4.71239
+
+[node name="algues11" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1386.5, -435.744 )
+rotation = 4.71239
+
+[node name="algues12" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1370.51, -467.173 )
+rotation = 4.71239
+
+[node name="algues13" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1499.03, -499.163 )
+rotation = 4.71239
+
+[node name="algues14" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1465.36, -530.873 )
+rotation = 4.71239
+
+[node name="algues15" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1434.21, -465.489 )
+rotation = 1.5708
+
+[node name="algues16" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1466.48, -434.06 )
+rotation = 1.5708
+
+[node name="algues17" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1306.53, -498.882 )
+rotation = 1.5708
+
+[node name="algues18" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1323.09, -466.331 )
+rotation = 1.5708
+
+[node name="algues19" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1338.52, -434.06 )
+rotation = 1.5708
+
+[node name="algues20" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1354.51, -402.07 )
+rotation = 1.5708
+
+[node name="algues21" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1321.4, -514.597 )
+rotation = 3.14159
+
+[node name="algues22" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1352.27, -531.153 )
+rotation = 3.14159
+
+[node name="algues23" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1386.22, -547.429 )
+rotation = 3.14159
+
+[node name="algues24" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1417.65, -546.868 )
+rotation = 3.14159
+
+[node name="algues25" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1447.68, -530.311 )
+rotation = 3.14159
+
+[node name="algues26" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1514.18, -468.015 )
+rotation = 3.14159
+
+[node name="algues27" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1386.5, -498.04 )
+
+[node name="algues28" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1448.8, -466.05 )
+
+[node name="algues29" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1480.79, -434.902 )
+
+[node name="algues30" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1833.34, -49.3561 )
+
+[node name="algues31" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1864.75, -34.2108 )
+
+[node name="algues32" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2090.15, -33.7653 )
+
+[node name="algues33" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2120.44, -34.2108 )
+
+[node name="algues34" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2150.51, -34.4335 )
+
+[node name="algues35" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2186.36, -33.9881 )
+
+[node name="algues36" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2168.32, -34.6562 )
+
+[node name="algues37" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2217.77, -50.0242 )
+
+[node name="algues38" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2249.72, -65.5808 )
+
+[node name="algues39" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2250.98, -146.727 )
+rotation = 3.14159
+
+[node name="algues40" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2219.24, -163.335 )
+rotation = 3.14159
+
+[node name="algues41" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2154.91, -82.3987 )
+rotation = 3.14159
+
+[node name="algues42" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2124.64, -82.609 )
+rotation = 3.14159
+
+[node name="algues43" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2094.58, -82.609 )
+rotation = 3.14159
+
+[node name="algues44" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2063.88, -82.3987 )
+rotation = 3.14159
+
+[node name="algues45" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2033.61, -82.8192 )
+rotation = 3.14159
+
+[node name="algues46" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 2025.2, -83.0294 )
+rotation = 3.14159
+
+[node name="algues47" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1995.14, -98.3758 )
+rotation = 3.14159
+
+[node name="algues48" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1965.29, -98.3758 )
+rotation = 3.14159
+
+[node name="algues49" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1936.28, -98.7962 )
+rotation = 3.14159
+
+[node name="algues50" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1929.55, -98.7962 )
+rotation = 3.14159
+
+[node name="algues51" parent="eletric_algues" instance=ExtResource( 15 )]
+position = Vector2( 1897.39, -82.3987 )
+rotation = 3.14159
 [connection signal="timeout" from="zappers/zap/timer_switch" to="zappers/zap" method="_on_timer_switch_timeout"]
 
 [editable path="blocs/physical_block"]
@@ -316,5 +844,35 @@ visible = false
 [editable path="blocs/physical_block10"]
 
 [editable path="zappers/zap2"]
+
+[editable path="zappers/zap7"]
+
+[editable path="zappers/zap8"]
+
+[editable path="zappers/zap9"]
+
+[editable path="zappers/zap10"]
+
+[editable path="zappers/zap11"]
+
+[editable path="zappers/zap12"]
+
+[editable path="zappers/zap13"]
+
+[editable path="zappers/zap14"]
+
+[editable path="zappers/zap15"]
+
+[editable path="zappers/zap16"]
+
+[editable path="zappers/zap17"]
+
+[editable path="zappers/zap18"]
+
+[editable path="zappers/zap5"]
+
+[editable path="zappers/zap6"]
+
+[editable path="zappers/zap4"]
 
 [editable path="zappers/zap3"]

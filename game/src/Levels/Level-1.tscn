@@ -124,53 +124,63 @@ position = Vector2( 120.848, 177.724 )
 [node name="to_egout_1-a" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 119.783, 314.049 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_egout-1.tscn"
+teleport_point = "a"
 
 [node name="to_egout_1-b" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 183.881, 457.341 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_egout-1.tscn"
 teleport_point = "b"
 
 [node name="to_egout_2-c" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 312.076, 441.449 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_egout-2.tscn"
 teleport_point = "c"
 
 [node name="to_egout_2-d" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 311.811, 345.303 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_egout-2.tscn"
 teleport_point = "d"
 
 [node name="to_egout_3-e" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 311.811, 185.733 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_egout-3.tscn"
 teleport_point = "e"
 
 [node name="to_egout_4-f" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 263.865, 137.413 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_egout-4.tscn"
 teleport_point = "f"
 
 [node name="to_egout_4-g" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 56.3497, 137.413 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_egout-4.tscn"
 teleport_point = "g"
 
 [node name="to_house_1-h" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 407.919, 298.25 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_house-1.tscn"
 teleport_point = "h"
 
 [node name="to_house_2-i" parent="portals" instance=ExtResource( 8 )]
 position = Vector2( 119.594, 167.102 )
 scale = Vector2( 0.1, 0.1 )
+next_scene = ""
 next_scene_path = "/src/Levels/Level-1_house-2.1.tscn"
 teleport_point = "i"
 

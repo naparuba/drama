@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/levels/2/zap.png" type="Texture" id=2]
 [ext_resource path="res://src/Objects/zap.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.1248, 55.7808 )
 
 [node name="zap2" type="Node2D"]
@@ -12,7 +12,7 @@ position = Vector2( 178.52, 11.1244 )
 script = ExtResource( 3 )
 
 [node name="timer_switch" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.2
 autostart = true
 
 [node name="fixed" type="Node2D" parent="."]
@@ -77,5 +77,5 @@ flip_h = true
 
 [node name="shape" type="CollisionShape2D" parent="area"]
 position = Vector2( 173.825, -100.506 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 [connection signal="timeout" from="timer_switch" to="." method="_on_timer_switch_timeout"]
