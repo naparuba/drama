@@ -18,3 +18,4 @@ func _on_area_entered(area):
 	print('The area %s enter our bomb' % area)
 	self.enabled = false
 	sprite.play('disabled')
+	PlayerData.add_bomb()

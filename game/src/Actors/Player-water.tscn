@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/Actors/Player-water.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/turtles/water/in-water.png" type="Texture" id=2]
@@ -117,7 +117,25 @@ random_pitch = 1.5
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 9.29328, 7.90562 )
 
-[node name="Player-water" type="KinematicBody2D"]
+[sub_resource type="Animation" id=20]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Player-water" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_mask = 4
 script = ExtResource( 1 )
 
@@ -190,5 +208,8 @@ visible = false
 position = Vector2( -0.22033, -10.0277 )
 scale = Vector2( 1, 0.719999 )
 shape = SubResource( 19 )
+
+[node name="player" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 20 )
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="BombDetector" to="." method="_on_BombDetector_area_entered"]

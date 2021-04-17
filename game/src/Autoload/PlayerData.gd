@@ -9,13 +9,16 @@ signal combo_flash
 signal combo_hide
 
 
-var score: = 0 #setget set_score
-var deaths: = 0 #setget set_deaths
+var bombs: = 0 
+var deaths: = 0 
 
 var combo_value = 0
 
 var combo_timer = null
 var combo_flash_timer = null
+
+var health = 8
+
 
 func _ready():
 	self.combo_timer = Timer.new()
@@ -32,13 +35,13 @@ func _ready():
 	emit_signal('update_combo_value', self.combo_value)
 
 func reset():
-	self.score = 0
+	self.bombs = 0
 	self.deaths = 0
 	emit_signal("reset")
 
 
-func set_score(new_score: int) -> void:
-	score = new_score
+func add_bomb() -> void:
+	self.bombs += 1
 	emit_signal("updated")
 
 
@@ -49,7 +52,6 @@ func set_deaths(new_value: int) -> void:
 
 func kill_enemy(score):
 	print('PlayerData::kill_enemi')
-	self.score += score
 	self.combo_value += 1
 	print('KILL enemi, start timers (currnet combo:%s)' % self.combo_value)
 	self.combo_timer.start()
@@ -63,3 +65,13 @@ func _combo_flash():
 func _combo_hide():
 	self.combo_value = 0
 	emit_signal('combo_hide')
+
+
+
+func hurt(degat):
+	self.health -= degat
+	if self.health <= 0:
+		self.health = 0
+		self.emit_signal("died")
+		return
+	emit_signal("updated")

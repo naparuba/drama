@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/UserInterface/UserInterface.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://src/UserInterface/SceneChangeButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/sounds/game-over.ogg" type="AudioStream" id=7]
-[ext_resource path="res://assets/ui/scooter.png" type="Texture" id=8]
 [ext_resource path="res://assets/ui/flames.png" type="Texture" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -103,15 +102,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="."]
+[node name="bombs" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -516.154
 margin_top = -11.4026
 margin_right = -186.154
 margin_bottom = 88.5974
-text = "Score: %s"
+text = "Bombs: %s / 8"
 valign = 1
+
+[node name="Timer" type="Timer" parent="bombs"]
+autostart = true
+
+[node name="health" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -779.117
+margin_top = -7.39808
+margin_right = -449.117
+margin_bottom = 92.6019
+text = "Health: %.1f / 8"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bomb_timer" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1111.49
+margin_top = -6.06324
+margin_right = -781.492
+margin_bottom = 93.9367
+text = "%d : %d"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Fps" type="Label" parent="."]
 anchor_left = 1.0
@@ -169,11 +197,6 @@ margin_bottom = 270.0
 stream = ExtResource( 7 )
 attenuation = 0.0044871
 
-[node name="scooter" type="Sprite" parent="."]
-position = Vector2( 92.104, 72.0814 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 8 )
-
 [node name="combos" type="Node2D" parent="."]
 
 [node name="red_overlay" type="ColorRect" parent="combos"]
@@ -201,6 +224,7 @@ __meta__ = {
 position = Vector2( 975.768, 109.457 )
 scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 16 )
-frame = 9
+frame = 5
 speed_scale = 0.5
 playing = true
+[connection signal="timeout" from="bombs/Timer" to="." method="_on_bomb_tick_timeout"]

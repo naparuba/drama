@@ -2,7 +2,10 @@ extends Node
 
 
 onready var scene_tree: SceneTree = get_tree()
-onready var score_label: Label = $Score
+onready var bomb_timer_label = $bomb_timer
+onready var bomb_timer_timer = $bombs/Timer
+onready var bombs_label: Label = $bombs
+onready var health_label: Label = $health
 onready var fps_label: Label = $Fps
 onready var pause_overlay: ColorRect = $PauseOverlay
 onready var title_label: Label = $PauseOverlay/Title
@@ -13,23 +16,8 @@ onready var sound_game_over = $sounds/game_over
 onready var combo_bloc = $combos
 onready var red_overlay = $red_overlay
 onready var combo_label = $combos/combo
-onready var player_power_level = 0
-onready var scooter = $scooter
 
-var SCOOTER_BASE_COLOR = Color('ff4d54')
-var base_color_levels = {
-	0: 'adff4d',
-	1: 'fff84d',
-	2:'ff9f4d',
-	3: 'ff4d54',
-}
-var SCOOTER_DARK_COLOR = Color('982d31')
-var dark_color_levels = {
-	0: '66982d',
-	1: '98942d',
-	2:'985e2d',
-	3: '982d31',
-}
+var bomb_time = 140
 
 const MESSAGE_DIED: = "You died"
 
@@ -46,6 +34,7 @@ func _ready() -> void:
 	
 	self._hide_combos()
 	
+	self._on_bomb_tick_timeout()
 	update_interface()
 
 
@@ -75,12 +64,11 @@ func _input(event: InputEvent) -> void:
 
 
 func update_interface() -> void:
-	score_label.text = "Score: %s" % PlayerData.score
+	bombs_label.text = "Bombs: %s / 8" % PlayerData.bombs
+	health_label.text = "Health: %.1f / 8" % PlayerData.health
 	self._on_Player_update_combo_value(PlayerData.combo_value)
 
 
-func _set_scooter_color(color_number):
-	pass
 
 func set_paused(value: bool) -> void:
 	paused = value
@@ -109,3 +97,12 @@ func _on_Player_update_combo_value(combo_value):
 	else:
 		self._show_combos()
 		self.combo_label.text = "Combo: x%s" % combo_value
+
+
+func _on_bomb_tick_timeout():
+	self.bomb_time -= 1
+	
+	var min_ = int(self.bomb_time / 60)
+	var sec_ = int(self.bomb_time % 60)
+	
+	bomb_timer_label.text = ('%d' % min_) + ':' + ('%d' % sec_)

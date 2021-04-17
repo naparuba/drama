@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/levels/2/zap-base.png" type="Texture" id=1]
 [ext_resource path="res://assets/levels/2/zap.png" type="Texture" id=2]
@@ -6,6 +6,41 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.1248, 55.7808 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 6.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprites:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "enable"
+}, {
+"args": [  ],
+"method": "disable"
+} ]
+}
 
 [node name="zap2" type="Node2D"]
 position = Vector2( 178.52, 11.1244 )
@@ -78,4 +113,10 @@ flip_h = true
 [node name="shape" type="CollisionShape2D" parent="area"]
 position = Vector2( 173.825, -100.506 )
 shape = SubResource( 1 )
+
+[node name="animation" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 2 )
 [connection signal="timeout" from="timer_switch" to="." method="_on_timer_switch_timeout"]
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]

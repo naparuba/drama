@@ -17,6 +17,8 @@ var TOUCH_LEFT_WALL = 1
 var TOUCH_RIGHT_WALL = 2
 
 
+var health = 8
+
 func _init():
 	print('INIT: Actor %s' % self.name)
 
@@ -40,3 +42,9 @@ func get_which_wall_collided():
 		elif collision.normal.x < 0:
 			return TOUCH_RIGHT_WALL
 	return TOUCH_NO_WALL
+
+
+func hurt(degat):
+	PlayerData.hurt(degat)
+	$player.play('hurt')
+	
